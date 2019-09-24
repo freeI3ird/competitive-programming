@@ -1,0 +1,1707 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0078)https://discuss.codechef.com/questions/101647/persistence-made-simple-tutorial -->
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Persistence Made Simple - Tutorial - CodeChef Discuss</title>
+        <meta name="description" content="This assumes you already have a basic knowledge of segment trees.For this discussion, I want to show everyone that persistence can actually be made simple just by changing our way of thinking.IntroductionUsually, persistence is treated as a &quot;really hard&quot; kind of data structure. After all, it&#39;s l">
+        <meta name="keywords" content="datastructure,tutorial,persistence">
+        
+        <link rel="canonical" href="https://discuss.codechef.com/questions/101647/persistence-made-simple-tutorial">
+        <link rel="alternate" type="application/rss+xml" title="RSS" href="https://discuss.codechef.com/questions/101647/persistence-made-simple-tutorial?type=rss">
+
+        
+        
+        <link rel="shortcut icon" href="https://discuss.codechef.com/upfiles/favicon_1.ico">
+        <link href="./Persistence Made Simple - Tutorial - CodeChef Discuss_files/style.css" rel="stylesheet" type="text/css">
+        
+        <link href="./Persistence Made Simple - Tutorial - CodeChef Discuss_files/custom.css" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" type="text/css" href="./Persistence Made Simple - Tutorial - CodeChef Discuss_files/jquery-ui.js.download">
+        <!--[if IE 6]>
+        <style type="text/css">
+        img, div, a { behavior: url(/m/default/media/iepngfix/iepngfix.htc) }
+        </style>
+        <![endif]-->
+        
+
+        <script type="text/javascript" async="" src="./Persistence Made Simple - Tutorial - CodeChef Discuss_files/atrk.js.download"></script><script src="./Persistence Made Simple - Tutorial - CodeChef Discuss_files/jsapi" type="text/javascript"></script>
+        <script type="text/javascript">
+        /*<![CDATA[*/
+            google.load("jquery", "1.4.2");
+            google.load("jqueryui", "1", {autoload:true});
+
+            var i18nLang = 'en';
+            var appUrl = 'https://discuss.codechef.com'
+            var scriptUrl = '/'
+            var osqaSkin = 'default';
+
+            var messages = {
+                username: 'free__bird',
+                confirm: "Are you sure?",
+                yes: "Yes",
+                no: "No",
+                message: "Message:",
+                cancel: "Cancel",
+                close: "Close",
+                ok: "Ok",
+                matching_tags_url: "/matching_tags/",
+                word: "word",
+                words: "words",
+                character: "character",
+                characters: "characters"
+            }
+        /*]]>*/
+        </script><script src="./Persistence Made Simple - Tutorial - CodeChef Discuss_files/jquery.min.js.download" type="text/javascript"></script><script src="./Persistence Made Simple - Tutorial - CodeChef Discuss_files/jquery-ui.min.js.download" type="text/javascript"></script>
+        <script type="text/javascript" src="./Persistence Made Simple - Tutorial - CodeChef Discuss_files/osqa.main.js.download"></script>
+        
+        
+        
+        
+        
+        <script type="text/javascript" src="./Persistence Made Simple - Tutorial - CodeChef Discuss_files/osqa.question.js.download"></script>
+        <script type="text/javascript" src="./Persistence Made Simple - Tutorial - CodeChef Discuss_files/jquery.caret.js.download"></script>
+        <script type="text/javascript" src="./Persistence Made Simple - Tutorial - CodeChef Discuss_files/showdown.js.download"></script>
+        <script type="text/javascript" src="./Persistence Made Simple - Tutorial - CodeChef Discuss_files/wmd.js.download"></script>
+        <link rel="stylesheet" type="text/css" href="./Persistence Made Simple - Tutorial - CodeChef Discuss_files/wmd.css">
+
+        
+        <script type="text/javascript" src="./Persistence Made Simple - Tutorial - CodeChef Discuss_files/viewbox_min.js.download"></script>
+        <script type="text/javascript" src="./Persistence Made Simple - Tutorial - CodeChef Discuss_files/youtube.js.download"></script>
+        <link rel="stylesheet" type="text/css" href="./Persistence Made Simple - Tutorial - CodeChef Discuss_files/viewbox.css">
+        
+        
+
+        <script type="text/javascript">
+        $().ready(function(){
+            $("#nav_questions").attr('className',"on");
+            var answer_sort_tab = "";
+
+            if (answer_sort_tab) {
+                $("#" + answer_sort_tab).attr('className',"on");
+            }
+
+            $('#editor').TextAreaResizer();
+
+            //toggle preview of editor
+            var display = true;
+            var txt = "[hide preview]";
+            $('#pre-collapse').text(txt);
+            $('#pre-collapse').bind('click', function(){
+                txt = display ? "[show preview]" : "[hide preview]";
+                display = !display;
+                $('#previewer').toggle();
+                $('#pre-collapse').text(txt);
+            });
+        });
+
+        function submitClicked(e, f) {
+            if(!(browserTester('chrome') || browserTester('safari'))) {
+                $("input.submit")[0].disabled=true;
+            }
+            window.removeEventListener('beforeunload', beforeUnload, true);
+            if (f) {
+                f.submit();
+            }
+        }
+
+        function beforeUnload(e) {
+
+            if($("textarea#editor")[0].value != "") {
+                return yourWorkWillBeLost(e);
+            }
+
+            var commentBoxes = $("textarea.commentBox");
+            for(var index = 0; index < commentBoxes.length; index++) {
+                if(commentBoxes[index].value != "") {
+                    return yourWorkWillBeLost(e);
+                }
+            }
+        }
+        window.addEventListener('beforeunload', beforeUnload, true);
+        </script>
+        <noscript>
+            &lt;style&gt;
+                .comment.not_top_scorer {
+                    display: block;
+                }
+                .comment-form-container {
+                    display: block;
+                }
+                .div.comment-tools {
+                    display: none;
+                }
+            &lt;/style&gt;
+        </noscript>
+
+        <link rel="search" type="application/opensearchdescription+xml" href="https://discuss.codechef.com/opensearch.xml" title="CodeChef Discuss Search">
+        
+    <style type="text/css">.MathJax_Hover_Frame {border-radius: .25em; -webkit-border-radius: .25em; -moz-border-radius: .25em; -khtml-border-radius: .25em; box-shadow: 0px 0px 15px #83A; -webkit-box-shadow: 0px 0px 15px #83A; -moz-box-shadow: 0px 0px 15px #83A; -khtml-box-shadow: 0px 0px 15px #83A; border: 1px solid #A6D ! important; display: inline-block; position: absolute}
+.MathJax_Menu_Button .MathJax_Hover_Arrow {position: absolute; cursor: pointer; display: inline-block; border: 2px solid #AAA; border-radius: 4px; -webkit-border-radius: 4px; -moz-border-radius: 4px; -khtml-border-radius: 4px; font-family: 'Courier New',Courier; font-size: 9px; color: #F0F0F0}
+.MathJax_Menu_Button .MathJax_Hover_Arrow span {display: block; background-color: #AAA; border: 1px solid; border-radius: 3px; line-height: 0; padding: 4px}
+.MathJax_Hover_Arrow:hover {color: white!important; border: 2px solid #CCC!important}
+.MathJax_Hover_Arrow:hover span {background-color: #CCC!important}
+</style><style type="text/css">#MathJax_About {position: fixed; left: 50%; width: auto; text-align: center; border: 3px outset; padding: 1em 2em; background-color: #DDDDDD; color: black; cursor: default; font-family: message-box; font-size: 120%; font-style: normal; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; border-radius: 15px; -webkit-border-radius: 15px; -moz-border-radius: 15px; -khtml-border-radius: 15px; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_About.MathJax_MousePost {outline: none}
+.MathJax_Menu {position: absolute; background-color: white; color: black; width: auto; padding: 2px; border: 1px solid #CCCCCC; margin: 0; cursor: default; font: menu; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+.MathJax_MenuItem {padding: 2px 2em; background: transparent}
+.MathJax_MenuArrow {position: absolute; right: .5em; padding-top: .25em; color: #666666; font-size: .75em}
+.MathJax_MenuActive .MathJax_MenuArrow {color: white}
+.MathJax_MenuArrow.RTL {left: .5em; right: auto}
+.MathJax_MenuCheck {position: absolute; left: .7em}
+.MathJax_MenuCheck.RTL {right: .7em; left: auto}
+.MathJax_MenuRadioCheck {position: absolute; left: 1em}
+.MathJax_MenuRadioCheck.RTL {right: 1em; left: auto}
+.MathJax_MenuLabel {padding: 2px 2em 4px 1.33em; font-style: italic}
+.MathJax_MenuRule {border-top: 1px solid #CCCCCC; margin: 4px 1px 0px}
+.MathJax_MenuDisabled {color: GrayText}
+.MathJax_MenuActive {background-color: Highlight; color: HighlightText}
+.MathJax_MenuDisabled:focus, .MathJax_MenuLabel:focus {background-color: #E8E8E8}
+.MathJax_ContextMenu:focus {outline: none}
+.MathJax_ContextMenu .MathJax_MenuItem:focus {outline: none}
+#MathJax_AboutClose {top: .2em; right: .2em}
+.MathJax_Menu .MathJax_MenuClose {top: -10px; left: -10px}
+.MathJax_MenuClose {position: absolute; cursor: pointer; display: inline-block; border: 2px solid #AAA; border-radius: 18px; -webkit-border-radius: 18px; -moz-border-radius: 18px; -khtml-border-radius: 18px; font-family: 'Courier New',Courier; font-size: 24px; color: #F0F0F0}
+.MathJax_MenuClose span {display: block; background-color: #AAA; border: 1.5px solid; border-radius: 18px; -webkit-border-radius: 18px; -moz-border-radius: 18px; -khtml-border-radius: 18px; line-height: 0; padding: 8px 0 6px}
+.MathJax_MenuClose:hover {color: white!important; border: 2px solid #CCC!important}
+.MathJax_MenuClose:hover span {background-color: #CCC!important}
+.MathJax_MenuClose:hover:focus {outline: none}
+</style><style type="text/css">.MathJax_Preview .MJXf-math {color: inherit!important}
+</style><style type="text/css">.MJX_Assistive_MathML {position: absolute!important; top: 0; left: 0; clip: rect(1px, 1px, 1px, 1px); padding: 1px 0 0 0!important; border: 0!important; height: 1px!important; width: 1px!important; overflow: hidden!important; display: block!important; -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none}
+.MJX_Assistive_MathML.MJX_Assistive_MathML_Block {width: 100%!important}
+</style><style type="text/css">#MathJax_Zoom {position: absolute; background-color: #F0F0F0; overflow: auto; display: block; z-index: 301; padding: .5em; border: 1px solid black; margin: 0; font-weight: normal; font-style: normal; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; -webkit-box-sizing: content-box; -moz-box-sizing: content-box; box-sizing: content-box; box-shadow: 5px 5px 15px #AAAAAA; -webkit-box-shadow: 5px 5px 15px #AAAAAA; -moz-box-shadow: 5px 5px 15px #AAAAAA; -khtml-box-shadow: 5px 5px 15px #AAAAAA; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_ZoomOverlay {position: absolute; left: 0; top: 0; z-index: 300; display: inline-block; width: 100%; height: 100%; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+#MathJax_ZoomFrame {position: relative; display: inline-block; height: 0; width: 0}
+#MathJax_ZoomEventTrap {position: absolute; left: 0; top: 0; z-index: 302; display: inline-block; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+</style><style type="text/css">.MathJax_Preview {color: #888}
+#MathJax_Message {position: fixed; left: 1em; bottom: 1.5em; background-color: #E6E6E6; border: 1px solid #959595; margin: 0px; padding: 2px 8px; z-index: 102; color: black; font-size: 80%; width: auto; white-space: nowrap}
+#MathJax_MSIE_Frame {position: absolute; top: 0; left: 0; width: 0px; z-index: 101; border: 0px; margin: 0px; padding: 0px}
+.MathJax_Error {color: #CC0000; font-style: italic}
+</style><style type="text/css">.MJXp-script {font-size: .8em}
+.MJXp-right {-webkit-transform-origin: right; -moz-transform-origin: right; -ms-transform-origin: right; -o-transform-origin: right; transform-origin: right}
+.MJXp-bold {font-weight: bold}
+.MJXp-italic {font-style: italic}
+.MJXp-scr {font-family: MathJax_Script,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-frak {font-family: MathJax_Fraktur,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-sf {font-family: MathJax_SansSerif,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-cal {font-family: MathJax_Caligraphic,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-mono {font-family: MathJax_Typewriter,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-largeop {font-size: 150%}
+.MJXp-largeop.MJXp-int {vertical-align: -.2em}
+.MJXp-math {display: inline-block; line-height: 1.2; text-indent: 0; font-family: 'Times New Roman',Times,STIXGeneral,serif; white-space: nowrap; border-collapse: collapse}
+.MJXp-display {display: block; text-align: center; margin: 1em 0}
+.MJXp-math span {display: inline-block}
+.MJXp-box {display: block!important; text-align: center}
+.MJXp-box:after {content: " "}
+.MJXp-rule {display: block!important; margin-top: .1em}
+.MJXp-char {display: block!important}
+.MJXp-mo {margin: 0 .15em}
+.MJXp-mfrac {margin: 0 .125em; vertical-align: .25em}
+.MJXp-denom {display: inline-table!important; width: 100%}
+.MJXp-denom > * {display: table-row!important}
+.MJXp-surd {vertical-align: top}
+.MJXp-surd > * {display: block!important}
+.MJXp-script-box > *  {display: table!important; height: 50%}
+.MJXp-script-box > * > * {display: table-cell!important; vertical-align: top}
+.MJXp-script-box > *:last-child > * {vertical-align: bottom}
+.MJXp-script-box > * > * > * {display: block!important}
+.MJXp-mphantom {visibility: hidden}
+.MJXp-munderover {display: inline-table!important}
+.MJXp-over {display: inline-block!important; text-align: center}
+.MJXp-over > * {display: block!important}
+.MJXp-munderover > * {display: table-row!important}
+.MJXp-mtable {vertical-align: .25em; margin: 0 .125em}
+.MJXp-mtable > * {display: inline-table!important; vertical-align: middle}
+.MJXp-mtr {display: table-row!important}
+.MJXp-mtd {display: table-cell!important; text-align: center; padding: .5em 0 0 .5em}
+.MJXp-mtr > .MJXp-mtd:first-child {padding-left: 0}
+.MJXp-mtr:first-child > .MJXp-mtd {padding-top: 0}
+.MJXp-mlabeledtr {display: table-row!important}
+.MJXp-mlabeledtr > .MJXp-mtd:first-child {padding-left: 0}
+.MJXp-mlabeledtr:first-child > .MJXp-mtd {padding-top: 0}
+.MJXp-merror {background-color: #FFFF88; color: #CC0000; border: 1px solid #CC0000; padding: 1px 3px; font-style: normal; font-size: 90%}
+.MJXp-scale0 {-webkit-transform: scaleX(.0); -moz-transform: scaleX(.0); -ms-transform: scaleX(.0); -o-transform: scaleX(.0); transform: scaleX(.0)}
+.MJXp-scale1 {-webkit-transform: scaleX(.1); -moz-transform: scaleX(.1); -ms-transform: scaleX(.1); -o-transform: scaleX(.1); transform: scaleX(.1)}
+.MJXp-scale2 {-webkit-transform: scaleX(.2); -moz-transform: scaleX(.2); -ms-transform: scaleX(.2); -o-transform: scaleX(.2); transform: scaleX(.2)}
+.MJXp-scale3 {-webkit-transform: scaleX(.3); -moz-transform: scaleX(.3); -ms-transform: scaleX(.3); -o-transform: scaleX(.3); transform: scaleX(.3)}
+.MJXp-scale4 {-webkit-transform: scaleX(.4); -moz-transform: scaleX(.4); -ms-transform: scaleX(.4); -o-transform: scaleX(.4); transform: scaleX(.4)}
+.MJXp-scale5 {-webkit-transform: scaleX(.5); -moz-transform: scaleX(.5); -ms-transform: scaleX(.5); -o-transform: scaleX(.5); transform: scaleX(.5)}
+.MJXp-scale6 {-webkit-transform: scaleX(.6); -moz-transform: scaleX(.6); -ms-transform: scaleX(.6); -o-transform: scaleX(.6); transform: scaleX(.6)}
+.MJXp-scale7 {-webkit-transform: scaleX(.7); -moz-transform: scaleX(.7); -ms-transform: scaleX(.7); -o-transform: scaleX(.7); transform: scaleX(.7)}
+.MJXp-scale8 {-webkit-transform: scaleX(.8); -moz-transform: scaleX(.8); -ms-transform: scaleX(.8); -o-transform: scaleX(.8); transform: scaleX(.8)}
+.MJXp-scale9 {-webkit-transform: scaleX(.9); -moz-transform: scaleX(.9); -ms-transform: scaleX(.9); -o-transform: scaleX(.9); transform: scaleX(.9)}
+.MathJax_PHTML .noError {vertical-align: ; font-size: 90%; text-align: left; color: black; padding: 1px 3px; border: 1px solid}
+</style><style type="text/css">.MathJax_Display {text-align: center; margin: 1em 0em; position: relative; display: block!important; text-indent: 0; max-width: none; max-height: none; min-width: 0; min-height: 0; width: 100%}
+.MathJax .merror {background-color: #FFFF88; color: #CC0000; border: 1px solid #CC0000; padding: 1px 3px; font-style: normal; font-size: 90%}
+.MathJax .MJX-monospace {font-family: monospace}
+.MathJax .MJX-sans-serif {font-family: sans-serif}
+#MathJax_Tooltip {background-color: InfoBackground; color: InfoText; border: 1px solid black; box-shadow: 2px 2px 5px #AAAAAA; -webkit-box-shadow: 2px 2px 5px #AAAAAA; -moz-box-shadow: 2px 2px 5px #AAAAAA; -khtml-box-shadow: 2px 2px 5px #AAAAAA; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true'); padding: 3px 4px; z-index: 401; position: absolute; left: 0; top: 0; width: auto; height: auto; display: none}
+.MathJax {display: inline; font-style: normal; font-weight: normal; line-height: normal; font-size: 100%; font-size-adjust: none; text-indent: 0; text-align: left; text-transform: none; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; direction: ltr; max-width: none; max-height: none; min-width: 0; min-height: 0; border: 0; padding: 0; margin: 0}
+.MathJax:focus, body :focus .MathJax {display: inline-table}
+.MathJax.MathJax_FullWidth {text-align: center; display: table-cell!important; width: 10000em!important}
+.MathJax img, .MathJax nobr, .MathJax a {border: 0; padding: 0; margin: 0; max-width: none; max-height: none; min-width: 0; min-height: 0; vertical-align: 0; line-height: normal; text-decoration: none}
+img.MathJax_strut {border: 0!important; padding: 0!important; margin: 0!important; vertical-align: 0!important}
+.MathJax span {display: inline; position: static; border: 0; padding: 0; margin: 0; vertical-align: 0; line-height: normal; text-decoration: none}
+.MathJax nobr {white-space: nowrap!important}
+.MathJax img {display: inline!important; float: none!important}
+.MathJax * {transition: none; -webkit-transition: none; -moz-transition: none; -ms-transition: none; -o-transition: none}
+.MathJax_Processing {visibility: hidden; position: fixed; width: 0; height: 0; overflow: hidden}
+.MathJax_Processed {display: none!important}
+.MathJax_ExBox {display: block!important; overflow: hidden; width: 1px; height: 60ex; min-height: 0; max-height: none}
+.MathJax .MathJax_EmBox {display: block!important; overflow: hidden; width: 1px; height: 60em; min-height: 0; max-height: none}
+.MathJax_LineBox {display: table!important}
+.MathJax_LineBox span {display: table-cell!important; width: 10000em!important; min-width: 0; max-width: none; padding: 0; border: 0; margin: 0}
+.MathJax .MathJax_HitBox {cursor: text; background: white; opacity: 0; filter: alpha(opacity=0)}
+.MathJax .MathJax_HitBox * {filter: none; opacity: 1; background: transparent}
+#MathJax_Tooltip * {filter: none; opacity: 1; background: transparent}
+@font-face {font-family: MathJax_Main; src: url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/fonts/HTML-CSS/TeX/woff/MathJax_Main-Regular.woff?V=2.7.1') format('woff'), url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/fonts/HTML-CSS/TeX/otf/MathJax_Main-Regular.otf?V=2.7.1') format('opentype')}
+@font-face {font-family: MathJax_Main-bold; src: url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/fonts/HTML-CSS/TeX/woff/MathJax_Main-Bold.woff?V=2.7.1') format('woff'), url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/fonts/HTML-CSS/TeX/otf/MathJax_Main-Bold.otf?V=2.7.1') format('opentype')}
+@font-face {font-family: MathJax_Main-italic; src: url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/fonts/HTML-CSS/TeX/woff/MathJax_Main-Italic.woff?V=2.7.1') format('woff'), url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/fonts/HTML-CSS/TeX/otf/MathJax_Main-Italic.otf?V=2.7.1') format('opentype')}
+@font-face {font-family: MathJax_Math-italic; src: url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/fonts/HTML-CSS/TeX/woff/MathJax_Math-Italic.woff?V=2.7.1') format('woff'), url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/fonts/HTML-CSS/TeX/otf/MathJax_Math-Italic.otf?V=2.7.1') format('opentype')}
+@font-face {font-family: MathJax_Caligraphic; src: url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/fonts/HTML-CSS/TeX/woff/MathJax_Caligraphic-Regular.woff?V=2.7.1') format('woff'), url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/fonts/HTML-CSS/TeX/otf/MathJax_Caligraphic-Regular.otf?V=2.7.1') format('opentype')}
+@font-face {font-family: MathJax_Size1; src: url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/fonts/HTML-CSS/TeX/woff/MathJax_Size1-Regular.woff?V=2.7.1') format('woff'), url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/fonts/HTML-CSS/TeX/otf/MathJax_Size1-Regular.otf?V=2.7.1') format('opentype')}
+@font-face {font-family: MathJax_Size2; src: url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/fonts/HTML-CSS/TeX/woff/MathJax_Size2-Regular.woff?V=2.7.1') format('woff'), url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/fonts/HTML-CSS/TeX/otf/MathJax_Size2-Regular.otf?V=2.7.1') format('opentype')}
+@font-face {font-family: MathJax_Size3; src: url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/fonts/HTML-CSS/TeX/woff/MathJax_Size3-Regular.woff?V=2.7.1') format('woff'), url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/fonts/HTML-CSS/TeX/otf/MathJax_Size3-Regular.otf?V=2.7.1') format('opentype')}
+@font-face {font-family: MathJax_Size4; src: url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/fonts/HTML-CSS/TeX/woff/MathJax_Size4-Regular.woff?V=2.7.1') format('woff'), url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/fonts/HTML-CSS/TeX/otf/MathJax_Size4-Regular.otf?V=2.7.1') format('opentype')}
+.MathJax .noError {vertical-align: ; font-size: 90%; text-align: left; color: black; padding: 1px 3px; border: 1px solid}
+</style></head>
+    <body waid71fa0d88-5390-4b5b-a2f4-e45fa93d85e2="SA password protect entry checker"><div style="visibility: hidden; overflow: hidden; position: absolute; top: 0px; height: 1px; width: auto; padding: 0px; border: 0px; margin: 0px; text-align: left; text-indent: 0px; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal;"><div id="MathJax_Hidden"></div></div><div id="MathJax_Message" style="display: none;"></div>
+        <div class="wrapper">
+        
+        <!-- template header.html -->
+
+<script src="./Persistence Made Simple - Tutorial - CodeChef Discuss_files/MathJax.js.download" type="text/javascript"></script>
+<style>
+.MathJax {
+    font-size: 2em;
+}
+</style>
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        initSearchBoxValue();
+    });
+
+    MathJax.Hub.Config({
+        "tex2jax": {
+            inlineMath: [['$', '$']],
+            multiLine: true
+        }
+    });
+
+    function initSearchBoxValue()
+    {
+        var searchKeyword= $("#keywords").val();
+            if (searchKeyword=="")
+            {
+                $("#keywords").val("Search Here...");
+            }
+   }
+
+    function searchBoxOnBlur(){
+        $("#keyword").className="searchInput";
+        if ($("#keywords").val()=="")
+                $("#keywords").val("Search Here...");
+    }
+
+    function searchBoxOnFocus(){
+        $("#keyword").className="searchInputFocused";
+        if ($("#keywords").val()=="Search Here...")
+            $("#keywords").val("");
+   }
+
+    function about(){
+        if (document.URL=="http://osqa.codechef.local/about/")
+        {
+            $("")
+        }
+    }
+
+</script>
+
+
+
+ 
+
+	<div id="roof">
+
+
+
+		<div id="top" style="position:absolute; text-align: left;">
+            <a href="https://www.codechef.com/">
+                &lt;&lt; Back to CodeChef
+            </a>
+		</div>
+
+		<div id="logo">
+			<a href="https://discuss.codechef.com/">
+				<img src="./Persistence Made Simple - Tutorial - CodeChef Discuss_files/site-logo_21.png" title="back to home page" alt="CodeChef Discuss logo">
+			</a>
+		</div>
+
+		<div id="top">
+		     <a href="https://discuss.codechef.com/users/172699/free__bird">free__bird</a> <span class="score" title="1 karma">1</span> <a href="https://discuss.codechef.com/logout/">Log Out</a> 
+
+            <div id="nav">
+                <a id="nav_questions" class="on" href="https://discuss.codechef.com/questions/">questions</a><a id="nav_tags" href="https://discuss.codechef.com/tags/">tags</a><a id="nav_users" href="https://discuss.codechef.com/users/">users</a><a id="nav_badges" href="https://discuss.codechef.com/badges/">badges</a><a id="nav_unanswered" href="https://discuss.codechef.com/questions/unanswered/">unanswered</a>
+                <a id="horiSeparator">
+                </a><a id="nav_ask" href="https://discuss.codechef.com/questions/ask/" class="special">ask a question</a>
+                <a id="nav_about" href="https://discuss.codechef.com/about" class="off" onclick="about()">about</a>
+                <a id="nav_faq" href="https://discuss.codechef.com/faq">faq</a>
+
+            </div>
+		</div>
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+  <div class="clear"></div>
+	<div id="searchBar">
+
+
+
+
+        <table id="searchBarTable">
+            <tbody><tr>
+                <td class="left">
+                    CodeChef Discussion
+                </td>
+                <td class="right">
+                    <form action="https://discuss.codechef.com/search/" method="get">
+                    <div style="display:none"><input type="hidden" name="csrfmiddlewaretoken" value="b0420dd6c967326ab4dc0ec083477d2a"></div>
+                        <table>
+                            <tbody><tr>
+                                <td>
+                                    <input type="text" class="searchInput" value="" name="q" id="keywords" onfocus="searchBoxOnFocus()" onblur="searchBoxOnBlur()">
+                                </td>
+                                <td>
+                                    <div class="options">
+                                        <input id="type-question" type="radio" value="question" name="t" checked="checked"><label for="type-question">questions</label>
+                                        <input id="type-tag" type="radio" value="tag" name="t"><label for="type-tag">tags</label>
+                                        <input id="type-user" type="radio" value="user" name="t"><label for="type-user">users</label>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody></table>
+                    </form>
+                </td>
+            </tr>
+        </tbody></table>
+        <h1 id="separator">
+        </h1>
+	</div>
+
+
+	
+
+<!-- end template header.html -->
+
+        
+
+
+
+<div id="wrapper">
+    
+    
+    <div id="room">
+        <div id="CALeft">
+            
+<div class="headNormal">
+    <h1>Persistence Made Simple - Tutorial</h1>
+</div>
+<div id="main-body" class="">
+    <div id="askform">
+            <table style="width:100%;" id="question-table">
+                <tbody><tr>
+                    <td style="width:30px;vertical-align:top">
+                        <div class="vote-buttons">
+                            
+
+<a id="post-101647-upvote" title="I like this post (click again to cancel)" class="ajax-command post-vote up " href="https://discuss.codechef.com/vote/101647/up/" rel="nofollow"> </a>
+<div id="post-101647-score" class="post-score" title="current number of votes">
+    25
+</div>
+<a id="post-101647-downvote" title="I dont like this post (click again to cancel)" class="ajax-command post-vote down" href="https://discuss.codechef.com/vote/101647/down/" rel="nofollow"> </a>
+                            
+
+<a id="favorite-mark" title="mark/unmark this question as favorite (click again to cancel)" class="ajax-command favorite-mark " href="https://discuss.codechef.com/mark_favorite/101647/" rel="nofollow"> </a>
+<div id="favorite-count" class="favorite-count">
+   18
+</div>
+
+                        </div>
+                    </td>
+                    <td>
+                        <div id="item-right">
+                            <div class="question-body">
+                                <p><em>This assumes you already have a basic knowledge of segment trees.</em>
+<em>For this discussion, I want to show everyone that <strong>persistence can actually be made simple</strong> just by changing our way of thinking.</em></p>
+<p><img alt="Money Grows on the Tree of Persistence" src="./Persistence Made Simple - Tutorial - CodeChef Discuss_files/Persistence.resized.png"></p>
+<h1>Introduction</h1>
+<p>Usually, persistence is treated as a "really hard" kind of data structure. After all, it's like a dream data structure with robust version control. It's the crowd favorite for long challenges because of its fame to as the "hardest to implement", especially when appended with truly hard concepts in other topics. <strong>In reality, persistence can actually be made simple, as it is literally only one step away from the non-persistent version</strong>.</p>
+<h1>Background</h1>
+<p>Why does the idea of a persistent data structure seem so hard for most programmers? I think this is because most of us started with imperative programming languages like C++, Java, and Python, <strong>where changing values of variables is the norm</strong>. We are familiar with having the power to mutate a value anytime we want. In contrast, most of us cringe whenever we deal with immutables. Hail C++ mutable <code>std::string</code>, screw Java's immutable <code>String</code>. Nothing beats plain simple assignment operator (<code>s[i] = c</code>) compared to the read-only (<code>s.charAt(i)</code>). Most, if not all of us, grew with the mutable mindset. We live and breathe mutability in our code. It is our intuitive art.</p>
+<h1>Immutable Programming</h1>
+<p>But when you think about it, persistence is all about staying immutable. Being persistent means we discard our powers of mutability. Just like how Java's <code>String</code> class is immutable, we avoid changing individual values directly. Though at first this seems dumb and inefficient, when you think about it it's the straightforward way to do version control. Since original content stays the same, having a new version of the content won't damage the version of the original. For immutables, the way to "change" is to "create". The truth is <code>persistence == immutability</code>, hence we can summarize the act of staying persistent with one golden rule.</p>
+<hr>
+<h2>GOLDEN RULE OF PERSISTENCE</h2>
+<p>Create new nodes instead of changing them.</p>
+<hr>
+<p>That's it? Yes, that's it! The way to be persistent is to <em>stop using the assignment operator</em>, and instead focus on recreation of nodes during a change. We <em>return new nodes</em> instead of mutating. That's the only additional step we need to transform from mutable to persistent. In REMOVING our capability to be mutable, we force ourselves to CREATE a new way to do version control. In effect, original content can stay the same.</p>
+<h2>The secret is that there is no secret</h2>
+<p>Persistence is actually straightforward. There's no need to fancy things around. Just replace all assignment operators with a <code>new node()</code> expression or similar. It is no exaggeration to say that it is a mere few lines of code away from the mutable version. The "god data structure" everyone thinks is so complicated is in truth something with <em>removed powers</em> than the original. But with this irony of a <em>removed power</em>, we instead gain a <em>new power</em> called efficient version control.</p>
+<h1>IMPLEMENTATION</h1>
+<p>Let's demonstrate an example of adding persistence to a segment tree. Suppose we want to solve the range sum query problem, but with a persistent data structure. We could implement it the usual segment tree way as follows:</p>
+<h2>Build (usual segment tree)</h2>
+<pre><code>#define M ((L+R)/2)
+int st[4*n];
+void build(int arr[], int p=1, int L=0, int R=n-1) {
+    if (L == R) st[p] = arr[L]; // construct as leaf
+    else { // construct as parent
+        build(arr, 2*p, L, M);
+        build(arr, 2*p+1, M+1, R);
+        st[p] = st[2*p] + st[2*p+1];
+    }
+}
+</code></pre>
+<p>Now how do we make this persistent? What we do is that we replace every assignment operator <code>st[p] = ...</code> with a <code>new()</code> operator. See my example below for the details.</p>
+<h2>Build (persistent segment tree)</h2>
+<pre><code>#define M ((L+R)/2)
+int build(int arr[], int L=0, int R=n-1) {
+    if (L == R) return newleaf(arr[L]); // construct as leaf
+    else return newparent(build(arr, L, M), build(arr, M+1, R)); // construct as parent
+}
+
+// Usage: int root = build(arr, 0, n - 1);
+</code></pre>
+<p>We abstract the idea of "change" via "creation", as per the golden rule of persistence. Isn't it really simple? In fact, in some cases, we can achieve shorter code than the mutable version if we do it this way! Of course, this depends on the problem, but it is not wrong to say that it can be achievable.</p>
+<h2>Creating New Nodes</h2>
+<p>If you think about it, the difference between the non-persistent and the persistent version is that the former mutates an array called <code>st[]</code> while the latter returns a new node at every build. You can implement this a couple of ways. A famous way is to use a node class. But for me, the way I usually implement it is by allocating a pooled array:</p>
+<pre><code>int l[SIZE], r[SIZE], st[SIZE], NODES = 0;
+int newleaf(int value) {
+    int p = ++NODES;
+    l[p] = r[p] = 0; // null
+    st[p] = value;
+    return p;
+}
+int newparent(int lef, int rig) {
+    int p = ++NODES;
+    l[p] = lef;
+    r[p] = rig;
+    st[p] = st[lef] + st[rig]; // immediately update value from children
+    return p;
+}
+</code></pre>
+<p>There are two operations, <code>newleaf()</code> and <code>newparent()</code>. We either construct nodes as a leaf or as a parent, where being a parent already pulls values from the children. In the same way as the mutable version, we have an array called <code>st[]</code> that stores the segment tree values depending on our queries. Each node also has pointer to the left and the right children stored at <code>l[]</code> and <code>r[]</code> respectively. For the size, I usually allocate around <span class="MathJax_Preview" style="color: inherit; display: none;"></span><span class="MathJax" id="MathJax-Element-1-Frame" tabindex="0" data-mathml="&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;&lt;mi&gt;S&lt;/mi&gt;&lt;mi&gt;I&lt;/mi&gt;&lt;mi&gt;Z&lt;/mi&gt;&lt;mi&gt;E&lt;/mi&gt;&lt;mo&gt;&amp;#x2248;&lt;/mo&gt;&lt;mn&gt;8&lt;/mn&gt;&lt;mi&gt;N&lt;/mi&gt;&lt;mo fence=&quot;false&quot; stretchy=&quot;false&quot;&gt;&amp;#x2308;&lt;/mo&gt;&lt;mi&gt;l&lt;/mi&gt;&lt;mi&gt;o&lt;/mi&gt;&lt;mi&gt;g&lt;/mi&gt;&lt;mi&gt;N&lt;/mi&gt;&lt;mo fence=&quot;false&quot; stretchy=&quot;false&quot;&gt;&amp;#x2309;&lt;/mo&gt;&lt;/math&gt;" role="presentation" style="position: relative;"><nobr aria-hidden="true"><span class="math" id="MathJax-Span-1" style="width: 5.003em; display: inline-block;"><span style="display: inline-block; position: relative; width: 8.272em; height: 0px; font-size: 60%;"><span style="position: absolute; clip: rect(1.221em 1008.08em 2.631em -999.997em); top: -2.176em; left: 0em;"><span class="mrow" id="MathJax-Span-2"><span class="mi" id="MathJax-Span-3" style="font-family: MathJax_Math-italic;">S<span style="display: inline-block; overflow: hidden; height: 1px; width: 0.003em;"></span></span><span class="mi" id="MathJax-Span-4" style="font-family: MathJax_Math-italic;">I<span style="display: inline-block; overflow: hidden; height: 1px; width: 0.067em;"></span></span><span class="mi" id="MathJax-Span-5" style="font-family: MathJax_Math-italic;">Z<span style="display: inline-block; overflow: hidden; height: 1px; width: 0.067em;"></span></span><span class="mi" id="MathJax-Span-6" style="font-family: MathJax_Math-italic;">E<span style="display: inline-block; overflow: hidden; height: 1px; width: 0.003em;"></span></span><span class="mo" id="MathJax-Span-7" style="font-family: MathJax_Main; padding-left: 0.26em;">≈</span><span class="mn" id="MathJax-Span-8" style="font-family: MathJax_Main; padding-left: 0.26em;">8</span><span class="mi" id="MathJax-Span-9" style="font-family: MathJax_Math-italic;">N<span style="display: inline-block; overflow: hidden; height: 1px; width: 0.067em;"></span></span><span class="mo" id="MathJax-Span-10" style="font-family: MathJax_Main;">⌈</span><span class="mi" id="MathJax-Span-11" style="font-family: MathJax_Math-italic;">l</span><span class="mi" id="MathJax-Span-12" style="font-family: MathJax_Math-italic;">o</span><span class="mi" id="MathJax-Span-13" style="font-family: MathJax_Math-italic;">g<span style="display: inline-block; overflow: hidden; height: 1px; width: 0.003em;"></span></span><span class="mi" id="MathJax-Span-14" style="font-family: MathJax_Math-italic;">N<span style="display: inline-block; overflow: hidden; height: 1px; width: 0.067em;"></span></span><span class="mo" id="MathJax-Span-15" style="font-family: MathJax_Main;">⌉</span></span><span style="display: inline-block; width: 0px; height: 2.183em;"></span></span></span><span style="display: inline-block; overflow: hidden; vertical-align: -0.19em; border-left: 0px solid; width: 0px; height: 0.694em;"></span></span></nobr><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><mi>S</mi><mi>I</mi><mi>Z</mi><mi>E</mi><mo>≈</mo><mn>8</mn><mi>N</mi><mo fence="false" stretchy="false">⌈</mo><mi>l</mi><mi>o</mi><mi>g</mi><mi>N</mi><mo fence="false" stretchy="false">⌉</mo></math></span></span><script type="math/tex" id="MathJax-Element-1">SIZE \approx 8N \lceil log N \rceil</script>. In practice I do this because it's faster than using classes. But of course, it all depends on your groove :)</p>
+<p>What about updating nodes? When there's no persistence, we usually directly manipulate our segment tree array <code>st[]</code> like so:</p>
+<h2>Point Update (usual segment tree)</h2>
+<pre><code>void update(int i, int x, int p=1, int L=0, int R=n-1) {
+    if (L == R) {st[p] = x; return;}
+    if (i &lt;= M) update(i, x, 2*p, L, M);
+    else update(i, x, 2*p+1, M+1, R);
+    st[p] = st[2*p] + st[2*p+1];
+}
+</code></pre>
+<p>If we want to add persistent update, we simply need to create new nodes via our <code>newleaf()</code> or <code>newparent()</code> functions instead of the usual assignment operators:</p>
+<h2>Point Update (persistent segment tree)</h2>
+<pre><code>// return an int, a pointer to the new root of the tree
+int update(int i, int x, int p, int L=0, int R=n-1) {
+    if (L == R) return newleaf(st[p] + x);
+    if (i &lt;= M) return newparent(update(i, x, l[p], L, M), r[p]);
+    else        return newparent(l[p], update(i, x, r[p], M + 1, R));
+}
+
+// Usage:
+// int new_version_root = update(i, x, root);
+// Both roots are valid, you can query from both of them!
+</code></pre>
+<p>The only change you need is wrapping the change in a new node at every update. If we merely consider persistence as a wrapper, we can make the implementation clean and concise.</p>
+<h2>Range Copy (persistent segment tree)</h2>
+<p>(Bonus) My favorite operation on a persistent tree is the range copy. This is the ultimate version control technique one can pull off with regards to reverting a range back to a certain version. Imagine doing a range reset back to initial values - what a breakthrough! Although I find it rare to see problems that need range copy (e.g. <a href="https://www.codechef.com/problems/OAK">OAK</a>), it's one of those operations that can come in handy. Fortunately, for a persistent tree, this can easily be achieved a few lines of code:</p>
+<pre><code>// revert range [a:b] of p
+int rangecopy(int a, int b, int p, int revert, int L=0, int R=n-1) {
+    if (b &lt; L || R &lt; a) return p; // keep version
+    if (a &lt;= L &amp;&amp; R &lt;= b) return revert; // reverted version
+    return newparent(rangecopy(a, b, l[p], l[revert], L, M),
+                     rangecopy(a, b, r[p], r[revert], M+1, R));
+}
+
+// Usage: (revert a range [a:b] back to an old version)
+// int reverted_root = rangecopy(a, b, root, old_version_root);
+</code></pre>
+<p>We pass in two roots: the current tree root and the old version root. We traverse both side-by-side, and replace only the relevant nodes during our traversal. This meek five-lined function is the foundation of efficient version-control, which is but one of the many operations you can do with a persistent segment tree.</p>
+<h1>Complexity</h1>
+<p>In a usual tree, we change at most <span class="MathJax_Preview" style="color: inherit; display: none;"></span><span class="MathJax" id="MathJax-Element-2-Frame" tabindex="0" data-mathml="&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;&lt;mi&gt;O&lt;/mi&gt;&lt;mo stretchy=&quot;false&quot;&gt;(&lt;/mo&gt;&lt;mi&gt;l&lt;/mi&gt;&lt;mi&gt;o&lt;/mi&gt;&lt;mi&gt;g&lt;/mi&gt;&lt;mi&gt;N&lt;/mi&gt;&lt;mo stretchy=&quot;false&quot;&gt;)&lt;/mo&gt;&lt;/math&gt;" role="presentation" style="position: relative;"><nobr aria-hidden="true"><span class="math" id="MathJax-Span-16" style="width: 2.183em; display: inline-block;"><span style="display: inline-block; position: relative; width: 3.657em; height: 0px; font-size: 60%;"><span style="position: absolute; clip: rect(1.221em 1003.59em 2.631em -999.997em); top: -2.176em; left: 0em;"><span class="mrow" id="MathJax-Span-17"><span class="mi" id="MathJax-Span-18" style="font-family: MathJax_Math-italic;">O</span><span class="mo" id="MathJax-Span-19" style="font-family: MathJax_Main;">(</span><span class="mi" id="MathJax-Span-20" style="font-family: MathJax_Math-italic;">l</span><span class="mi" id="MathJax-Span-21" style="font-family: MathJax_Math-italic;">o</span><span class="mi" id="MathJax-Span-22" style="font-family: MathJax_Math-italic;">g<span style="display: inline-block; overflow: hidden; height: 1px; width: 0.003em;"></span></span><span class="mi" id="MathJax-Span-23" style="font-family: MathJax_Math-italic;">N<span style="display: inline-block; overflow: hidden; height: 1px; width: 0.067em;"></span></span><span class="mo" id="MathJax-Span-24" style="font-family: MathJax_Main;">)</span></span><span style="display: inline-block; width: 0px; height: 2.183em;"></span></span></span><span style="display: inline-block; overflow: hidden; vertical-align: -0.19em; border-left: 0px solid; width: 0px; height: 0.694em;"></span></span></nobr><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><mi>O</mi><mo stretchy="false">(</mo><mi>l</mi><mi>o</mi><mi>g</mi><mi>N</mi><mo stretchy="false">)</mo></math></span></span><script type="math/tex" id="MathJax-Element-2">O(log N)</script> nodes during an update/query. Therefore, for a persistent tree, we create at most <span class="MathJax_Preview" style="color: inherit; display: none;"></span><span class="MathJax" id="MathJax-Element-3-Frame" tabindex="0" data-mathml="&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;&lt;mi&gt;O&lt;/mi&gt;&lt;mo stretchy=&quot;false&quot;&gt;(&lt;/mo&gt;&lt;mi&gt;l&lt;/mi&gt;&lt;mi&gt;o&lt;/mi&gt;&lt;mi&gt;g&lt;/mi&gt;&lt;mi&gt;N&lt;/mi&gt;&lt;mo stretchy=&quot;false&quot;&gt;)&lt;/mo&gt;&lt;/math&gt;" role="presentation" style="position: relative;"><nobr aria-hidden="true"><span class="math" id="MathJax-Span-25" style="width: 2.183em; display: inline-block;"><span style="display: inline-block; position: relative; width: 3.657em; height: 0px; font-size: 60%;"><span style="position: absolute; clip: rect(1.221em 1003.59em 2.631em -999.997em); top: -2.176em; left: 0em;"><span class="mrow" id="MathJax-Span-26"><span class="mi" id="MathJax-Span-27" style="font-family: MathJax_Math-italic;">O</span><span class="mo" id="MathJax-Span-28" style="font-family: MathJax_Main;">(</span><span class="mi" id="MathJax-Span-29" style="font-family: MathJax_Math-italic;">l</span><span class="mi" id="MathJax-Span-30" style="font-family: MathJax_Math-italic;">o</span><span class="mi" id="MathJax-Span-31" style="font-family: MathJax_Math-italic;">g<span style="display: inline-block; overflow: hidden; height: 1px; width: 0.003em;"></span></span><span class="mi" id="MathJax-Span-32" style="font-family: MathJax_Math-italic;">N<span style="display: inline-block; overflow: hidden; height: 1px; width: 0.067em;"></span></span><span class="mo" id="MathJax-Span-33" style="font-family: MathJax_Main;">)</span></span><span style="display: inline-block; width: 0px; height: 2.183em;"></span></span></span><span style="display: inline-block; overflow: hidden; vertical-align: -0.19em; border-left: 0px solid; width: 0px; height: 0.694em;"></span></span></nobr><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><mi>O</mi><mo stretchy="false">(</mo><mi>l</mi><mi>o</mi><mi>g</mi><mi>N</mi><mo stretchy="false">)</mo></math></span></span><script type="math/tex" id="MathJax-Element-3">O(log N)</script> nodes as well.</p>
+<h1>Summary</h1>
+<p>Persistence is a powerful tool, but can also be made simple. After reading this, I hope that you have come to understand persistent data structures in new light. Trust me, the conversion process is really simple since we just convert all assignment operators to <code>new</code> leaves or parents.</p>
+<p>Persistence is not only for segment trees - you can in fact use this technique for other data structures, such as BBSTs. By understanding persistence more generally, I purposefully omitted range query since I want you to try and code that on your own. By now, I hope you can find it easier to come up with your own code for various kinds of queries, and even for lazy propagation! <strong>Feel free to comment on this thread to open discussion of such techniques.</strong></p>
+<p>As for other resources, you can check out <a href="https://blog.anudeep2011.com/persistent-segment-trees-explained-with-spoj-problems/">Anudeep's blog</a> or the <a href="https://en.wikipedia.org/wiki/Persistent_data_structure">Wiki page</a> for a more in-depth explanation of persistent trees, explained with problems to solve. With lots of practice, you can be ready hike your way to conquer next month's long challenge. Remember to stay persistent, and happy coding :)</p>
+<p><em>UPD: added usage</em></p>
+<p><em>UPD2: added <a href="https://discuss.codechef.com/questions/101647/persistence-made-simple-tutorial/101797">list of problems</a> in the comments below!</em></p>
+                            </div>
+                            <div id="question-tags" class="tags-container tags">
+                            <span class="approved-tags">
+                                
+                                
+                                    <a href="https://discuss.codechef.com/tags/datastructure/" class="post-tag tag-link-datastructure " title="see questions tagged &#39;datastructure&#39;" rel="tag">datastructure</a>
+                                
+                                
+                                
+                                    <a href="https://discuss.codechef.com/tags/tutorial/" class="post-tag tag-link-tutorial " title="see questions tagged &#39;tutorial&#39;" rel="tag">tutorial</a>
+                                
+                                
+                                
+                                    <a href="https://discuss.codechef.com/tags/persistence/" class="post-tag tag-link-persistence " title="see questions tagged &#39;persistence&#39;" rel="tag">persistence</a>
+                                
+                                
+                            </span>
+                            <span class="unapproved-tags" title="Unapproved tags">
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                            </span>
+                            </div>
+                            <div id="question-controls" class="post-controls">
+                                
+
+                                
+
+                            </div>
+                            <div class="post-update-info-container">
+                                    
+<div class="post-update-info post-update-info-user">
+    <p style="line-height:12px;">
+        asked
+        <strong>2 days ago</strong>
+    </p>
+    <img class="gravatar" width="32" height="32" src="./Persistence Made Simple - Tutorial - CodeChef Discuss_files/default.jpg" alt="hikarico&#39;s gravatar image">
+    <p><span class="user-rating user-rating-5"><span>5★</span><a href="https://discuss.codechef.com/users/152542/hikarico">hikarico</a></span><br>
+    <span class="score" title="719 karma">719</span><span title="1 badges"><span class="silver">●</span><span class="badgecount">1</span></span><span title="7 badges"><span class="bronze">●</span><span class="badgecount">7</span></span><br>
+    
+    <span title="Rate of the user&#39;s accepted answers" class="accept_rate">accept rate:</span>
+    <span title="hikarico has 4 accepted answers">21%</span>
+    </p>
+</div>
+
+    <div class="post-update-info post-update-info-edited">
+        <p style="line-height:12px;">
+            <a href="https://discuss.codechef.com/revisions/101647/">
+                edited
+                <strong>yesterday</strong>
+            </a>
+        </p>
+        
+    </div>
+
+
+                            </div>
+                            
+
+
+<div class="comments-container" id="comments-container-101647">
+    
+        <a name="101652"></a>
+        <div class="comment" id="comment-101652">
+            <div id="post-101652-score" class="comment-score"></div>
+            <div class="comment-text"><p>Just a basic knowledge of segment trees is enough? I have just started wth this thing (solved Q on minimum in range [l,r] and other basic ones). Will that be enough to understand it? Or do i need to see/practice more before starting this?</p></div>
+            <div class="comment-info" id="comment-101652-info">
+                
+                
+                
+                
+                    
+
+                <span class="comment-age">(2 days ago)</span>
+                <span class="user-rating user-rating-3"><a class="comment-user userinfo" href="https://discuss.codechef.com/users/187411/vijju123">vijju123</a><span>3★</span></span>
+                
+            </div>
+        </div>
+    
+        <a name="101654"></a>
+        <div class="comment" id="comment-101654">
+            <div id="post-101654-score" class="comment-score">2</div>
+            <div class="comment-text"><p>Yes, basic knowledge is enough. If you have done RSQ or RMQ, even without lazy propagation, I believe you can understand how persistence works</p></div>
+            <div class="comment-info" id="comment-101654-info">
+                
+                
+                
+                
+                    
+
+                <span class="comment-age">(2 days ago)</span>
+                <span class="user-rating user-rating-5"><a class="comment-user userinfo" href="https://discuss.codechef.com/users/152542/hikarico">hikarico</a><span>5★</span></span>
+                
+            </div>
+        </div>
+    
+        <a name="101683"></a>
+        <div class="comment" id="comment-101683">
+            <div id="post-101683-score" class="comment-score">1</div>
+            <div class="comment-text"><p>Amazing article!</p></div>
+            <div class="comment-info" id="comment-101683-info">
+                
+                
+                
+                
+                    
+
+                <span class="comment-age">(2 days ago)</span>
+                <span class="user-rating user-rating-5"><a class="comment-user userinfo" href="https://discuss.codechef.com/users/141759/divyansh_gaba7">divyansh_gaba7</a><span>5★</span></span>
+                
+            </div>
+        </div>
+    
+        <a name="101749"></a>
+        <div class="comment" id="comment-101749">
+            <div id="post-101749-score" class="comment-score">3</div>
+            <div class="comment-text"><p>Linking some starting problems will make the amazing tutorial more complete, i guess. examples : MKTHNUM, SORTING etc.</p></div>
+            <div class="comment-info" id="comment-101749-info">
+                
+                
+                
+                
+                    
+
+                <span class="comment-age">(2 days ago)</span>
+                <span class="user-rating user-rating-6"><a class="comment-user userinfo" href="https://discuss.codechef.com/users/93307/likecs">likecs</a><span>6★</span></span>
+                
+            </div>
+        </div>
+    
+</div>
+<div id="comment-tools-101647" class="comment-tools">
+    
+    
+</div>
+<div id="comment-101647-form-container" class="comment-form-container">
+    
+</div>
+    
+
+                        </div>
+
+                    </td>
+                </tr>
+            </tbody></table>
+            
+            
+                <hr>
+                <div class="tabBar">
+                    <a name="sort-top"></a>
+                    <div class="headQuestions">
+                    7 Answers:
+                    </div>
+                    
+<div class="tabsA"><a href="https://discuss.codechef.com/questions/101647/persistence-made-simple-tutorial?sort=oldest" title="oldest answers will be shown first">oldest</a><a href="https://discuss.codechef.com/questions/101647/persistence-made-simple-tutorial?sort=newest" title="newest answers will be shown first">newest</a><a href="https://discuss.codechef.com/questions/101647/persistence-made-simple-tutorial?sort=votes" class="on" title="most voted answers will be shown first">most voted</a></div>
+
+                </div>
+                
+
+                
+                    <a name="101797"></a>
+                    <div id="answer-container-101797" class="answer answered-by-owner">
+                        <table style="width:100%;">
+                            <tbody><tr>
+                                <td style="width:30px;vertical-align:top">
+                                    <div class="vote-buttons">
+                                        
+
+<a id="post-101797-upvote" title="I like this post (click again to cancel)" class="ajax-command post-vote up " href="https://discuss.codechef.com/vote/101797/up/" rel="nofollow"> </a>
+<div id="post-101797-score" class="post-score" title="current number of votes">
+    7
+</div>
+<a id="post-101797-downvote" title="I dont like this post (click again to cancel)" class="ajax-command post-vote down" href="https://discuss.codechef.com/vote/101797/down/" rel="nofollow"> </a>
+                                        
+
+
+    
+
+
+
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="item-right">
+                                        
+                                            
+                                                <div class="answer-body">
+                                                    <h1>List of Problems</h1>
+<p>Here's a list of problems to practice on. Enjoy!</p>
+<h3>Standard</h3>
+<ul>
+<li><a href="http://www.spoj.com/problems/MKTHNUM/">MKTHNUM</a> - Kth Number</li>
+<li><a href="http://www.spoj.com/problems/KQUERYO/">KQUERYO</a> - K-query Online</li>
+<li><a href="https://www.codechef.com/problems/SORTING">SORTING</a> - Sorting</li>
+<li><a href="http://www.spoj.com/problems/DQUERY/">DQUERY</a> - D-query</li>
+<li><a href="https://www.codechef.com/problems/XRQRS">XRQRS</a> - Xor Queries</li>
+</ul>
+<h3>Path-to-root problems</h3>
+<ul>
+<li><a href="http://www.spoj.com/problems/GOT/">GOT</a> - Gao on Tree</li>
+<li><a href="http://www.spoj.com/problems/COT/">COT</a> - Count on Tree</li>
+<li><a href="https://www.codechef.com/problems/GPD">GPD</a> - Gotham PD</li>
+<li><a href="http://codeforces.com/problemset/problem/226/E">226E</a> - Noble Knight's Path</li>
+</ul>
+<h3>Mixed</h3>
+<ul>
+<li><a href="https://www.codechef.com/problems/PRMQ">PRMQ</a> - Chef and Prime Queries</li>
+<li><a href="https://www.codechef.com/problems/CLONEME">CLONEME</a> - Cloning</li>
+<li><a href="https://www.codechef.com/problems/QUERY">QUERY</a> - Observing the Tree (Persistent HLD, <em>hard</em>)</li>
+<li><a href="https://www.codechef.com/problems/OAK">OAK</a> - Persistent Oak (Persistent HLD, <em>hard</em>)</li>
+<li><a href="http://codeforces.com/contest/464/problem/E">464E</a> - The Classic Problem (Persistent Convex Hull Trick, <em>hard</em>)</li>
+</ul>
+<p><em>This is community wiki, <strong>you can edit</strong>. Feel free to add problems you see fit! :D</em></p>
+                                                </div>
+                                                <div class="answer-controls post-controls">
+                                            
+                                        
+                                            
+<span class="action-link"><a rel="nofollow" title="answer permanent link" class="ajax-command withprompt  copy" href="https://discuss.codechef.com/answer_link/101797/">link</a></span><span class="action-link-separator">|</span><span class="action-link"><a rel="nofollow" title="award points to hikarico" class="ajax-command withprompt  " href="https://discuss.codechef.com/award_points/user/152542/answer/101797/">award points</a></span>
+                                            
+<div class="community-wiki">
+        This answer is marked "community wiki".
+        
+    </div>
+                                        </div>
+                                        <div class="post-update-info-container">
+                                            
+<div class="post-update-info post-update-info-user">
+    <p style="line-height:12px;">
+        answered
+        <strong>yesterday</strong>
+    </p>
+    <img class="gravatar" width="32" height="32" src="./Persistence Made Simple - Tutorial - CodeChef Discuss_files/default.jpg" alt="hikarico&#39;s gravatar image">
+    <p><span class="user-rating user-rating-5"><span>5★</span><a href="https://discuss.codechef.com/users/152542/hikarico">hikarico</a></span><br>
+    <span class="score" title="719 karma">719</span><span title="1 badges"><span class="silver">●</span><span class="badgecount">1</span></span><span title="7 badges"><span class="bronze">●</span><span class="badgecount">7</span></span><br>
+    
+    <span title="Rate of the user&#39;s accepted answers" class="accept_rate">accept rate:</span>
+    <span title="hikarico has 4 accepted answers">21%</span>
+    </p>
+</div>
+
+    <div class="post-update-info post-update-info-edited">
+        <p style="line-height:12px;">
+            <a href="https://discuss.codechef.com/revisions/101797/">
+                edited
+                <strong>yesterday</strong>
+            </a>
+        </p>
+        
+    </div>
+
+
+                                        </div>
+                                        
+
+
+<div class="comments-container" id="comments-container-101797">
+    
+</div>
+<div id="comment-tools-101797" class="comment-tools">
+    
+    
+</div>
+<div id="comment-101797-form-container" class="comment-form-container">
+    
+</div>
+    
+
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody></table>
+                    </div>
+                
+                    <a name="101992"></a>
+                    <div id="answer-container-101992" class="answer ">
+                        <table style="width:100%;">
+                            <tbody><tr>
+                                <td style="width:30px;vertical-align:top">
+                                    <div class="vote-buttons">
+                                        
+
+<a id="post-101992-upvote" title="I like this post (click again to cancel)" class="ajax-command post-vote up " href="https://discuss.codechef.com/vote/101992/up/" rel="nofollow"> </a>
+<div id="post-101992-score" class="post-score" title="current number of votes">
+    2
+</div>
+<a id="post-101992-downvote" title="I dont like this post (click again to cancel)" class="ajax-command post-vote down" href="https://discuss.codechef.com/vote/101992/down/" rel="nofollow"> </a>
+                                        
+
+
+    
+
+
+
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="item-right">
+                                        
+                                            
+                                                <div class="answer-body">
+                                                    <p>Awesome article upon this topic. Along with it, by seeing other answers, I wish to add.</p>
+<p>I don't know if many of us are aware of less advertised tag feature on CodeChef present at <a href="https://www.codechef.com/tags.">https://www.codechef.com/tags.</a> </p>
+<p>Ex: These problems are related to persistence directly. <a href="https://www.codechef.com/tags/problems/persistence">https://www.codechef.com/tags/problems/persistence</a></p>
+<p><a href="https://www.codechef.com/problems/SUBINVER"><img alt="alt text" src="./Persistence Made Simple - Tutorial - CodeChef Discuss_files/1_14.png"></a><br>
+<a href="https://www.codechef.com/problems/FIBTREE"><img alt="alt text" src="./Persistence Made Simple - Tutorial - CodeChef Discuss_files/2_11.png"></a><br>
+<a href="https://www.codechef.com/problems/QUERY"><img alt="alt text" src="./Persistence Made Simple - Tutorial - CodeChef Discuss_files/3_7.png"></a><br>
+<a href="https://www.codechef.com/problems/SORTING"><img alt="alt text" src="./Persistence Made Simple - Tutorial - CodeChef Discuss_files/4_4.png"></a><br>
+<a href="https://www.codechef.com/problems/FRBSUM"><img alt="alt text" src="./Persistence Made Simple - Tutorial - CodeChef Discuss_files/5_2.png"></a><br></p>
+<p>PS: Wrote especially as separate answer, to tell about tags, those weren't knowing about it already. :D</p>
+                                                </div>
+                                                <div class="answer-controls post-controls">
+                                            
+                                        
+                                            
+<span class="action-link"><a rel="nofollow" title="answer permanent link" class="ajax-command withprompt  copy" href="https://discuss.codechef.com/answer_link/101992/">link</a></span><span class="action-link-separator">|</span><span class="action-link"><a rel="nofollow" title="award points to skbly7" class="ajax-command withprompt  " href="https://discuss.codechef.com/award_points/user/11776/answer/101992/">award points</a></span>
+                                            
+
+                                        </div>
+                                        <div class="post-update-info-container">
+                                            
+<div class="post-update-info post-update-info-user">
+    <p style="line-height:12px;">
+        answered
+        <strong>10 hours ago</strong>
+    </p>
+    <img class="gravatar" width="32" height="32" src="./Persistence Made Simple - Tutorial - CodeChef Discuss_files/27f8d9bb665c65888c5b5159305d6360.jpg" alt="skbly7&#39;s gravatar image">
+    <p><span class="user-rating user-rating-2"><span>2★</span><a href="https://discuss.codechef.com/users/11776/skbly7">skbly7 ♦♦</a></span><br>
+    <span class="score" title="1862 karma"><span class="">1.9k</span></span><span title="9 badges"><span class="badge1">●</span><span class="badgecount">9</span></span><span title="17 badges"><span class="silver">●</span><span class="badgecount">17</span></span><span title="24 badges"><span class="bronze">●</span><span class="badgecount">24</span></span><br>
+    
+    <span title="Rate of the user&#39;s accepted answers" class="accept_rate">accept rate:</span>
+    <span title="skbly7 has 5 accepted answers">7%</span>
+    </p>
+</div>
+
+    <div class="post-update-info post-update-info-edited">
+        <p style="line-height:12px;">
+            <a href="https://discuss.codechef.com/revisions/101992/">
+                edited
+                <strong>10 hours ago</strong>
+            </a>
+        </p>
+        
+    </div>
+
+
+                                        </div>
+                                        
+
+
+<div class="comments-container" id="comments-container-101992">
+    
+        <a name="102005"></a>
+        <div class="comment" id="comment-102005">
+            <div id="post-102005-score" class="comment-score"></div>
+            <div class="comment-text"><p>This is great! Will add these problems to the list</p></div>
+            <div class="comment-info" id="comment-102005-info">
+                
+                
+                
+                
+                    
+
+                <span class="comment-age">(3 hours ago)</span>
+                <span class="user-rating user-rating-5"><a class="comment-user userinfo" href="https://discuss.codechef.com/users/152542/hikarico">hikarico</a><span>5★</span></span>
+                
+            </div>
+        </div>
+    
+</div>
+<div id="comment-tools-101992" class="comment-tools">
+    
+    
+</div>
+<div id="comment-101992-form-container" class="comment-form-container">
+    
+</div>
+    
+
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody></table>
+                    </div>
+                
+                    <a name="101700"></a>
+                    <div id="answer-container-101700" class="answer ">
+                        <table style="width:100%;">
+                            <tbody><tr>
+                                <td style="width:30px;vertical-align:top">
+                                    <div class="vote-buttons">
+                                        
+
+<a id="post-101700-upvote" title="I like this post (click again to cancel)" class="ajax-command post-vote up " href="https://discuss.codechef.com/vote/101700/up/" rel="nofollow"> </a>
+<div id="post-101700-score" class="post-score" title="current number of votes">
+    1
+</div>
+<a id="post-101700-downvote" title="I dont like this post (click again to cancel)" class="ajax-command post-vote down" href="https://discuss.codechef.com/vote/101700/down/" rel="nofollow"> </a>
+                                        
+
+
+    
+
+
+
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="item-right">
+                                        
+                                            
+                                                <div class="answer-body">
+                                                    <p>Very helpful article! You made it simpler than normal segment tree :) 
+Although, I didn't properly understand the rangecopy function. What will be the initial parameter passed to the revert variable of this function?
+Also, How is revert variable storing the version of the segment tree? Like suppose we build a RSQ segment tree for 6 elements then we will have nodes from 1-11 in the segment tree(6 leaf node and 5 parent nodes). Now if I update an element at position 3 (1 indexed) then we will have 3 new nodes which will be part of 2nd version of the segment tree, right? If I again update element at position 5 then we will have 4 new nodes which will be part of 3rd version and so on... how are you managing these versions using revert variable? 
+Thanks in advance.</p>
+                                                </div>
+                                                <div class="answer-controls post-controls">
+                                            
+                                        
+                                            
+<span class="action-link"><a rel="nofollow" title="answer permanent link" class="ajax-command withprompt  copy" href="https://discuss.codechef.com/answer_link/101700/">link</a></span><span class="action-link-separator">|</span><span class="action-link"><a rel="nofollow" title="award points to dp1priyesh3_3" class="ajax-command withprompt  " href="https://discuss.codechef.com/award_points/user/73990/answer/101700/">award points</a></span>
+                                            
+
+                                        </div>
+                                        <div class="post-update-info-container">
+                                            
+<div class="post-update-info post-update-info-user">
+    <p style="line-height:12px;">
+        answered
+        <strong>2 days ago</strong>
+    </p>
+    <img class="gravatar" width="32" height="32" src="./Persistence Made Simple - Tutorial - CodeChef Discuss_files/default.jpg" alt="dp1priyesh3_3&#39;s gravatar image">
+    <p><span class="user-rating user-rating-4"><span>4★</span><a href="https://discuss.codechef.com/users/73990/dp1priyesh3_3">dp1priyesh3_3</a></span><br>
+    <span class="score" title="21 karma">21</span><span title="1 badges"><span class="bronze">●</span><span class="badgecount">1</span></span><br>
+    
+    <span title="Rate of the user&#39;s accepted answers" class="accept_rate">accept rate:</span>
+    <span title="dp1priyesh3_3 has no accepted answers">0%</span>
+    </p>
+</div>
+
+
+                                        </div>
+                                        
+
+
+<div class="comments-container" id="comments-container-101700">
+    
+        <a name="101740"></a>
+        <div class="comment" id="comment-101740">
+            <div id="post-101740-score" class="comment-score">1</div>
+            <div class="comment-text"><p>Good question. To revert, you pass the root of an old version. Let's say range set update, sample usage below:</p>
+
+<pre><code>int arr[] = {7, 1, 5, 2, 3}; n=5;
+int tree0 = build(arr);
+int tree1 = update(1, -4, tree0);  // {7, -4, 5, 2, 3}
+int tree2 = update(2, -10, tree1); // {7, -4, -10, 2, 3};
+int tree3 = update(4, -25, tree2); // {7, -4, -10, 2, -25};
+
+// revert range [0..2] back to initial [tree0]
+int tree4 = rangecopy(0, 2, tree3, tree0); // {7, 1, 5, 2, -25}
+</code></pre>
+
+<p>During recursion, the nodes of tree4 inside the range [0:2] will be the nodes from tree0. Hope that answers it ^</p></div>
+            <div class="comment-info" id="comment-101740-info">
+                
+                
+                
+                
+                    
+
+                <span class="comment-age">(2 days ago)</span>
+                <span class="user-rating user-rating-5"><a class="comment-user userinfo" href="https://discuss.codechef.com/users/152542/hikarico">hikarico</a><span>5★</span></span>
+                
+            </div>
+        </div>
+    
+        <a name="101853"></a>
+        <div class="comment" id="comment-101853">
+            <div id="post-101853-score" class="comment-score">1</div>
+            <div class="comment-text"><p>Yes, that answers my question. Thanks a lot.</p></div>
+            <div class="comment-info" id="comment-101853-info">
+                
+                
+                
+                
+                    
+
+                <span class="comment-age">(yesterday)</span>
+                <span class="user-rating user-rating-4"><a class="comment-user userinfo" href="https://discuss.codechef.com/users/73990/dp1priyesh3_3">dp1priyesh3_3</a><span>4★</span></span>
+                
+            </div>
+        </div>
+    
+</div>
+<div id="comment-tools-101700" class="comment-tools">
+    
+    
+</div>
+<div id="comment-101700-form-container" class="comment-form-container">
+    
+</div>
+    
+
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody></table>
+                    </div>
+                
+                    <a name="101742"></a>
+                    <div id="answer-container-101742" class="answer ">
+                        <table style="width:100%;">
+                            <tbody><tr>
+                                <td style="width:30px;vertical-align:top">
+                                    <div class="vote-buttons">
+                                        
+
+<a id="post-101742-upvote" title="I like this post (click again to cancel)" class="ajax-command post-vote up " href="https://discuss.codechef.com/vote/101742/up/" rel="nofollow"> </a>
+<div id="post-101742-score" class="post-score" title="current number of votes">
+    1
+</div>
+<a id="post-101742-downvote" title="I dont like this post (click again to cancel)" class="ajax-command post-vote down" href="https://discuss.codechef.com/vote/101742/down/" rel="nofollow"> </a>
+                                        
+
+
+    
+
+
+
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="item-right">
+                                        
+                                            
+                                                <div class="answer-body">
+                                                    <p>This is so well written !</p>
+                                                </div>
+                                                <div class="answer-controls post-controls">
+                                            
+                                        
+                                            
+<span class="action-link"><a rel="nofollow" title="answer permanent link" class="ajax-command withprompt  copy" href="https://discuss.codechef.com/answer_link/101742/">link</a></span><span class="action-link-separator">|</span><span class="action-link"><a rel="nofollow" title="award points to natsudragneel" class="ajax-command withprompt  " href="https://discuss.codechef.com/award_points/user/196587/answer/101742/">award points</a></span>
+                                            
+
+                                        </div>
+                                        <div class="post-update-info-container">
+                                            
+<div class="post-update-info post-update-info-user">
+    <p style="line-height:12px;">
+        answered
+        <strong>2 days ago</strong>
+    </p>
+    <img class="gravatar" width="32" height="32" src="./Persistence Made Simple - Tutorial - CodeChef Discuss_files/757d87ee27189a50b0faa36004c8b8ed.jpg" alt="natsudragneel&#39;s gravatar image">
+    <p><span class="user-rating user-rating-2"><span>2★</span><a href="https://discuss.codechef.com/users/196587/natsudragneel">natsudragneel</a></span><br>
+    <span class="score" title="39 karma">39</span><span title="3 badges"><span class="bronze">●</span><span class="badgecount">3</span></span><br>
+    
+    <span title="Rate of the user&#39;s accepted answers" class="accept_rate">accept rate:</span>
+    <span title="natsudragneel has no accepted answers">0%</span>
+    </p>
+</div>
+
+
+                                        </div>
+                                        
+
+
+<div class="comments-container" id="comments-container-101742">
+    
+</div>
+<div id="comment-tools-101742" class="comment-tools">
+    
+    
+</div>
+<div id="comment-101742-form-container" class="comment-form-container">
+    
+</div>
+    
+
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody></table>
+                    </div>
+                
+                    <a name="101790"></a>
+                    <div id="answer-container-101790" class="answer ">
+                        <table style="width:100%;">
+                            <tbody><tr>
+                                <td style="width:30px;vertical-align:top">
+                                    <div class="vote-buttons">
+                                        
+
+<a id="post-101790-upvote" title="I like this post (click again to cancel)" class="ajax-command post-vote up " href="https://discuss.codechef.com/vote/101790/up/" rel="nofollow"> </a>
+<div id="post-101790-score" class="post-score" title="current number of votes">
+    1
+</div>
+<a id="post-101790-downvote" title="I dont like this post (click again to cancel)" class="ajax-command post-vote down" href="https://discuss.codechef.com/vote/101790/down/" rel="nofollow"> </a>
+                                        
+
+
+    
+
+
+
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="item-right">
+                                        
+                                            
+                                                <div class="answer-body">
+                                                    <p>Great tutorial but I need to befriend Recursion, to fully appreciate it. Could anyone please do a 'Recursion Made Simple'. Its often hard to analyse recursive functions, how actually the function produces the desired behaviour.</p>
+                                                </div>
+                                                <div class="answer-controls post-controls">
+                                            
+                                        
+                                            
+<span class="action-link"><a rel="nofollow" title="answer permanent link" class="ajax-command withprompt  copy" href="https://discuss.codechef.com/answer_link/101790/">link</a></span><span class="action-link-separator">|</span><span class="action-link"><a rel="nofollow" title="award points to ksmukta" class="ajax-command withprompt  " href="https://discuss.codechef.com/award_points/user/99476/answer/101790/">award points</a></span>
+                                            
+
+                                        </div>
+                                        <div class="post-update-info-container">
+                                            
+<div class="post-update-info post-update-info-user">
+    <p style="line-height:12px;">
+        answered
+        <strong>yesterday</strong>
+    </p>
+    <img class="gravatar" width="32" height="32" src="./Persistence Made Simple - Tutorial - CodeChef Discuss_files/default.jpg" alt="ksmukta&#39;s gravatar image">
+    <p><span class="user-rating user-rating-3"><span>3★</span><a href="https://discuss.codechef.com/users/99476/ksmukta">ksmukta</a></span><br>
+    <span class="score" title="11 karma">11</span><span title="1 badges"><span class="bronze">●</span><span class="badgecount">1</span></span><br>
+    
+    <span title="Rate of the user&#39;s accepted answers" class="accept_rate">accept rate:</span>
+    <span title="ksmukta has no accepted answers">0%</span>
+    </p>
+</div>
+
+
+                                        </div>
+                                        
+
+
+<div class="comments-container" id="comments-container-101790">
+    
+</div>
+<div id="comment-tools-101790" class="comment-tools">
+    
+    
+</div>
+<div id="comment-101790-form-container" class="comment-form-container">
+    
+</div>
+    
+
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody></table>
+                    </div>
+                
+                    <a name="101954"></a>
+                    <div id="answer-container-101954" class="answer ">
+                        <table style="width:100%;">
+                            <tbody><tr>
+                                <td style="width:30px;vertical-align:top">
+                                    <div class="vote-buttons">
+                                        
+
+<a id="post-101954-upvote" title="I like this post (click again to cancel)" class="ajax-command post-vote up " href="https://discuss.codechef.com/vote/101954/up/" rel="nofollow"> </a>
+<div id="post-101954-score" class="post-score" title="current number of votes">
+    1
+</div>
+<a id="post-101954-downvote" title="I dont like this post (click again to cancel)" class="ajax-command post-vote down" href="https://discuss.codechef.com/vote/101954/down/" rel="nofollow"> </a>
+                                        
+
+
+    
+
+
+
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="item-right">
+                                        
+                                            
+                                                <div class="answer-body">
+                                                    <p>Okay, i finished reading this after some more brushing up of the topic, and it literally is one of the best tutorial i ever read. It explains the concept very simply and easily. Also, i like your writing style, its not that monotonous one we find in textbooks, so it was a refreshing read.</p>
+<p>For suggestion, We dealt with update function and build function here. Is it possible to take up some sample/standard problem and explain the query function as well? I am in doubt that, since we are creating new node instead of updating the old ones, what change in query function is necessary? </p>
+                                                </div>
+                                                <div class="answer-controls post-controls">
+                                            
+                                        
+                                            
+<span class="action-link"><a rel="nofollow" title="answer permanent link" class="ajax-command withprompt  copy" href="https://discuss.codechef.com/answer_link/101954/">link</a></span><span class="action-link-separator">|</span><span class="action-link"><a rel="nofollow" title="award points to vijju123" class="ajax-command withprompt  " href="https://discuss.codechef.com/award_points/user/187411/answer/101954/">award points</a></span>
+                                            
+
+                                        </div>
+                                        <div class="post-update-info-container">
+                                            
+<div class="post-update-info post-update-info-user">
+    <p style="line-height:12px;">
+        answered
+        <strong>19 hours ago</strong>
+    </p>
+    <img class="gravatar" width="32" height="32" src="./Persistence Made Simple - Tutorial - CodeChef Discuss_files/96e668c2fa59cdbf2f55333abda83e0a.jpg" alt="vijju123&#39;s gravatar image">
+    <p><span class="user-rating user-rating-3"><span>3★</span><a href="https://discuss.codechef.com/users/187411/vijju123">vijju123</a></span><br>
+    <span class="score" title="4365 karma"><span class="">4.4k</span></span><span title="2 badges"><span class="silver">●</span><span class="badgecount">2</span></span><span title="11 badges"><span class="bronze">●</span><span class="badgecount">11</span></span><br>
+    
+    <span title="Rate of the user&#39;s accepted answers" class="accept_rate">accept rate:</span>
+    <span title="vijju123 has 68 accepted answers">17%</span>
+    </p>
+</div>
+
+
+                                        </div>
+                                        
+
+
+<div class="comments-container" id="comments-container-101954">
+    
+        <a name="102006"></a>
+        <div class="comment" id="comment-102006">
+            <div id="post-102006-score" class="comment-score">1</div>
+            <div class="comment-text"><p>It's the same as segment tree. We're not really creating new nodes during query (except when lazy), so it's the same code. Except that instead of passing 2<em>p and 2</em>p + 1, we pass l[p] and r[p] during recursion:</p>
+
+<pre><code>// Example RSQ, call sum_query(a, b, root)
+
+int sum_query(int a, int b, int p, int L=0, int R=n-1) {
+    if (b &lt; L || R &lt; a) return 0; // outside range
+    if (a &lt;= L &amp;&amp; R &lt;= b) return st[p]; // inside range
+    return sum_query(a, b, l[p], L, M)
+         + sum_query(a, b, r[p], M + 1, R);
+}
+</code></pre></div>
+            <div class="comment-info" id="comment-102006-info">
+                
+                
+                
+                
+                    
+
+                <span class="comment-age">(3 hours ago)</span>
+                <span class="user-rating user-rating-5"><a class="comment-user userinfo" href="https://discuss.codechef.com/users/152542/hikarico">hikarico</a><span>5★</span></span>
+                
+            </div>
+        </div>
+    
+        <a name="102007"></a>
+        <div class="comment" id="comment-102007">
+            <div id="post-102007-score" class="comment-score"></div>
+            <div class="comment-text"><p>Thanks!! I will re-attempt the questions with this in mind (got stuck at thinking part) ^^</p></div>
+            <div class="comment-info" id="comment-102007-info">
+                
+                
+                
+                
+                    
+
+                <span class="comment-age">(3 hours ago)</span>
+                <span class="user-rating user-rating-3"><a class="comment-user userinfo" href="https://discuss.codechef.com/users/187411/vijju123">vijju123</a><span>3★</span></span>
+                
+            </div>
+        </div>
+    
+</div>
+<div id="comment-tools-101954" class="comment-tools">
+    
+    
+</div>
+<div id="comment-101954-form-container" class="comment-form-container">
+    
+</div>
+    
+
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody></table>
+                    </div>
+                
+                    <a name="101991"></a>
+                    <div id="answer-container-101991" class="answer ">
+                        <table style="width:100%;">
+                            <tbody><tr>
+                                <td style="width:30px;vertical-align:top">
+                                    <div class="vote-buttons">
+                                        
+
+<a id="post-101991-upvote" title="I like this post (click again to cancel)" class="ajax-command post-vote up " href="https://discuss.codechef.com/vote/101991/up/" rel="nofollow"> </a>
+<div id="post-101991-score" class="post-score" title="current number of votes">
+    1
+</div>
+<a id="post-101991-downvote" title="I dont like this post (click again to cancel)" class="ajax-command post-vote down" href="https://discuss.codechef.com/vote/101991/down/" rel="nofollow"> </a>
+                                        
+
+
+    
+
+
+
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="item-right">
+                                        
+                                            
+                                                <div class="answer-body">
+                                                    <p>This problem is based on Persistent Trie</p>
+<p><a href="https://www.hackerearth.com/practice/data-structures/advanced-data-structures/trie-keyword-tree/practice-problems/algorithm/dexters-random-generator/description/">Dexter's Random Generator</a></p>
+                                                </div>
+                                                <div class="answer-controls post-controls">
+                                            
+                                        
+                                            
+<span class="action-link"><a rel="nofollow" title="answer permanent link" class="ajax-command withprompt  copy" href="https://discuss.codechef.com/answer_link/101991/">link</a></span><span class="action-link-separator">|</span><span class="action-link"><a rel="nofollow" title="award points to saatwik27" class="ajax-command withprompt  " href="https://discuss.codechef.com/award_points/user/84555/answer/101991/">award points</a></span>
+                                            
+
+                                        </div>
+                                        <div class="post-update-info-container">
+                                            
+<div class="post-update-info post-update-info-user">
+    <p style="line-height:12px;">
+        answered
+        <strong>10 hours ago</strong>
+    </p>
+    <img class="gravatar" width="32" height="32" src="./Persistence Made Simple - Tutorial - CodeChef Discuss_files/f0236a1bc7d325745284564df823df4d.jpg" alt="saatwik27&#39;s gravatar image">
+    <p><span class="user-rating user-rating-5"><span>5★</span><a href="https://discuss.codechef.com/users/84555/saatwik27">saatwik27</a></span><br>
+    <span class="score" title="21 karma">21</span><span title="1 badges"><span class="bronze">●</span><span class="badgecount">1</span></span><br>
+    
+    <span title="Rate of the user&#39;s accepted answers" class="accept_rate">accept rate:</span>
+    <span title="saatwik27 has no accepted answers">0%</span>
+    </p>
+</div>
+
+
+                                        </div>
+                                        
+
+
+<div class="comments-container" id="comments-container-101991">
+    
+</div>
+<div id="comment-tools-101991" class="comment-tools">
+    
+    
+</div>
+<div id="comment-101991-form-container" class="comment-form-container">
+    
+</div>
+    
+
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody></table>
+                    </div>
+                
+                <div class="paginator-container-left">
+                    
+                </div>
+            
+        <form id="fmanswer" action="https://discuss.codechef.com/questions/101647/answer/" method="post"><div style="display:none;"><input type="hidden" id="csrfmiddlewaretoken" name="csrfmiddlewaretoken" value="b0420dd6c967326ab4dc0ec083477d2a"></div>
+            <div style="display:none"><input type="hidden" name="csrfmiddlewaretoken" value="b0420dd6c967326ab4dc0ec083477d2a"></div>
+            <div style="clear:both">
+            </div>
+
+            
+                <div style="padding:10px 0 0 0;">
+                    <div class="headNormal">
+                        
+                            Your answer
+                        
+                    </div>
+                </div>
+                
+
+                <div id="description" class="">
+                    <div id="wmd-button-bar" class="wmd-panel"><ul id="wmd-button-row"><li class="wmd-button" id="wmd-bold-button" title="Strong &lt;strong&gt; Ctrl+B" style="background-position: 0px 0px;"></li><li class="wmd-button" id="wmd-italic-button" title="Emphasis &lt;em&gt; Ctrl+I" style="background-position: -20px 0px;"></li><li class="wmd-spacer" id="wmd-spacer1"></li><li class="wmd-button" id="wmd-link-button" title="Hyperlink &lt;a&gt; Ctrl+L" style="background-position: -40px 0px;"></li><li class="wmd-button" id="wmd-quote-button" title="Blockquote &lt;blockquote&gt; Ctrl+Q" style="background-position: -60px 0px;"></li><li class="wmd-button" id="wmd-code-button" title="Code Sample &lt;pre&gt;&lt;code&gt; Ctrl+K" style="background-position: -80px 0px;"></li><li class="wmd-button" id="wmd-image-button" title="Image &lt;img&gt; Ctrl+G" style="background-position: -100px 0px;"></li><li class="wmd-spacer" id="wmd-spacer2"></li><li class="wmd-button" id="wmd-olist-button" title="Numbered List &lt;ol&gt; Ctrl+O" style="background-position: -120px 0px;"></li><li class="wmd-button" id="wmd-ulist-button" title="Bulleted List &lt;ul&gt; Ctrl+U" style="background-position: -140px 0px;"></li><li class="wmd-button" id="wmd-heading-button" title="Heading &lt;h1&gt;/&lt;h2&gt; Ctrl+H" style="background-position: -160px 0px;"></li><li class="wmd-button" id="wmd-hr-button" title="Horizontal Rule &lt;hr&gt; Ctrl+R" style="background-position: -180px 0px;"></li><li class="wmd-spacer" id="wmd-spacer3"></li><li class="wmd-button" id="wmd-undo-button" title="Undo - Ctrl+Z" style="background-position: -200px -20px;"></li><li class="wmd-button" id="wmd-redo-button" title="Redo - Ctrl+Y" style="background-position: -220px -20px;"></li><li class="wmd-button" id="wmd-hide-button" title="Hide something" style="background-position: -260px 0px;"></li><li class="wmd-button" id="wmd-help-button" style="background-position: -240px 0px;"><a href="http://wmd-editor.com/" target="_blank" title="WMD website"></a></li></ul></div>
+                    <div class="resizable-textarea"><span><textarea rows="10" cols="40" name="text" id="editor" class="processed"></textarea><div class="grippie" style="margin-right: -6px;"></div></span></div>
+                    <div class="preview-toggle">
+                        <table width="100%">
+                            <tbody><tr>
+                                <td>
+                                    <span id="pre-collapse" title="Toggle the real time Markdown editor preview">[hide preview]</span>
+                                </td>
+                                <td style="text-align: right;" id="editor-metrics"></td>
+                                
+                                <td style="text-align:right;">
+                                    <input type="checkbox" name="wiki" id="id_wiki">
+                                    <span style="font-weight:normal;cursor:help" title="if you choose community wiki option, the question and answer do not generate points and name of author will not be shown">
+                                            <label for="id_wiki">community wiki</label>
+                                    </span>
+                                </td>
+                                
+                            </tr>
+
+                        </tbody></table>
+                    </div>
+                    
+                    <div class="wmd-preview-text">Preview</div>
+                    <div id="previewer" class="wmd-preview"></div>
+                </div>
+
+	            
+
+                <p><span class="form-error"></span></p>
+                
+                <input type="button" value="Post Your Answer" class="submit" style="float:left" onclick="submitClicked(event, this.form)">
+            
+        </form>
+    </div>
+</div>
+
+
+        </div>
+        <div id="CARight">
+            
+<div class="boxC" id="subscription_box">
+    <h3 class="subtitle">Follow this question</h3><strong>By Email:</strong><div class="subscription-status"><p>You are not subscribed to this question.</p></div><p><a class="ajax-command sidebar_button subscription_switch" href="https://discuss.codechef.com/subscribe/101647/">
+        
+            subscribe me
+        
+    </a></p><p>
+        
+            (you can adjust your notification settings on your <a href="https://discuss.codechef.com/users/172699/free__bird/subscriptions/">profile</a>)
+        
+    </p><strong>By RSS:</strong><p><a class="feed-icon" style="background-image:url(&#39;/m/default/media/images/feed-icon-small.png&#39;);" href="https://discuss.codechef.com/questions/101647/persistence-made-simple-tutorial?type=rss" title="subscribe to answers"></a>
+    Answers
+</p><p><a class="feed-icon" style="background-image:url(&#39;/m/default/media/images/feed-icon-small.png&#39;);" href="https://discuss.codechef.com/questions/101647/persistence-made-simple-tutorial?type=rss&amp;comments=yes" title="subscribe to comments and answers"></a>
+    Answers and Comments
+</p>
+
+</div>
+
+
+<div class="boxC" id="editor_side_bar" style="display: none;">
+    <p class="subtitle darkred">Markdown Basics</p>
+    <ul class="list-item">
+        <li>
+            *italic* or _italic_
+        </li>
+        <li>
+			**bold** or __bold__
+        </li>
+        <li>
+            <b>link</b>:[text](http://url.com/ "title")
+
+        </li>
+
+        <li>
+            <b>image</b>?![alt text](/path/img.jpg "title")
+
+        </li>
+        <li>
+			numbered list:
+            1.  Foo
+            2.  Bar
+        </li>
+        <li>
+			to add a line break simply add two spaces to where you would like the new line to be.
+        </li>
+        <li>
+			basic HTML tags are also supported
+        </li>
+        <li>
+			mathemetical formulas in Latex between $ symbol
+        </li>
+    </ul>
+    <p class="info-box-follow-up-links">
+        <a href="https://discuss.codechef.com/markdown_help/" target="_blank">learn more about Markdown </a>
+    </p>
+</div>
+
+
+
+
+
+
+
+
+<div class="boxC">
+    <p>
+		Tags:
+    </p>
+    <p class="tags">
+        
+        	<a href="https://discuss.codechef.com/tags/datastructure/" class="tag-link-datastructure" title="see questions tagged&#39;datastructure&#39;using tags" rel="tag">datastructure</a> <span class="tag-number">×699</span><br>
+        
+        	<a href="https://discuss.codechef.com/tags/tutorial/" class="tag-link-tutorial" title="see questions tagged&#39;tutorial&#39;using tags" rel="tag">tutorial</a> <span class="tag-number">×360</span><br>
+        
+        	<a href="https://discuss.codechef.com/tags/persistence/" class="tag-link-persistence" title="see questions tagged&#39;persistence&#39;using tags" rel="tag">persistence</a> <span class="tag-number">×72</span><br>
+        
+    </p>
+    <p>
+        Asked: <strong title="June 13, 2017, 6:50 p.m.">2 days ago</strong>
+    </p>
+    <p>
+     	Seen: <strong>936 times</strong>
+    </p>
+    <p>
+        Last updated: <strong title="June 16, 2017, 11:56 a.m.">3 hours ago</strong>
+    </p>
+</div>
+
+
+
+
+
+<div class="boxC">
+    <h3 class="subtitle">Related questions</h3>
+    <div class="questions-related">
+
+        
+        <p>
+            <a href="https://discuss.codechef.com/questions/46702/book-for-java" title="I want to learn java , please suggest any good book or tutorials . Thank you in advance .">Book for Java</a>
+        </p>
+        
+        <p>
+            <a href="https://discuss.codechef.com/questions/87025/java-collections-tutorial-part-4" title="We have finished discussing Iterators, Collection Interfaces and Classes, Map Interfaces andClasses. Now, we shall discuss the Legacy Interfaces and Classes - the final part of the tutorial.THE LEGACY CLASSES AND INTERFACES:● These classes were used to store objects before the development of Coll">Java Collections Tutorial Part - 4</a>
+        </p>
+        
+        <p>
+            <a href="https://discuss.codechef.com/questions/64119/java-fast-io-template-along-with-an-example" title="Can someone provide a template to perform really fast I/O using java as many problems require it?">Java Fast I/O template along-with an example</a>
+        </p>
+        
+        <p>
+            <a href="https://discuss.codechef.com/questions/54748/help-with-doubly-link-list-deleting-a-node-java-code" title="My code compiles and deletes from the head and tail, but I&#39;m not able to delete from the middle. Can someone look at my code and see what I&#39;m missing. Thanks public class Queue {private IntDNode head;private IntDNode tail;public Queue() { head = tail = null;}public void insertToSortedlist(i">Help with Doubly Link List - Deleting a Node - Java Code</a>
+        </p>
+        
+        <p>
+            <a href="https://discuss.codechef.com/questions/65905/trie-doubt" title="What is a prefix in a TRIE ?">Trie Doubt</a>
+        </p>
+        
+        <p>
+            <a href="https://discuss.codechef.com/questions/87772/data-structure-tutorial-introduction" title="I want to post o series of tutorial on data structure. I think it is useful for programming contest.Please comment if u find any error.OverviewData structure is a particular way of storing and organizing data. Data structure provide a means to manage to large amount of data efficiently for uses s">Data Structure Tutorial : Introduction</a>
+        </p>
+        
+        <p>
+            <a href="https://discuss.codechef.com/questions/5744/problem-solving-approach" title="As I am new to C and algorithm programming, I want to know how should I practice or do coding so that I can write 100 -200 lines of codes as required in the various programming competitions, how much time it will take for one to develop that skills and how to develop smart coding skills.">problem solving approach</a>
+        </p>
+        
+        <p>
+            <a href="https://discuss.codechef.com/questions/46185/decimal-to-binary-conversion" title="part of &quot;A TUTORIAL ON BINARY NUMBERS.&quot;Decimal to BinaryConverting from decimal to binary notation is slightly more difficult conceptually, but can easily be done once you know how through the use of algorithms. Begin by thinking of a few examples. We can easily see that the number 3= 2+1. and ">Decimal to binary conversion.</a>
+        </p>
+        
+        <p>
+            <a href="https://discuss.codechef.com/questions/87027/java-collections-tutorial-part-2" title="In the previous tutorial, we have seen the introduction to JCF and Iterators. In this tutorial,lets look into the details of Collection Interfaces and Classes.THE COLLECTION INTERFACESThe Collection Classes implementing these interfaces have the functionality of theseinterfaces. Therefore, these">Java Collections Tutorial Part - 2</a>
+        </p>
+        
+        <p>
+            <a href="https://discuss.codechef.com/questions/72413/helphow-can-this-problem-be-solved" title="I am working on this problem . As I am a newbie in algorithm designing , I wanted to know how can we solve this problem. Please help me in figuring this out in brief. P.S. - A tutorial can be a great help for many other people like me who wants to learn.Thanks In Advance.">[Help]How can this problem be solved ?</a>
+        </p>
+        
+
+    </div>
+</div>
+
+
+
+        </div>
+        <div id="tail" style="clear:both;">
+            
+            
+        </div>
+    </div>
+    <div class="spacer3"></div>
+</div>
+
+        
+            
+            <div id="ground">
+                
+                    <p>
+
+<link rel="stylesheet" type="text/css" href="./Persistence Made Simple - Tutorial - CodeChef Discuss_files/cc.css">
+</p>
+<div id="cc-footer" class="cc-wrapper">
+    <div class="cc-inner-wrapper">
+        <!-- SECOND NAV -->
+        <div class="cc-cols-2">
+            <div id="cc-secondary-nav">
+                <ul>
+                    <!-- <li><a href="http://blog.corp.pw/" target="_blank">.pw Corp Blog</a></li>
+                    <li><a href="http://start.pw/" target="_blank">Vision</li> -->
+                    <li><a href="http://www.codechef.com/aboutus/">About CodeChef</a></li>
+                    <li><a href="http://www.directi.com/" target="_blank">About Directi</a></li>
+                    <li><a href="http://www.codechef.com/ceoscorner/">CEO's Corner</a></li>
+                    <!-- <li><a href="http://wiki.directi.com/" target="_blank">Wiki</a></li>
+                    <li><a href="http://wiki.directi.com/display/corp/Home" target="_blank">About</a></li> -->
+                </ul>
+                <ul>
+                    <li><a href="http://www.codechef.com/campus/">CodeChef Campus Chapters</a></li>
+                    <li><a href="http://www.codechef.com/school/">CodeChef For Schools</a></li>
+                    <li><a href="http://www.codechef.com/contactus">Contact Us</a></li>
+                </ul>
+            </div>
+            <div id="cc-fineprint">
+                <p>© 2009, Directi Group. All Rights Reserved.</p>
+                <p><small>Powered by OSQA<br> </small></p>
+            </div>
+        </div>
+        <!-- /SECOND NAV -->
+        <!-- LEGAL & COPYRIGHT -->
+        <div>
+            <div id="cc-sponsor-strip">
+                <a href="http://www.directi.com/" target="_blank"><img src="./Persistence Made Simple - Tutorial - CodeChef Discuss_files/footer-sponsor-strip.gif" alt="Sponsors" title="Sponsors"></a>
+            </div>
+        </div>
+        <!-- /LEGAL & COPYRIGHT -->
+    </div>
+</div>
+
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script><script src="./Persistence Made Simple - Tutorial - CodeChef Discuss_files/ga.js.download" type="text/javascript"></script>
+
+<script type="text/javascript">
+try {
+var pageTracker = _gat._getTracker("UA-4090524-6");
+pageTracker._trackPageview();
+} catch(err) {}</script>
+
+<!-- Start Alexa Certify Javascript -->
+
+<script type="text/javascript">
+_atrk_opts = { atrk_acct:"q16Cj1a8gN00iz", domain:"codechef.com",dynamic: true};
+(function() { var as = document.createElement('script'); as.type = 'text/javascript'; as.async = true; as.src = "https://d31qbv1cthcecs.cloudfront.net/atrk.js"; var s = document.getElementsByTagName('script')[0];s.parentNode.insertBefore(as, s); })();
+</script>
+
+<noscript>&lt;img src="https://d5nxst8fruw4z.cloudfront.net/atrk.gif?account=q16Cj1a8gN00iz" style="display:none" height="1" width="1" alt="" /&gt;</noscript>
+
+<!-- End Alexa Certify Javascript -->
+                
+            </div>
+            
+        
+        
+
+        
+        </div>
+
+        <!-- Put all elements with fixed position here, IE6 fixed position fix: http://ryanfait.com/position-fixed-ie6/ -->
+        <div class="notify" style="display:none">
+            
+                
+            
+            <a id="close-notify" onclick="notify.close(true)">×</a>
+        </div>
+
+    
+
+<!-- end template base_content.html -->
+<div id="lo-engage-ext-container"><div data-reactroot=""></div></div><link rel="stylesheet" type="text/css" href="chrome-extension://liecbddmkiiihnedobmlmillhodjkdmb/css/content.css"><div style="position: absolute; width: 0px; height: 0px; overflow: hidden; padding: 0px; border: 0px; margin: 0px;"><div id="MathJax_Font_Test" style="position: absolute; visibility: hidden; top: 0px; left: 0px; width: auto; padding: 0px; border: 0px; margin: 0px; white-space: nowrap; text-align: left; text-indent: 0px; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; font-size: 40px; font-weight: normal; font-style: normal; font-family: MathJax_Main, sans-serif;"></div></div><div id="previewer2" style="display: none;"></div></body></html>

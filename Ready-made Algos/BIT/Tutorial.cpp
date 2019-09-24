@@ -1,0 +1,195 @@
+Problem Statement: 
+	We will be given an array. And we are asked to answer few queries. 
+	Queries will be of two types:-
+	1) Update X Y : Increment value at Xth index by Y.
+	2) Sum L R : Print sum of values at index L to R inclusive.
+
+Solution:
+	
+	1.We can update any value in the array in single step. So, update operation will need O(1) time. Also, for sum 
+	operation, we can traverse the array and find sum. That operation will take O(n)time in worst case.
+
+	
+	2.One more thing we can do. At each index, we will store the cumulative frequency i.e. we will store sum of all 
+	elements before it including itself. We can construct this new array in O(n). Lets say this array as CF[]. After 
+	that, All the sum operation will take O(1) time since we will just subtract CF[L-1] from CF[R] to get the answer 
+	for sum L R. But well, we will need to construct CF[] or at least update CF[] every-time update operation is 
+	made. The worst case time required for this will be O(n)
+
+Minimization Trick:
+	For each index, we were storing sum of all elements before that element to that index. Right? But because of 
+	that, we were needed to change values at all locations for every update.
+
+	Now think it this way, what if we store sum of some elements at each index? i.e. Each index will store sum of 
+	some elements the number may vary. Similarly, for update operation also, we will need to update only few values, 
+	not all. We will see how!
+
+	Formally, we will create some benchmarks. Each benchmark will store sum of all elements before that element; but 
+	other than those benchmarks, no other point will store sum of all elements, they will store sum of few elements.
+	Okay, if we can do this, what we will need to do to get sum at any point is - intelligently choosing right 
+	combination of positions so as to get sum of all elements before that point. And then we will extend it to sum of 
+	elements from L to R (for this, the approach will be same as we did in second approach). We will see that 
+	afterwards.
+
+Application:
+	The benchmarks I was talking about are the powers of 2. Each index, if it is a power of 2, will store the sum of 
+	all elements before that. And we will apply this repetitively so as to get what each index will store.
+
+	Now, start thinking of our array as a binary tree, like this:-
+
+BEFORE:
+[ 5 ] [ 1 ] [ 6 ] [ 4 ] [  2 ] [  3 ] [ 3 ]
+  1     2    3     4     5       6     7
+
+NOW:
+
+         4
+       [ 4 ]
+      /     \
+     2       6
+   [ 1 ]   [ 3 ]
+    / \     / \
+   1   3   5   7
+  [5] [6]  [2] [3]
+Now, we will change value at each node by adding the sum of nodes in its left sub-tree.
+UPDATED VERSION:
+
+         4
+       [ 16 ]
+      /     \
+     2       6
+   [ 6 ]   [ 5 ]
+    / \     / \
+   1   3   5   7
+  [5] [6]  [2] [3]
+I think you have got what we have just done! Take each node, find sum of all nodes in its left sub-tree and add it to 
+value of that node. And this is what we call is BIT.
+
+BIT:
+[ 5 ] [ 6 ] [ 6 ] [ 16 ] [  2 ] [  5 ] [ 3 ]
+  1     2    3     4     5       6     7
+
+For SUM: The idea is to keep a variable ans initialized to 0. Follow the path from root to the index node. Whenever 
+		we need to follow a right link, add the value of current node to ans. Once we reach the node, add that value 
+		too.
+For UPDATE: Follow the path from root to the index node. Whenever we need to follow a left link, add the value of 
+			keep to current node. Once we reach the node, add k to that node too.
+
+The key thing behind the efficiency of BIT is:
+
+Given any index n, the next node on the path from root to that index where we go right is directly calculated by 
+RESETing i.e. '0' the last (right most) SET-bit from the binary representation of index. Apply this until we reach 
+the root.
+Note: For 'n' elements will take a array of size 'n+1' because for bit we consider indices '1 to n'.
+*****************************************************************************************************************
+ALGORITHM:
+SUM(index):
+    ans = 0
+    while(index != 0):
+        ans += BIT[index]
+        index = Reset_Rightmost_SET_bit(index)
+    return ans
+
+Reset_Rightmost_SET_bit(n):
+    n=n&(n-1)
+    n=n^(n&(-n))
+    n=n-(n&(-n))
+
+UPDATE Operation: we need to follow the LEFT LINKS
+Given any index n, the next node on the path from root to that index where we go LEFT is directly calculated by 
+adding '1' to the last (right most) SET-bit from the binary representation of index. Apply this until we reach 
+the root.
+
+ALGO:
+UPDATE(index, addition):
+    while(index <= length_of_array):
+        BIT[index] += addition
+        index= Add_One_Rightmost_SET_bit(index)
+
+Adding_Rightmost_SET_bit(index):
+	index= index+ (index&(-index))
+
+*****************************************************************************************************************
+Actual NEED:
+
+1. Range Query and Point Update and Point Query:
+	Query the sum in range(l,r) = getSum(r,bit)-getSum(l-1,bit);
+	Update the point x with y  = update(x,y)
+//Mark given index with x, its predecessor with y. We can represent (binary notation) y as a0b, where b consists of all ones. 
+//Then, x will be a1b¯ (note that b¯ consists all zeros). Using our algorithm for getting sum of some index, let it be x, 
+//in first iteration we remove the last digit, so after the first iteration x will be a0b¯, mark a new value with z.	
+	Point_Query(index)
+	{	
+		int sum= bit[index];
+		int z= index-(index&(-index));
+		index = index - 1;
+		while(index!=z)
+		{
+			sum-=bit[index];
+			index=index-(index&(-index));
+		}
+		return sum;
+	}
+// E.g: index = 12 ( 1100), z = 8(1000) and new_index = index -1 = 11(1011)
+
+// bit[] is the fenwick tree, maintaining the differences and initialized with 0
+2. Point Query and Range Update:
+	Range_Update(a,b,val)
+	{
+		update(bit,a,val);
+		update(bit,b+1,-val); // To cancel the affect of 'val' after index'b'
+	}
+	Point_Query(x)
+		getSum(bit,x);
+
+3. Range Query and Range Update:// Let initially all bit[] is ZERO and then first Update is made and Query is asked
+	Range_Update(a,b,val);
+	Range_Query(1..p)
+	if p<a :  0
+	if a<=p<=b : p*val - (a-1)*val= p*val - X
+    if p>b :  0+ b*val -(a-1)*val = 0 - X
+    // To maintain this extra X we take help of another bit array bit2[]
+    Range_Update(a,b,val)
+	{
+		Update(bit1,a,val);
+		Update(bit1,b+1,-val);
+		Update(bit2,a,(a-1)*val);
+		Update(bit2,b+1,b*val);
+	}
+	Range_Query(1,p)
+	{
+		getSum(bit1,p)*p - getSum(bit2,p);
+	}
+
+*****************************************************************************************************************
+2D BIT :
+1. Range Query and Point Update:
+	int getSum(int bit[],int x,int y)
+	{
+		int sum=0;
+		while(x>0)
+		{
+			int y1=y;
+			while(y1>0)
+			{
+				sum+= bit[x][y1];
+				y1= y1-(y1&(-y1));
+			}
+			x=x-(x&(-x));
+		}
+		return sum;
+	}
+	void update(int bit[],int x,int y,int val)
+	{
+		while(x<=max_x)
+		{
+			int y1=y;
+			while(y1<=max_y)
+			{
+				bit[x][y1]+=val;
+				y1=y1+(y1&(-y1));
+			}
+			x=x+(x&(-x));
+		}
+	}
+	

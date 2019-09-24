@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="en-US"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8"><script async="" src="MO%E2%80%99s%20Algorithm%20%28Query%20square%20root%20decomposition%29%20%E2%80%93%20Anudeep%27s%20blog_files/a_005.htm"></script><script async="" src="MO%E2%80%99s%20Algorithm%20%28Query%20square%20root%20decomposition%29%20%E2%80%93%20Anudeep%27s%20blog_files/share"></script>
+<meta charset="UTF-8">
+<link rel="profile" href="http://gmpg.org/xfn/11">
+<link rel="pingback" href="https://blog.anudeep2011.com/xmlrpc.php">
+
+<title>MO’s Algorithm (Query square root decomposition) – Anudeep's blog</title>
+<link rel="dns-prefetch" href="https://s0.wp.com/">
+<link rel="dns-prefetch" href="https://s3-us-west-2.amazonaws.com/">
+<link rel="dns-prefetch" href="https://s.w.org/">
+<link rel="alternate" type="application/rss+xml" title="Anudeep's blog » Feed" href="https://blog.anudeep2011.com/feed/">
+<link rel="alternate" type="application/rss+xml" title="Anudeep's blog » Comments Feed" href="https://blog.anudeep2011.com/comments/feed/">
+<link rel="alternate" type="application/rss+xml" title="Anudeep's blog » MO’s Algorithm (Query square root decomposition) Comments Feed" href="https://blog.anudeep2011.com/mos-algorithm/feed/">
+		<script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/2.2.1\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/2.2.1\/svg\/","svgExt":".svg","source":{"concatemoji":"https:\/\/blog.anudeep2011.com\/wp-includes\/js\/wp-emoji-release.min.js?ver=4.7.2"}};
+			!function(a,b,c){function d(a){var b,c,d,e,f=String.fromCharCode;if(!k||!k.fillText)return!1;switch(k.clearRect(0,0,j.width,j.height),k.textBaseline="top",k.font="600 32px Arial",a){case"flag":return k.fillText(f(55356,56826,55356,56819),0,0),!(j.toDataURL().length<3e3)&&(k.clearRect(0,0,j.width,j.height),k.fillText(f(55356,57331,65039,8205,55356,57096),0,0),b=j.toDataURL(),k.clearRect(0,0,j.width,j.height),k.fillText(f(55356,57331,55356,57096),0,0),c=j.toDataURL(),b!==c);case"emoji4":return k.fillText(f(55357,56425,55356,57341,8205,55357,56507),0,0),d=j.toDataURL(),k.clearRect(0,0,j.width,j.height),k.fillText(f(55357,56425,55356,57341,55357,56507),0,0),e=j.toDataURL(),d!==e}return!1}function e(a){var c=b.createElement("script");c.src=a,c.defer=c.type="text/javascript",b.getElementsByTagName("head")[0].appendChild(c)}var f,g,h,i,j=b.createElement("canvas"),k=j.getContext&&j.getContext("2d");for(i=Array("flag","emoji4"),c.supports={everything:!0,everythingExceptFlag:!0},h=0;h<i.length;h++)c.supports[i[h]]=d(i[h]),c.supports.everything=c.supports.everything&&c.supports[i[h]],"flag"!==i[h]&&(c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&c.supports[i[h]]);c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&!c.supports.flag,c.DOMReady=!1,c.readyCallback=function(){c.DOMReady=!0},c.supports.everything||(g=function(){c.readyCallback()},b.addEventListener?(b.addEventListener("DOMContentLoaded",g,!1),a.addEventListener("load",g,!1)):(a.attachEvent("onload",g),b.attachEvent("onreadystatechange",function(){"complete"===b.readyState&&c.readyCallback()})),f=c.source||{},f.concatemoji?e(f.concatemoji):f.wpemoji&&f.twemoji&&(e(f.twemoji),e(f.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script><script src="MO%E2%80%99s%20Algorithm%20%28Query%20square%20root%20decomposition%29%20%E2%80%93%20Anudeep%27s%20blog_files/wp-emoji-release.js" type="text/javascript" defer="defer"></script>
+		<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+<link rel="stylesheet" id="puro-style-css" href="MO%E2%80%99s%20Algorithm%20%28Query%20square%20root%20decomposition%29%20%E2%80%93%20Anudeep%27s%20blog_files/style.css" type="text/css" media="all">
+<link rel="stylesheet" id="font-awesome-css" href="MO%E2%80%99s%20Algorithm%20%28Query%20square%20root%20decomposition%29%20%E2%80%93%20Anudeep%27s%20blog_files/font-awesome.css" type="text/css" media="all">
+<link rel="stylesheet" id="felloy-mx-css-css" href="MO%E2%80%99s%20Algorithm%20%28Query%20square%20root%20decomposition%29%20%E2%80%93%20Anudeep%27s%20blog_files/mixup.xml" type="text/css" media="all">
+<!-- `sharedaddy` is included in the concatenated jetpack.css -->
+<link rel="stylesheet" id="social-logos-css" href="MO%E2%80%99s%20Algorithm%20%28Query%20square%20root%20decomposition%29%20%E2%80%93%20Anudeep%27s%20blog_files/social-logos.css" type="text/css" media="all">
+<link rel="stylesheet" id="jetpack_css-css" href="MO%E2%80%99s%20Algorithm%20%28Query%20square%20root%20decomposition%29%20%E2%80%93%20Anudeep%27s%20blog_files/jetpack.css" type="text/css" media="all">
+<script type="text/javascript" defer="defer" src="MO%E2%80%99s%20Algorithm%20%28Query%20square%20root%20decomposition%29%20%E2%80%93%20Anudeep%27s%20blog_files/jquery.js"></script>
+<script type="text/javascript" defer="defer" src="MO%E2%80%99s%20Algorithm%20%28Query%20square%20root%20decomposition%29%20%E2%80%93%20Anudeep%27s%20blog_files/jquery-migrate.js"></script>
+<script type="text/javascript" defer="defer" src="MO%E2%80%99s%20Algorithm%20%28Query%20square%20root%20decomposition%29%20%E2%80%93%20Anudeep%27s%20blog_files/jquery_002.js"></script>
+<script type="text/javascript" defer="defer" src="MO%E2%80%99s%20Algorithm%20%28Query%20square%20root%20decomposition%29%20%E2%80%93%20Anudeep%27s%20blog_files/skip-link-focus-fix.js"></script>
+<script type="text/javascript" defer="defer" src="MO%E2%80%99s%20Algorithm%20%28Query%20square%20root%20decomposition%29%20%E2%80%93%20Anudeep%27s%20blog_files/jquery_004.js"></script>
+<!--[if lt IE 9]>
+<script type='text/javascript' defer='defer' src='https://blog.anudeep2011.com/wp-content/themes/puro/js/flexie.js?x86950'></script>
+<![endif]-->
+<!--[if lt IE 9]>
+<script type='text/javascript' defer='defer' src='https://blog.anudeep2011.com/wp-content/themes/puro/js/html5shiv-printshiv.js?x86950'></script>
+<![endif]-->
+<!--[if (gte IE 6)&(lte IE 8)]>
+<script type='text/javascript' defer='defer' src='https://blog.anudeep2011.com/wp-content/themes/puro/js/selectivizr.min.js?x86950'></script>
+<![endif]-->
+<script type="text/javascript" defer="defer" src="MO%E2%80%99s%20Algorithm%20%28Query%20square%20root%20decomposition%29%20%E2%80%93%20Anudeep%27s%20blog_files/mixup.js"></script>
+<link rel="https://api.w.org/" href="https://blog.anudeep2011.com/wp-json/">
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://blog.anudeep2011.com/xmlrpc.php?rsd">
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="https://blog.anudeep2011.com/wp-includes/wlwmanifest.xml"> 
+<link rel="prev" title="When 2 guys talk, its not always about girls/sports ;)" href="https://blog.anudeep2011.com/when-2-guys-talk-its-not-always-about-girlssports/">
+<link rel="next" title="Machine learning everywhere, why not in Competitive programming?" href="https://blog.anudeep2011.com/machine-learning-everywhere-why-not-in-competitive-programming/">
+<meta name="generator" content="WordPress 4.7.2">
+<link rel="canonical" href="MO%E2%80%99s%20Algorithm%20%28Query%20square%20root%20decomposition%29%20%E2%80%93%20Anudeep%27s%20blog_files/a_003.htm">
+<link rel="shortlink" href="https://wp.me/p4pUrJ-2z">
+<link rel="alternate" type="application/json+oembed" href="https://blog.anudeep2011.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fblog.anudeep2011.com%2Fmos-algorithm%2F">
+<link rel="alternate" type="text/xml+oembed" href="https://blog.anudeep2011.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fblog.anudeep2011.com%2Fmos-algorithm%2F&amp;format=xml">
+
+<link rel="dns-prefetch" href="https://v0.wordpress.com/">
+<link rel="dns-prefetch" href="https://i0.wp.com/">
+<link rel="dns-prefetch" href="https://i1.wp.com/">
+<link rel="dns-prefetch" href="https://i2.wp.com/">
+<link rel="dns-prefetch" href="https://jetpack.wordpress.com/">
+<link rel="dns-prefetch" href="https://s0.wp.com/">
+<link rel="dns-prefetch" href="https://s1.wp.com/">
+<link rel="dns-prefetch" href="https://s2.wp.com/">
+<link rel="dns-prefetch" href="https://public-api.wordpress.com/">
+<link rel="dns-prefetch" href="https://0.gravatar.com/">
+<link rel="dns-prefetch" href="https://1.gravatar.com/">
+<link rel="dns-prefetch" href="https://2.gravatar.com/">
+<link rel="pingback" href="https://blog.anudeep2011.com/xmlrpc.php">	<style type="text/css" id="puro-menu-css"> 
+		@media (max-width: 768px) {
+			.site-branding { float: left }
+			.rtl .site-branding { float: right; padding-right: 0 }
+			.responsive-menu .main-navigation ul { display: none } 
+			.responsive-menu .menu-toggle { display: block }
+			.main-navigation { float: right }
+		}			
+	</style>
+	<meta name="viewport" content="width=device-width, initial-scale=1">		<style type="text/css">.recentcomments a{display:inline !important;padding:0 !important;margin:0 !important;}</style>
+		
+<!-- Jetpack Open Graph Tags -->
+<meta property="og:type" content="article">
+<meta property="og:title" content="MO’s Algorithm (Query square root decomposition)">
+<meta property="og:url" content="https://blog.anudeep2011.com/mos-algorithm/">
+<meta property="og:description" content="Once again I found a topic that is useful, interesting but has very less resources online. Before writing this I did a small survey and surprised that almost none of the Indian programmers knew thi…">
+<meta property="article:published_time" content="2014-12-28T07:21:33+00:00">
+<meta property="article:modified_time" content="2016-08-18T08:27:20+00:00">
+<meta property="article:author" content="https://www.facebook.com/anu2011">
+<meta property="og:site_name" content="Anudeep's blog">
+<meta property="og:image" content="https://s0.wp.com/i/blank.jpg">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:site" content="@anudeep2011">
+<meta name="twitter:card" content="summary">
+<link rel="stylesheet" type="text/css" href="MO%E2%80%99s%20Algorithm%20%28Query%20square%20root%20decomposition%29%20%E2%80%93%20Anudeep%27s%20blog_files/shCore.css"><link rel="stylesheet" type="text/css" href="MO%E2%80%99s%20Algorithm%20%28Query%20square%20root%20decomposition%29%20%E2%80%93%20Anudeep%27s%20blog_files/shThemeDefault.css"><style type="text/css" id="syntaxhighlighteranchor"></style>
+
+<style id="custom-css-css">.wysija-submit{display:block;margin-top:10px}</style>
+<script type="text/javascript" async="" src="MO%E2%80%99s%20Algorithm%20%28Query%20square%20root%20decomposition%29%20%E2%80%93%20Anudeep%27s%20blog_files/embed.js"></script><script async="" type="text/javascript" src="MO%E2%80%99s%20Algorithm%20%28Query%20square%20root%20decomposition%29%20%E2%80%93%20Anudeep%27s%20blog_files/count.js"></script><script src="MO%E2%80%99s%20Algorithm%20%28Query%20square%20root%20decomposition%29%20%E2%80%93%20Anudeep%27s%20blog_files/count-data.js"></script></head>
+
+<body class="post-template-default single single-post postid-159 single-format-standard no-touch resp sidebar">
+<div id="page" class="hfeed site">
+	<a class="skip-link screen-reader-text" href="#content">Skip to content</a>
+
+	<header id="masthead" class="site-header no-tagline responsive-menu" role="banner">
+		<div class="site-header-inner">
+			<div class="site-branding">
+				<a href="https://blog.anudeep2011.com/" rel="home"><h1 class="site-title">Anudeep's blog</h1></a>
+								
+			</div><!-- .site-branding-->			
+										<nav id="site-navigation" class="main-navigation" role="navigation">
+					<button class="menu-toggle" style="display: none;"></button>									</nav><!-- #site-navigation -->
+					</div><!-- .site-header-inner -->
+	</header><!-- #masthead -->
+	
+	<div id="content" class="site-content">
+
+	
+	<div id="primary" class="content-area">
+		<main id="main" class="site-main" role="main">
+
+		
+			
+<article id="post-159" class="post-159 post type-post status-publish format-standard hentry category-algorithms">
+			
+	<header class="entry-header">	
+		<h1 class="entry-title">MO’s Algorithm (Query square root decomposition)</h1>
+				<div class="entry-meta">
+			<span class="entry-date"><time class="published" datetime="2014-12-28T12:51:33+00:00">28 December 2014</time><time class="updated" datetime="2016-08-18T13:57:20+00:00">August 18, 2016</time></span><span class="byline"><span class="author vcard"><a class="url fn n" href="https://blog.anudeep2011.com/author/anudeep2011/" rel="author">anudeep2011</a></span></span><span class="cat-links"><a href="https://blog.anudeep2011.com/category/algorithms/" rel="category tag">Algorithms</a></span><span class="comments-link"><a href="https://blog.anudeep2011.com/mos-algorithm/#disqus_thread" data-disqus-identifier="159 http://blog.anudeep2011.com/?p=159">70 Comments</a></span>		</div><!-- .entry-meta -->
+			</header><!-- .entry-header -->
+
+	<div class="entry-content">
+		<p>Once again I found a topic that is useful, interesting but has very
+ less resources online. Before writing this I did a small survey and 
+surprised that almost none of the Indian programmers knew this 
+algorithm. Its important to learn this, all the red programmers on 
+codeforces use this effectively in div 1 C and D problems. There were 
+not any problems on this an year and half back, but from then&nbsp;there
+ is a spike up! We can expect more problems on this in future contests.</p>
+<p>1) State a problem<br>
+2) Explain a simple solution which takes O(N^2)<br>
+3) Slight modification to above algorithm. It still runs in O(N^2)<br>
+4) Explain an algorithm to solve above problem and state its correctness<br>
+5) Proof for complexity of above algorithm&nbsp;– O(Sqrt(N) * N)<br>
+6) Explain where and when we can use above&nbsp;algorithm<br>
+7) Problems for practice&nbsp;and sample code</p>
+<p><strong>State a problem</strong></p>
+<p>Given an array of size N. All elements of array &lt;= N. You need to 
+answer M queries. Each query is of the form L, R. You need to answer 
+the&nbsp;count of values in range [L, R] which are repeated at least 3 
+times.<br>
+Example: Let the array be {1, 2, 3, 1, 1, 2, 1, 2, 3, 1} (zero indexed)<br>
+Query: L = 0, R = 4. Answer = 1. Values in the range [L, R] = {1, 2, 3, 1, 1} only 1 is repeated at least 3 times.<br>
+Query: L = 1,&nbsp;R = 8. Answer = 2. Values in the range [L, R] = {2, 
+3, 1, 1, 2, 1, 2, 3} 1 is repeated 3 times and 2 is repeated 3 times. 
+Number of elements repeated at least 3 times = Answer = 2.<br>
+<span id="more-159"></span><br>
+<strong>Explain a simple solution which takes O(N^2)<br>
+</strong></p>
+<p>For each query, loop from L to R, count the frequency of elements and
+ report the answer. Considering M = N, following runs in O(N^2) in worst
+ case.</p>
+<pre class="brush: cpp; title: ; notranslate" title="">for each query:
+  answer = 0
+  count[] = 0
+  for i in {l..r}:
+    count[array[i]]++
+    if count[array[i]] == 3:
+      answer++
+</pre>
+<p><strong>Slight modification to above algorithm. It still runs in O(N^2)</strong></p>
+<pre class="brush: cpp; title: ; notranslate" title="">add(position):
+  count[array[position]]++
+  if count[array[position]] == 3:
+    answer++
+
+remove(position):
+  count[array[position]]--
+  if count[array[position]] == 2:
+    answer--
+
+currentL = 0
+currentR = 0
+answer = 0
+count[] = 0
+for each query:
+  // currentL should go to L, currentR should go to R
+  while currentL &amp;amp;lt; L:
+    remove(currentL)
+    currentL++
+  while currentL &amp;amp;gt; L:
+    add(currentL)
+    currentL--
+  while currentR &amp;amp;lt; R:
+    add(currentR)
+    currentR++
+  while currentR &amp;amp;gt; R:
+    remove(currentR)
+    currentR--
+  output answer
+</pre>
+<p>Initially we always looped from L to R, but now we are changing the positions from previous query to adjust to current query.<br>
+If previous query was L=3, R=10, then we will have currentL=3 and 
+currentR=10 by the end of that query. Now if the next query is L=5, R=7,
+ then we move the currentL to 5 and currentR to 7.<br>
+add function means we are adding the element at position to our current set. And updating answer accordingly.<br>
+remove&nbsp;function means we are deleting the element at position from our current set. And updating answer accordingly.<br>
+<strong>Edit</strong>: Have a look a&nbsp;Shubajit Saha’s comment. And also <a href="http://codeforces.com/blog/entry/46399?#comment-308528">this</a>.</p>
+<p><strong>Explain an algorithm to solve above problem and state its correctness<br>
+</strong></p>
+<p>MO’s algorithm is just an order in which we process the queries. We 
+were given M queries, we will re-order the queries in a particular order
+ and then process them. Clearly, this is an offline algorithm. Each 
+query has L and R, we will call them opening and closing. Let us divide 
+the given input array into Sqrt(N) blocks. Each block will be N / 
+Sqrt(N) = Sqrt(N) size. Each opening has to fall in one of these blocks.
+ Each closing has to fall in one of these blocks.</p>
+<p>A query belongs to P’th block if the opening of that query fall in 
+P’th block. In this algorithm we will process the queries of 1st block. 
+Then we process the queries of 2nd block and so on.. finally Sqrt(N)’th 
+block. We already have an ordering, queries are ordered in the ascending
+ order of its block. There can be many queries that belong to the same 
+block.</p>
+<p>From now, I will ignore about all the blocks and only focus on how we
+ query and answer block 1. We will similarly do for all blocks. All of 
+these queries have their opening in block 1, but their closing can be in
+ any block including block 1. Now let us reorder these queries in 
+ascending order of their R value. We do this for all the&nbsp;blocks.</p>
+<p>How does the final order look like?<br>
+All the queries are first ordered in ascending order of their block 
+number (block number is the block in which its opening falls). Ties are 
+ordered in ascending order of their R value.<br>
+For example consider following queries and assume we have 3 blocks each of size 3.<br>
+{0, 3} {1, 7} {2, 8} {7, 8} {4, 8} {4, 4} {1, 2}<br>
+Let us re-order them based on their block number.<br>
+{0, 3} {1, 7} {2, 8} {1, 2} {4, 8} {4, 4} {7, 8}<br>
+Now let us re-order ties based on their R value.<br>
+{1, 2} {0, 3} {1, 7} {2, 8} {4, 4} {4, 8} {7, 8}</p>
+<p>Now we use the same code stated in previous section and solve the 
+problem. Above algorithm is correct as we did not do any changes but 
+just reordered the queries.</p>
+<p><strong>Proof for complexity of above algorithm&nbsp;– O(Sqrt(N) * N)<br>
+</strong></p>
+<p>We are done with MO’s algorithm, it is just an ordering. Awesome part
+ is its runtime analysis. It turns out that the O(N^2) code we wrote 
+works in O(Sqrt(N) * N) time if we follow the order i specified above. 
+Thats awesome right, with just reordering the queries we reduced the 
+complexity from O(N^2) to O(Sqrt(N) * N), and that too with out any 
+further modification to code. Hurray! we will get AC with O(Sqrt(N) * 
+N).</p>
+<p>Have a look at our code above, the complexity over all queries is 
+determined by the 4 while loops. First 2 while loops can be stated as 
+“Amount moved by left pointer in total”, second 2 while loops can be 
+stated as “Amount moved by right pointer”. Sum of these two will be the 
+over all complexity.</p>
+<p>Most important. Let us talk about the right pointer first. For each 
+block, the queries are sorted in increasing order, so clearly the right 
+pointer (currentR) moves in increasing order. During the start of next 
+block the pointer possibly at extreme end will move to least R in next 
+block. That means for a given block, the amount moved by right pointer 
+is O(N). We have O(Sqrt(N)) blocks, so the total is O(N * Sqrt(N)). 
+Great!</p>
+<p>Let us see how the left pointer moves. For each block, the left 
+pointer of all the queries fall in the same block, as we move from query
+ to query the left pointer might move but as previous L and current L 
+fall in the same block, the moment is O(Sqrt(N)) (Size of the block). In
+ each block the amount left pointer movies is O(Q * Sqrt(N)) where Q is 
+number of queries falling in that block. Total complexity is O(M * 
+Sqrt(N)) for all blocks.</p>
+<p>There you go, total complexity is O( (N + M) * Sqrt(N)) = O( N * Sqrt(N))</p>
+<p><strong>Explain where and when we can use above&nbsp;algorithm</strong></p>
+<p>As mentioned, this algorithm is offline, that means we cannot use it 
+when we are forced to stick to given order of queries. That also means 
+we cannot use this when there are update operations. Not just that, 
+there is one important possible limitation: We should be able to write 
+the functions add and remove. There will be many cases where add is 
+trivial but remove&nbsp;is not. One such example is where we want 
+maximum in a range. As we add elements, we can keep track of maximum. 
+But when we remove elements it is not trivial. Anyways in that case we 
+can use a set to add elements, remove&nbsp;elements and report minimum. 
+In that case the add and delete operations are O(log N) (Resulting in 
+O(N * Sqrt(N) * log N) algorithm).</p>
+<p>There are many cases where we can use this algorithm. In few cases we
+ can also use other Data Structures like segment trees, but for few 
+problems using MO’s algorithm is a must. Lets discuss few problems in 
+the next section.</p>
+<p><strong>Problems for practice and sample code</strong></p>
+<p><a href="http://www.spoj.com/problems/DQUERY/" target="_blank">DQUERY – SPOJ</a>:
+ Number of distinct elements in a range = number of elements with 
+frequency &gt;= 1. So it is the same problem we discussed above.<br>
+<a href="https://github.com/anudeep2011/programming/blob/master/DQUERY.cpp" target="_blank"><strong>Click here for sample code</strong></a><br>
+<strong>Note</strong>: That code will give TLE on submission, it will give AC if fast I/O is added. Removed fast I/O to keep code clean.<br>
+<span style="color: #222222;"><a href="http://codeforces.com/contest/86/problem/D" target="_blank">Powerful array – CF Div1 D</a>:
+ This is an example where MO’s algorithm is a must. I cannot think of 
+any other solution. CF Div1 D means it is a hard problem. See how easy 
+it is using MO’s algorithm in this case. You only need to modify add(), 
+remove() functions in above code.<br>
+</span><a href="http://www.codechef.com/MARCH14/problems/GERALD07" target="_blank">GERALD07 – Codechef<br>
+</a><a href="http://codeforces.com/problemset/problem/375/D" target="_blank">GERALD3 – Codechef<br>
+</a><span style="color: #222222;"><a href="http://codeforces.com/problemset/problem/375/D" target="_blank">Tree and Queries – CF Div1 D<br>
+</a><a href="http://www.codechef.com/problems/IITI15">Powerful Array – CF Div1 D<br>
+Jeff and Removing Periods – CF Div1 D<br>
+Sherlock and Inversions – Codechef<br>
+</a></span></p>
+<p>I am sure there are more problems, if you know any of them, do comment, i will add them.<br>
+While this algorithm&nbsp;has a special name “MO”, it is just smart square root decomposition.</p>
+<p>Signing off! Wish you a happy new year <img draggable="false" class="emoji" alt="🙂" src="MO%E2%80%99s%20Algorithm%20%28Query%20square%20root%20decomposition%29%20%E2%80%93%20Anudeep%27s%20blog_files/1f642.svg"></p>
+<p>Share this post! Learn and let learn <img draggable="false" class="emoji" alt="🙂" src="MO%E2%80%99s%20Algorithm%20%28Query%20square%20root%20decomposition%29%20%E2%80%93%20Anudeep%27s%20blog_files/1f642.svg"></p>
+<div class="felloy-pe"></div>
+<div class="sharedaddy sd-sharing-enabled"><div class="robots-nocontent sd-block sd-social sd-social-icon-text sd-sharing"><h3 class="sd-title">Share And Smile:</h3><div class="sd-content"><ul><li class="share-facebook"><a rel="nofollow" data-shared="sharing-facebook-159" class="share-facebook sd-button share-icon" href="https://blog.anudeep2011.com/mos-algorithm/?share=facebook&amp;nb=1" target="_blank" title="Click to share on Facebook"><span>Facebook<span class="share-count">52</span></span></a></li><li class="share-reddit"><a rel="nofollow" data-shared="" class="share-reddit sd-button share-icon" href="https://blog.anudeep2011.com/mos-algorithm/?share=reddit&amp;nb=1" target="_blank" title="Click to share on Reddit"><span>Reddit</span></a></li><li class="share-twitter"><a rel="nofollow" data-shared="sharing-twitter-159" class="share-twitter sd-button share-icon" href="https://blog.anudeep2011.com/mos-algorithm/?share=twitter&amp;nb=1" target="_blank" title="Click to share on Twitter"><span>Twitter</span></a></li><li class="share-email share-service-visible"><a rel="nofollow" data-shared="" class="share-email sd-button share-icon" href="https://blog.anudeep2011.com/mos-algorithm/?share=email&amp;nb=1" target="_blank" title="Click to email this to a friend"><span>Email</span></a></li><li><a href="#" class="sharing-anchor sd-button share-more"><span>More</span></a></li><li class="share-end"></li></ul><div class="sharing-hidden"><div class="inner" style="display: none;"><ul><li class="share-pinterest"><a rel="nofollow" data-shared="sharing-pinterest-159" class="share-pinterest sd-button share-icon" href="https://blog.anudeep2011.com/mos-algorithm/?share=pinterest&amp;nb=1" target="_blank" title="Click to share on Pinterest"><span>Pinterest</span></a></li><li class="share-tumblr"><a rel="nofollow" data-shared="" class="share-tumblr sd-button share-icon" href="https://blog.anudeep2011.com/mos-algorithm/?share=tumblr&amp;nb=1" target="_blank" title="Click to share on Tumblr"><span>Tumblr</span></a></li><li class="share-end"></li><li class="share-google-plus-1"><a rel="nofollow" data-shared="sharing-google-159" class="share-google-plus-1 sd-button share-icon" href="https://blog.anudeep2011.com/mos-algorithm/?share=google-plus-1&amp;nb=1" target="_blank" title="Click to share on Google+"><span>Google</span></a></li><li class="share-print"><a rel="nofollow" data-shared="" class="share-print sd-button share-icon" href="https://blog.anudeep2011.com/mos-algorithm/#print" target="_blank" title="Click to print"><span>Print</span></a></li><li class="share-end"></li><li class="share-linkedin"><a rel="nofollow" data-shared="sharing-linkedin-159" class="share-linkedin sd-button share-icon" href="https://blog.anudeep2011.com/mos-algorithm/?share=linkedin&amp;nb=1" target="_blank" title="Click to share on LinkedIn"><span>LinkedIn</span></a></li><li class="share-pocket"><a rel="nofollow" data-shared="" class="share-pocket sd-button share-icon" href="https://blog.anudeep2011.com/mos-algorithm/?share=pocket&amp;nb=1" target="_blank" title="Click to share on Pocket"><span>Pocket</span></a></li><li class="share-end"></li><li class="share-end"></li></ul></div></div></div></div></div>			</div><!-- .entry-content -->
+	
+	<footer class="entry-footer">
+					</footer><!-- .entry-footer -->		
+</article><!-- #post-## -->
+			
+	<nav class="navigation post-navigation" role="navigation">
+		<h2 class="screen-reader-text">Post navigation</h2>
+		<div class="nav-links"><div class="nav-previous"><a href="https://blog.anudeep2011.com/when-2-guys-talk-its-not-always-about-girlssports/" rel="prev">When 2 guys talk, its not always about girls/sports ;)</a></div><div class="nav-next"><a href="https://blog.anudeep2011.com/machine-learning-everywhere-why-not-in-competitive-programming/" rel="next">Machine learning everywhere, why not in Competitive programming?</a></div></div>
+	</nav>
+						
+
+			
+<div id="disqus_thread"><iframe id="dsq-app1" name="dsq-app1" allowtransparency="true" scrolling="no" tabindex="0" title="Disqus" style="width: 1px ! important; min-width: 100% ! important; border: medium none ! important; overflow: hidden ! important; height: 7344px ! important;" src="MO%E2%80%99s%20Algorithm%20%28Query%20square%20root%20decomposition%29%20%E2%80%93%20Anudeep%27s%20blog_files/a.htm" horizontalscrolling="no" verticalscrolling="no" width="100%" frameborder="0"></iframe><iframe id="indicator-north" name="indicator-north" allowtransparency="true" scrolling="no" tabindex="0" title="Disqus" style="width: 728px ! important; border: medium none ! important; overflow: hidden ! important; top: 0px ! important; min-width: 728px ! important; max-width: 728px ! important; position: fixed ! important; z-index: 2147483646 ! important; height: 20px ! important; min-height: 20px ! important; max-height: 20px ! important; display: none ! important;" frameborder="0"></iframe><iframe id="indicator-south" name="indicator-south" allowtransparency="true" scrolling="no" tabindex="0" title="Disqus" style="width: 728px ! important; border: medium none ! important; overflow: hidden ! important; bottom: 0px ! important; min-width: 728px ! important; max-width: 728px ! important; position: fixed ! important; z-index: 2147483646 ! important; height: 20px ! important; min-height: 20px ! important; max-height: 20px ! important; display: none ! important;" frameborder="0"></iframe></div>
+
+<script type="text/javascript">
+var disqus_url = 'https://blog.anudeep2011.com/mos-algorithm/';
+var disqus_identifier = '159 http://blog.anudeep2011.com/?p=159';
+var disqus_container_id = 'disqus_thread';
+var disqus_shortname = 'anudeep2011';
+var disqus_title = "MO&#8217;s Algorithm (Query square root decomposition)";
+var disqus_config_custom = window.disqus_config;
+var disqus_config = function () {
+    /*
+    All currently supported events:
+    onReady: fires when everything is ready,
+    onNewComment: fires when a new comment is posted,
+    onIdentify: fires when user is authenticated
+    */
+    
+    
+    this.language = '';
+        this.callbacks.onReady.push(function () {
+
+        // sync comments in the background so we don't block the page
+        var script = document.createElement('script');
+        script.async = true;
+        script.src = '?cf_action=sync_comments&post_id=159';
+
+        var firstScript = document.getElementsByTagName('script')[0];
+        firstScript.parentNode.insertBefore(script, firstScript);
+    });
+    
+    if (disqus_config_custom) {
+        disqus_config_custom.call(this);
+    }
+};
+
+(function() {
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();
+</script>
+
+
+		
+		</main><!-- #main -->
+	</div><!-- #primary -->
+
+	
+<div id="secondary" class="widget-area" role="complementary">
+	<aside id="wysija-4" class="widget widget_wysija"><h3 class="widget-title">Subscribe to our Newsletter</h3><div class="widget_wysija_cont"><div id="msg-form-wysija-4" class="wysija-msg ajax"></div><form id="form-wysija-4" method="post" action="#wysija" class="widget_wysija">
+<p class="wysija-paragraph">
+    
+    
+    	<input name="wysija[user][email]" class="wysija-input validate[required,custom[email]]" title="Email*" placeholder="Email*" value="Email*" type="text">
+    
+    
+    
+    <span class="abs-req">
+        <input name="wysija[user][abs][email]" class="wysija-input validated[abs][email]" type="text">
+    </span>
+    
+</p>
+<input class="wysija-submit wysija-submit-field" value="Subscribe!" type="submit">
+
+    <input name="form_id" value="2" type="hidden">
+    <input name="action" value="save" type="hidden">
+    <input name="controller" value="subscribers" type="hidden">
+    <input value="1" name="wysija-page" type="hidden">
+
+    
+        <input name="wysija[user_list][list_ids]" value="3" type="hidden">
+    
+ </form></div></aside><aside id="categories-2" class="widget widget_categories"><h3 class="widget-title">Categories</h3>		<ul>
+	<li class="cat-item cat-item-2"><a href="https://blog.anudeep2011.com/category/algorithms/">Algorithms</a> (2)
+</li>
+	<li class="cat-item cat-item-8"><a href="https://blog.anudeep2011.com/category/data-structures/">Data Structures</a> (1)
+</li>
+	<li class="cat-item cat-item-12"><a href="https://blog.anudeep2011.com/category/machine-learning/">Machine Learning</a> (1)
+</li>
+	<li class="cat-item cat-item-10"><a href="https://blog.anudeep2011.com/category/segment-trees/">Segment trees</a> (2)
+</li>
+	<li class="cat-item cat-item-9"><a href="https://blog.anudeep2011.com/category/spoj/">SPOJ</a> (1)
+</li>
+	<li class="cat-item cat-item-1"><a href="https://blog.anudeep2011.com/category/uncategorized/">Uncategorized</a> (2)
+</li>
+		</ul>
+</aside>		<aside id="recent-posts-2" class="widget widget_recent_entries">		<h3 class="widget-title">Recent Posts</h3>		<ul>
+					<li>
+				<a href="https://blog.anudeep2011.com/20-by-25/">20 by 25</a>
+							<span class="post-date">September 26, 2016</span>
+						</li>
+					<li>
+				<a href="https://blog.anudeep2011.com/machine-learning-everywhere-why-not-in-competitive-programming/">Machine learning everywhere, why not in Competitive programming?</a>
+							<span class="post-date">April 18, 2016</span>
+						</li>
+					<li>
+				<a href="https://blog.anudeep2011.com/mos-algorithm/">MO’s Algorithm (Query square root decomposition)</a>
+							<span class="post-date">December 28, 2014</span>
+						</li>
+					<li>
+				<a href="https://blog.anudeep2011.com/when-2-guys-talk-its-not-always-about-girlssports/">When 2 guys talk, its not always about girls/sports ;)</a>
+							<span class="post-date">July 18, 2014</span>
+						</li>
+					<li>
+				<a href="https://blog.anudeep2011.com/persistent-segment-trees-explained-with-spoj-problems/">Persistent segment trees – Explained with spoj problems</a>
+							<span class="post-date">July 13, 2014</span>
+						</li>
+					<li>
+				<a href="https://blog.anudeep2011.com/heavy-light-decomposition/">Heavy Light Decomposition</a>
+							<span class="post-date">April 11, 2014</span>
+						</li>
+				</ul>
+		</aside>		<aside id="recent-comments-2" class="widget widget_recent_comments"><h3 class="widget-title">Recent Comments</h3><ul id="recentcomments"><li class="recentcomments"><span class="comment-author-link">Mohammad Faizan</span> on <a href="https://blog.anudeep2011.com/mos-algorithm/#comment-5129">MO’s Algorithm (Query square root decomposition)</a></li><li class="recentcomments"><span class="comment-author-link">Rohit</span> on <a href="https://blog.anudeep2011.com/persistent-segment-trees-explained-with-spoj-problems/#comment-5128">Persistent segment trees – Explained with spoj problems</a></li><li class="recentcomments"><span class="comment-author-link">Jaswant Singh</span> on <a href="https://blog.anudeep2011.com/persistent-segment-trees-explained-with-spoj-problems/#comment-5127">Persistent segment trees – Explained with spoj problems</a></li><li class="recentcomments"><span class="comment-author-link">Vineeth Kanaparthi</span> on <a href="https://blog.anudeep2011.com/20-by-25/#comment-5125">20 by 25</a></li><li class="recentcomments"><span class="comment-author-link">nabil1997</span> on <a href="https://blog.anudeep2011.com/mos-algorithm/#comment-5124">MO’s Algorithm (Query square root decomposition)</a></li></ul></aside><aside id="text-3" class="widget widget_text"><h3 class="widget-title">Contact Me</h3>			<div class="textwidget"><div class="text_3">Ask about something or report me a bug or just say Hi. I will be happy to get back.</div>
+<div style="display:block; margin:0 auto;width:55%;">
+<a href="https://www.facebook.com/anu2011" target="_blank"><img src="MO%E2%80%99s%20Algorithm%20%28Query%20square%20root%20decomposition%29%20%E2%80%93%20Anudeep%27s%20blog_files/fb.png" width="32" height="32"></a> &nbsp;
+<a href="mailto:anudeep2011@gmail.com"><img src="MO%E2%80%99s%20Algorithm%20%28Query%20square%20root%20decomposition%29%20%E2%80%93%20Anudeep%27s%20blog_files/at.png" width="32" height="32"></a>
+</div>
+<!--
+<a href="https://blog.anudeep2011.com/contact-me/">
+<button type="button" class="my_button" style="margin-left:20px;" value="Contact Me!">Contact Me!</button></a>
+--></div>
+		</aside></div><!-- #secondary -->
+
+	</div><!-- #content -->
+
+	<footer id="colophon" class="site-footer" role="contentinfo">
+				
+		<div class="clear"></div>
+		
+		
+				<div class="site-info">
+			Copyright 2017 
+			 - <a href="http://purothemes.com/" title="A Free WordPress Theme by Puro">Theme by Puro</a>		</div><!-- .site-info -->
+		
+	</footer><!-- #colophon -->
+</div><!-- #page -->
+
+        <script type="text/javascript">
+        // <![CDATA[
+        var disqus_shortname = 'anudeep2011';
+        (function () {
+            var nodes = document.getElementsByTagName('span');
+            for (var i = 0, url; i < nodes.length; i++) {
+                if (nodes[i].className.indexOf('dsq-postid') != -1 && nodes[i].parentNode.tagName == 'A') {
+                    nodes[i].parentNode.setAttribute('data-disqus-identifier', nodes[i].getAttribute('data-dsqidentifier'));
+                    url = nodes[i].parentNode.href.split('#', 1);
+                    if (url.length == 1) { url = url[0]; }
+                    else { url = url[1]; }
+                    nodes[i].parentNode.href = url + '#disqus_thread';
+                }
+            }
+            var s = document.createElement('script');
+            s.async = true;
+            s.type = 'text/javascript';
+            s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+            (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+        }());
+        // ]]>
+        </script>
+        	<div style="display:none">
+	</div>
+<div id="felloy-footer"></div><script>var felloy_p = ;var felloy_page_id = "1226712937403114";</script>
+	<script type="text/javascript">
+		window.WPCOM_sharing_counts = {"https:\/\/blog.anudeep2011.com\/mos-algorithm\/":159};
+	</script>
+		<script type="text/javascript">
+		var windowOpen;
+		jQuery(document.body).on('click', 'a.share-facebook', function() {
+			if ( 'undefined' !== typeof windowOpen ){ // If there's another sharing window open, close it.
+				windowOpen.close();
+			}
+			windowOpen = window.open( jQuery(this).attr( 'href' ), 'wpcomfacebook', 'menubar=1,resizable=1,width=600,height=400' );
+			return false;
+		});
+		</script>
+				<script type="text/javascript">
+		var windowOpen;
+		jQuery(document.body).on('click', 'a.share-twitter', function() {
+			if ( 'undefined' !== typeof windowOpen ){ // If there's another sharing window open, close it.
+				windowOpen.close();
+			}
+			windowOpen = window.open( jQuery(this).attr( 'href' ), 'wpcomtwitter', 'menubar=1,resizable=1,width=600,height=350' );
+			return false;
+		});
+		</script>
+			
+				<script type="text/javascript">
+		var windowOpen;
+		jQuery(document.body).on('click', 'a.share-tumblr', function() {
+			if ( 'undefined' !== typeof windowOpen ){ // If there's another sharing window open, close it.
+				windowOpen.close();
+			}
+			windowOpen = window.open( jQuery(this).attr( 'href' ), 'wpcomtumblr', 'menubar=1,resizable=1,width=450,height=450' );
+			return false;
+		});
+		</script>
+				<script type="text/javascript">
+		var windowOpen;
+		jQuery(document.body).on('click', 'a.share-google-plus-1', function() {
+			if ( 'undefined' !== typeof windowOpen ){ // If there's another sharing window open, close it.
+				windowOpen.close();
+			}
+			windowOpen = window.open( jQuery(this).attr( 'href' ), 'wpcomgoogle-plus-1', 'menubar=1,resizable=1,width=480,height=550' );
+			return false;
+		});
+		</script>
+				<script type="text/javascript">
+		var windowOpen;
+		jQuery(document.body).on('click', 'a.share-linkedin', function() {
+			if ( 'undefined' !== typeof windowOpen ){ // If there's another sharing window open, close it.
+				windowOpen.close();
+			}
+			windowOpen = window.open( jQuery(this).attr( 'href' ), 'wpcomlinkedin', 'menubar=1,resizable=1,width=580,height=450' );
+			return false;
+		});
+		</script>
+				<script type="text/javascript">
+		var windowOpen;
+		jQuery(document.body).on('click', 'a.share-pocket', function() {
+			if ( 'undefined' !== typeof windowOpen ){ // If there's another sharing window open, close it.
+				windowOpen.close();
+			}
+			windowOpen = window.open( jQuery(this).attr( 'href' ), 'wpcompocket', 'menubar=1,resizable=1,width=450,height=450' );
+			return false;
+		});
+		</script>
+		<script type="text/javascript" defer="defer" src="MO%E2%80%99s%20Algorithm%20%28Query%20square%20root%20decomposition%29%20%E2%80%93%20Anudeep%27s%20blog_files/shCore.js"></script>
+<script type="text/javascript" defer="defer" src="MO%E2%80%99s%20Algorithm%20%28Query%20square%20root%20decomposition%29%20%E2%80%93%20Anudeep%27s%20blog_files/shBrushCpp.js"></script>
+<script type="text/javascript">
+	(function(){
+		var corecss = document.createElement('link');
+		var themecss = document.createElement('link');
+		var corecssurl = "https://blog.anudeep2011.com/wp-content/plugins/syntaxhighlighter/syntaxhighlighter3/styles/shCore.css?ver=3.0.9b";
+		if ( corecss.setAttribute ) {
+				corecss.setAttribute( "rel", "stylesheet" );
+				corecss.setAttribute( "type", "text/css" );
+				corecss.setAttribute( "href", corecssurl );
+		} else {
+				corecss.rel = "stylesheet";
+				corecss.href = corecssurl;
+		}
+		document.getElementsByTagName("head")[0].insertBefore( corecss, document.getElementById("syntaxhighlighteranchor") );
+		var themecssurl = "https://blog.anudeep2011.com/wp-content/plugins/syntaxhighlighter/syntaxhighlighter3/styles/shThemeDefault.css?ver=3.0.9b";
+		if ( themecss.setAttribute ) {
+				themecss.setAttribute( "rel", "stylesheet" );
+				themecss.setAttribute( "type", "text/css" );
+				themecss.setAttribute( "href", themecssurl );
+		} else {
+				themecss.rel = "stylesheet";
+				themecss.href = themecssurl;
+		}
+		//document.getElementById("syntaxhighlighteranchor").appendChild(themecss);
+		document.getElementsByTagName("head")[0].insertBefore( themecss, document.getElementById("syntaxhighlighteranchor") );
+	})();
+	SyntaxHighlighter.config.strings.expandSource = '+ expand source';
+	SyntaxHighlighter.config.strings.help = '?';
+	SyntaxHighlighter.config.strings.alert = 'SyntaxHighlighter\n\n';
+	SyntaxHighlighter.config.strings.noBrush = 'Can\'t find brush for: ';
+	SyntaxHighlighter.config.strings.brushNotHtmlScript = 'Brush wasn\'t configured for html-script option: ';
+	SyntaxHighlighter.defaults['pad-line-numbers'] = false;
+	SyntaxHighlighter.defaults['toolbar'] = false;
+	SyntaxHighlighter.all();
+</script>
+<script type="text/javascript" defer="defer" src="MO%E2%80%99s%20Algorithm%20%28Query%20square%20root%20decomposition%29%20%E2%80%93%20Anudeep%27s%20blog_files/photon.js"></script>
+<script type="text/javascript" defer="defer" src="MO%E2%80%99s%20Algorithm%20%28Query%20square%20root%20decomposition%29%20%E2%80%93%20Anudeep%27s%20blog_files/devicepx-jetpack.js"></script>
+<script type="text/javascript">
+/* <![CDATA[ */
+var viewsCacheL10n = {"admin_ajax_url":"https:\/\/blog.anudeep2011.com\/wp-admin\/admin-ajax.php","post_id":"159"};
+/* ]]> */
+</script>
+<script type="text/javascript" defer="defer" src="MO%E2%80%99s%20Algorithm%20%28Query%20square%20root%20decomposition%29%20%E2%80%93%20Anudeep%27s%20blog_files/postviews-cache.js"></script>
+<script type="text/javascript">
+/* <![CDATA[ */
+var puro_resp_menu_params = {"collapse":"768"};
+/* ]]> */
+</script>
+<script type="text/javascript" defer="defer" src="MO%E2%80%99s%20Algorithm%20%28Query%20square%20root%20decomposition%29%20%E2%80%93%20Anudeep%27s%20blog_files/responsive-menu.js"></script>
+<script type="text/javascript" defer="defer" src="MO%E2%80%99s%20Algorithm%20%28Query%20square%20root%20decomposition%29%20%E2%80%93%20Anudeep%27s%20blog_files/comment-reply.js"></script>
+<script type="text/javascript" defer="defer" src="MO%E2%80%99s%20Algorithm%20%28Query%20square%20root%20decomposition%29%20%E2%80%93%20Anudeep%27s%20blog_files/wp-embed.js"></script>
+<script type="text/javascript" defer="defer" src="MO%E2%80%99s%20Algorithm%20%28Query%20square%20root%20decomposition%29%20%E2%80%93%20Anudeep%27s%20blog_files/jquery_005.js"></script>
+<script type="text/javascript" defer="defer" src="MO%E2%80%99s%20Algorithm%20%28Query%20square%20root%20decomposition%29%20%E2%80%93%20Anudeep%27s%20blog_files/jquery_003.js"></script>
+<script type="text/javascript">
+/* <![CDATA[ */
+var wysijaAJAX = {"action":"wysija_ajax","controller":"subscribers","ajaxurl":"https:\/\/blog.anudeep2011.com\/wp-admin\/admin-ajax.php","loadingTrans":"Loading...","is_rtl":""};
+/* ]]> */
+</script>
+<script type="text/javascript" defer="defer" src="MO%E2%80%99s%20Algorithm%20%28Query%20square%20root%20decomposition%29%20%E2%80%93%20Anudeep%27s%20blog_files/front-subscribers.js"></script>
+<script type="text/javascript">
+/* <![CDATA[ */
+var sharing_js_options = {"lang":"en","counts":"1"};
+/* ]]> */
+</script>
+<script type="text/javascript" defer="defer" src="MO%E2%80%99s%20Algorithm%20%28Query%20square%20root%20decomposition%29%20%E2%80%93%20Anudeep%27s%20blog_files/sharing.js"></script>
+<script type="text/javascript" src="MO%E2%80%99s%20Algorithm%20%28Query%20square%20root%20decomposition%29%20%E2%80%93%20Anudeep%27s%20blog_files/e-201709.js" async="" defer="defer"></script>
+<script type="text/javascript">
+	_stq = window._stq || [];
+	_stq.push([ 'view', {v:'ext',j:'1:4.3.1',blog:'65280527',post:'159',tz:'5.5',srv:'blog.anudeep2011.com'} ]);
+	_stq.push([ 'clickTrackerInit', '65280527', '159' ]);
+</script>
+
+
+
+<img src="MO%E2%80%99s%20Algorithm%20%28Query%20square%20root%20decomposition%29%20%E2%80%93%20Anudeep%27s%20blog_files/g.gif" alt=":)" id="wpstats" width="6" height="5"><iframe style="display: none;"></iframe><div id="sharing_email" style="display: none;">
+		<form action="/mos-algorithm/" method="post">
+			<label for="target_email">Send to Email Address</label>
+			<input name="target_email" id="target_email" type="email">
+
+			
+				<label for="source_name">Your Name</label>
+				<input name="source_name" id="source_name" type="text">
+
+				<label for="source_email">Your Email Address</label>
+				<input name="source_email" id="source_email" type="email">
+
+						<input id="jetpack-source_f_name" name="source_f_name" class="input" size="25" autocomplete="off" type="text">
+			<script> document.getElementById('jetpack-source_f_name').value = ''; </script>
+			
+			<img style="float: right; display: none" class="loading" src="MO%E2%80%99s%20Algorithm%20%28Query%20square%20root%20decomposition%29%20%E2%80%93%20Anudeep%27s%20blog_files/loading.gif" alt="loading" width="16" height="16">
+			<input value="Send Email" class="sharing_send" type="submit">
+			<a rel="nofollow" href="#cancel" class="sharing_cancel">Cancel</a>
+
+			<div class="errors errors-1" style="display: none;">
+				Post was not sent - check your email addresses!			</div>
+
+			<div class="errors errors-2" style="display: none;">
+				Email check failed, please try again			</div>
+
+			<div class="errors errors-3" style="display: none;">
+				Sorry, your blog cannot share posts by email.			</div>
+		</form>
+	</div></body></html>
+<!-- Performance optimized by W3 Total Cache. Learn more: https://www.w3-edge.com/products/
+
+Page Caching using disk: enhanced
+Database Caching using disk
+
+ Served from: blog.anudeep2011.com @ 2017-02-28 20:05:02 by W3 Total Cache -->

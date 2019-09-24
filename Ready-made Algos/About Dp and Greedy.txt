@@ -1,0 +1,15 @@
+Dynamic Programming and Greedy are Brother and Sister :
+
+How to Approach Problems for them :
+Steps :
+1. Try to find Optimal Structure(substructure) in problem.
+2. See if Overlapping problems are there.
+3. Form the Recursive definition.
+
+Now This problem can be definitely solved by 'DP'. 
+What about Greedy? 
+Always Ask Yourself if you can reduce one or many sides of the recursive soln or optimal structure.
+	- Make Some Greedy choice.
+	- Check if Greedy choice is safe
+		if safe then GREEDY 
+		ELSE DYNAMIC PROGRAMMING.

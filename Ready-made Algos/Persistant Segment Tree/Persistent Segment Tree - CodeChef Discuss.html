@@ -1,0 +1,1102 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0068)https://discuss.codechef.com/questions/37671/persistent-segment-tree -->
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Persistent Segment Tree - CodeChef Discuss</title>
+        <meta name="description" content="It&#39;d be really nice if someone can take up a problem as example and explain the approach of solving it using a persistent segment tree.There are 1-2 problems on codechef but editorials of those problems explain very little about the persistence part.e.g. for example to solve this problem(or any oth">
+        <meta name="keywords" content="segment-tree,segment,persistence">
+        
+        <link rel="canonical" href="https://discuss.codechef.com/questions/37671/persistent-segment-tree">
+        <link rel="alternate" type="application/rss+xml" title="RSS" href="https://discuss.codechef.com/questions/37671/persistent-segment-tree?type=rss">
+
+        
+        
+        <link rel="shortcut icon" href="https://discuss.codechef.com/upfiles/favicon_1.ico">
+        <link href="./Persistent Segment Tree - CodeChef Discuss_files/style.css" rel="stylesheet" type="text/css">
+        
+        <link href="./Persistent Segment Tree - CodeChef Discuss_files/custom.css" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" type="text/css" href="./Persistent Segment Tree - CodeChef Discuss_files/jquery-ui.js.download">
+        <!--[if IE 6]>
+        <style type="text/css">
+        img, div, a { behavior: url(/m/default/media/iepngfix/iepngfix.htc) }
+        </style>
+        <![endif]-->
+        
+
+        <script type="text/javascript" async="" src="./Persistent Segment Tree - CodeChef Discuss_files/atrk.js.download"></script><script src="./Persistent Segment Tree - CodeChef Discuss_files/jsapi" type="text/javascript"></script>
+        <script type="text/javascript">
+        /*<![CDATA[*/
+            google.load("jquery", "1.4.2");
+            google.load("jqueryui", "1", {autoload:true});
+
+            var i18nLang = 'en';
+            var appUrl = 'https://discuss.codechef.com'
+            var scriptUrl = '/'
+            var osqaSkin = 'default';
+
+            var messages = {
+                username: 'free__bird',
+                confirm: "Are you sure?",
+                yes: "Yes",
+                no: "No",
+                message: "Message:",
+                cancel: "Cancel",
+                close: "Close",
+                ok: "Ok",
+                matching_tags_url: "/matching_tags/",
+                word: "word",
+                words: "words",
+                character: "character",
+                characters: "characters"
+            }
+        /*]]>*/
+        </script><script src="./Persistent Segment Tree - CodeChef Discuss_files/jquery.min.js.download" type="text/javascript"></script><script src="./Persistent Segment Tree - CodeChef Discuss_files/jquery-ui.min.js.download" type="text/javascript"></script>
+        <script type="text/javascript" src="./Persistent Segment Tree - CodeChef Discuss_files/osqa.main.js.download"></script>
+        
+        
+        
+        
+        
+        <script type="text/javascript" src="./Persistent Segment Tree - CodeChef Discuss_files/osqa.question.js.download"></script>
+        <script type="text/javascript" src="./Persistent Segment Tree - CodeChef Discuss_files/jquery.caret.js.download"></script>
+        <script type="text/javascript" src="./Persistent Segment Tree - CodeChef Discuss_files/showdown.js.download"></script>
+        <script type="text/javascript" src="./Persistent Segment Tree - CodeChef Discuss_files/wmd.js.download"></script>
+        <link rel="stylesheet" type="text/css" href="./Persistent Segment Tree - CodeChef Discuss_files/wmd.css">
+
+        
+        <script type="text/javascript" src="./Persistent Segment Tree - CodeChef Discuss_files/viewbox_min.js.download"></script>
+        <script type="text/javascript" src="./Persistent Segment Tree - CodeChef Discuss_files/youtube.js.download"></script>
+        <link rel="stylesheet" type="text/css" href="./Persistent Segment Tree - CodeChef Discuss_files/viewbox.css">
+        
+        
+
+        <script type="text/javascript">
+        $().ready(function(){
+            $("#nav_questions").attr('className',"on");
+            var answer_sort_tab = "";
+
+            if (answer_sort_tab) {
+                $("#" + answer_sort_tab).attr('className',"on");
+            }
+
+            $('#editor').TextAreaResizer();
+
+            //toggle preview of editor
+            var display = true;
+            var txt = "[hide preview]";
+            $('#pre-collapse').text(txt);
+            $('#pre-collapse').bind('click', function(){
+                txt = display ? "[show preview]" : "[hide preview]";
+                display = !display;
+                $('#previewer').toggle();
+                $('#pre-collapse').text(txt);
+            });
+        });
+
+        function submitClicked(e, f) {
+            if(!(browserTester('chrome') || browserTester('safari'))) {
+                $("input.submit")[0].disabled=true;
+            }
+            window.removeEventListener('beforeunload', beforeUnload, true);
+            if (f) {
+                f.submit();
+            }
+        }
+
+        function beforeUnload(e) {
+
+            if($("textarea#editor")[0].value != "") {
+                return yourWorkWillBeLost(e);
+            }
+
+            var commentBoxes = $("textarea.commentBox");
+            for(var index = 0; index < commentBoxes.length; index++) {
+                if(commentBoxes[index].value != "") {
+                    return yourWorkWillBeLost(e);
+                }
+            }
+        }
+        window.addEventListener('beforeunload', beforeUnload, true);
+        </script>
+        <noscript>
+            &lt;style&gt;
+                .comment.not_top_scorer {
+                    display: block;
+                }
+                .comment-form-container {
+                    display: block;
+                }
+                .div.comment-tools {
+                    display: none;
+                }
+            &lt;/style&gt;
+        </noscript>
+
+        <link rel="search" type="application/opensearchdescription+xml" href="https://discuss.codechef.com/opensearch.xml" title="CodeChef Discuss Search">
+        
+    <style type="text/css">.MathJax_Hover_Frame {border-radius: .25em; -webkit-border-radius: .25em; -moz-border-radius: .25em; -khtml-border-radius: .25em; box-shadow: 0px 0px 15px #83A; -webkit-box-shadow: 0px 0px 15px #83A; -moz-box-shadow: 0px 0px 15px #83A; -khtml-box-shadow: 0px 0px 15px #83A; border: 1px solid #A6D ! important; display: inline-block; position: absolute}
+.MathJax_Menu_Button .MathJax_Hover_Arrow {position: absolute; cursor: pointer; display: inline-block; border: 2px solid #AAA; border-radius: 4px; -webkit-border-radius: 4px; -moz-border-radius: 4px; -khtml-border-radius: 4px; font-family: 'Courier New',Courier; font-size: 9px; color: #F0F0F0}
+.MathJax_Menu_Button .MathJax_Hover_Arrow span {display: block; background-color: #AAA; border: 1px solid; border-radius: 3px; line-height: 0; padding: 4px}
+.MathJax_Hover_Arrow:hover {color: white!important; border: 2px solid #CCC!important}
+.MathJax_Hover_Arrow:hover span {background-color: #CCC!important}
+</style><style type="text/css">#MathJax_About {position: fixed; left: 50%; width: auto; text-align: center; border: 3px outset; padding: 1em 2em; background-color: #DDDDDD; color: black; cursor: default; font-family: message-box; font-size: 120%; font-style: normal; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; border-radius: 15px; -webkit-border-radius: 15px; -moz-border-radius: 15px; -khtml-border-radius: 15px; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_About.MathJax_MousePost {outline: none}
+.MathJax_Menu {position: absolute; background-color: white; color: black; width: auto; padding: 2px; border: 1px solid #CCCCCC; margin: 0; cursor: default; font: menu; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+.MathJax_MenuItem {padding: 2px 2em; background: transparent}
+.MathJax_MenuArrow {position: absolute; right: .5em; padding-top: .25em; color: #666666; font-size: .75em}
+.MathJax_MenuActive .MathJax_MenuArrow {color: white}
+.MathJax_MenuArrow.RTL {left: .5em; right: auto}
+.MathJax_MenuCheck {position: absolute; left: .7em}
+.MathJax_MenuCheck.RTL {right: .7em; left: auto}
+.MathJax_MenuRadioCheck {position: absolute; left: 1em}
+.MathJax_MenuRadioCheck.RTL {right: 1em; left: auto}
+.MathJax_MenuLabel {padding: 2px 2em 4px 1.33em; font-style: italic}
+.MathJax_MenuRule {border-top: 1px solid #CCCCCC; margin: 4px 1px 0px}
+.MathJax_MenuDisabled {color: GrayText}
+.MathJax_MenuActive {background-color: Highlight; color: HighlightText}
+.MathJax_MenuDisabled:focus, .MathJax_MenuLabel:focus {background-color: #E8E8E8}
+.MathJax_ContextMenu:focus {outline: none}
+.MathJax_ContextMenu .MathJax_MenuItem:focus {outline: none}
+#MathJax_AboutClose {top: .2em; right: .2em}
+.MathJax_Menu .MathJax_MenuClose {top: -10px; left: -10px}
+.MathJax_MenuClose {position: absolute; cursor: pointer; display: inline-block; border: 2px solid #AAA; border-radius: 18px; -webkit-border-radius: 18px; -moz-border-radius: 18px; -khtml-border-radius: 18px; font-family: 'Courier New',Courier; font-size: 24px; color: #F0F0F0}
+.MathJax_MenuClose span {display: block; background-color: #AAA; border: 1.5px solid; border-radius: 18px; -webkit-border-radius: 18px; -moz-border-radius: 18px; -khtml-border-radius: 18px; line-height: 0; padding: 8px 0 6px}
+.MathJax_MenuClose:hover {color: white!important; border: 2px solid #CCC!important}
+.MathJax_MenuClose:hover span {background-color: #CCC!important}
+.MathJax_MenuClose:hover:focus {outline: none}
+</style><style type="text/css">.MathJax_Preview .MJXf-math {color: inherit!important}
+</style><style type="text/css">.MJX_Assistive_MathML {position: absolute!important; top: 0; left: 0; clip: rect(1px, 1px, 1px, 1px); padding: 1px 0 0 0!important; border: 0!important; height: 1px!important; width: 1px!important; overflow: hidden!important; display: block!important; -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none}
+.MJX_Assistive_MathML.MJX_Assistive_MathML_Block {width: 100%!important}
+</style><style type="text/css">#MathJax_Zoom {position: absolute; background-color: #F0F0F0; overflow: auto; display: block; z-index: 301; padding: .5em; border: 1px solid black; margin: 0; font-weight: normal; font-style: normal; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; -webkit-box-sizing: content-box; -moz-box-sizing: content-box; box-sizing: content-box; box-shadow: 5px 5px 15px #AAAAAA; -webkit-box-shadow: 5px 5px 15px #AAAAAA; -moz-box-shadow: 5px 5px 15px #AAAAAA; -khtml-box-shadow: 5px 5px 15px #AAAAAA; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_ZoomOverlay {position: absolute; left: 0; top: 0; z-index: 300; display: inline-block; width: 100%; height: 100%; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+#MathJax_ZoomFrame {position: relative; display: inline-block; height: 0; width: 0}
+#MathJax_ZoomEventTrap {position: absolute; left: 0; top: 0; z-index: 302; display: inline-block; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+</style><style type="text/css">.MathJax_Preview {color: #888}
+#MathJax_Message {position: fixed; left: 1em; bottom: 1.5em; background-color: #E6E6E6; border: 1px solid #959595; margin: 0px; padding: 2px 8px; z-index: 102; color: black; font-size: 80%; width: auto; white-space: nowrap}
+#MathJax_MSIE_Frame {position: absolute; top: 0; left: 0; width: 0px; z-index: 101; border: 0px; margin: 0px; padding: 0px}
+.MathJax_Error {color: #CC0000; font-style: italic}
+</style><script type="text/javascript" charset="UTF-8" src="./Persistent Segment Tree - CodeChef Discuss_files/y29jn83LcwuS-1eSCIdcRqK45GldoDI14ME2YTp22q8.js.download"></script><style type="text/css">.recaptchatable td img{display:block}.recaptchatable .recaptcha_r1_c1{background:url('https://www.google.com/recaptcha/api/img/red/sprite.png') 0 -63px no-repeat;width:318px;height:9px}.recaptchatable .recaptcha_r2_c1{background:url('https://www.google.com/recaptcha/api/img/red/sprite.png') -18px 0 no-repeat;width:9px;height:57px}.recaptchatable .recaptcha_r2_c2{background:url('https://www.google.com/recaptcha/api/img/red/sprite.png') -27px 0 no-repeat;width:9px;height:57px}.recaptchatable .recaptcha_r3_c1{background:url('https://www.google.com/recaptcha/api/img/red/sprite.png') 0 0 no-repeat;width:9px;height:63px}.recaptchatable .recaptcha_r3_c2{background:url('https://www.google.com/recaptcha/api/img/red/sprite.png') -18px -57px no-repeat;width:300px;height:6px}.recaptchatable .recaptcha_r3_c3{background:url('https://www.google.com/recaptcha/api/img/red/sprite.png') -9px 0 no-repeat;width:9px;height:63px}.recaptchatable .recaptcha_r4_c1{background:url('https://www.google.com/recaptcha/api/img/red/sprite.png') -43px 0 no-repeat;width:171px;height:49px}.recaptchatable .recaptcha_r4_c2{background:url('https://www.google.com/recaptcha/api/img/red/sprite.png') -36px 0 no-repeat;width:7px;height:57px}.recaptchatable .recaptcha_r4_c4{background:url('https://www.google.com/recaptcha/api/img/red/sprite.png') -214px 0 no-repeat;width:97px;height:57px}.recaptchatable .recaptcha_r7_c1{background:url('https://www.google.com/recaptcha/api/img/red/sprite.png') -43px -49px no-repeat;width:171px;height:8px}.recaptchatable .recaptcha_r8_c1{background:url('https://www.google.com/recaptcha/api/img/red/sprite.png') -43px -49px no-repeat;width:25px;height:8px}.recaptchatable .recaptcha_image_cell center img{height:57px}.recaptchatable .recaptcha_image_cell center{height:57px}.recaptchatable .recaptcha_image_cell{background-color:white;height:57px}#recaptcha_area,#recaptcha_table{width:318px!important}.recaptchatable,#recaptcha_area tr,#recaptcha_area td,#recaptcha_area th{margin:0!important;border:0!important;padding:0!important;border-collapse:collapse!important;vertical-align:middle!important}.recaptchatable *{margin:0;padding:0;border:0;font-family:helvetica,sans-serif;font-size:8pt;color:black;position:static;top:auto;left:auto;right:auto;bottom:auto}.recaptchatable #recaptcha_image{position:relative;margin:auto}.recaptchatable #recaptcha_image #recaptcha_challenge_image{display:block}.recaptchatable #recaptcha_image #recaptcha_ad_image{display:block;position:absolute;top:0}.recaptchatable img{border:0!important;margin:0!important;padding:0!important}.recaptchatable a,.recaptchatable a:hover{cursor:pointer;outline:none;border:0!important;padding:0!important;text-decoration:none;color:blue;background:none!important;font-weight:normal}.recaptcha_input_area{position:relative!important;width:153px!important;height:45px!important;margin-left:7px!important;margin-right:7px!important;background:none!important}.recaptchatable label.recaptcha_input_area_text{margin:0!important;padding:0!important;position:static!important;top:auto!important;left:auto!important;right:auto!important;bottom:auto!important;background:none!important;height:auto!important;width:auto!important}.recaptcha_theme_red label.recaptcha_input_area_text,.recaptcha_theme_white label.recaptcha_input_area_text{color:black!important}.recaptcha_theme_blackglass label.recaptcha_input_area_text{color:white!important}.recaptchatable #recaptcha_response_field{width:153px!important;position:relative!important;bottom:7px!important;padding:0!important;margin:15px 0 0 0!important;font-size:10pt}.recaptcha_theme_blackglass #recaptcha_response_field,.recaptcha_theme_white #recaptcha_response_field{border:1px solid gray}.recaptcha_theme_red #recaptcha_response_field{border:1px solid #cca940}.recaptcha_audio_cant_hear_link{font-size:7pt;color:black}.recaptchatable{line-height:1!important}#recaptcha_instructions_error{color:red!important}.recaptcha_only_if_privacy{float:right;text-align:right}#recaptcha-ad-choices{position:absolute;height:15px;top:0;right:0}#recaptcha-ad-choices img{height:15px}.recaptcha-ad-choices-collapsed{width:30px;height:15px;display:block}.recaptcha-ad-choices-expanded{width:75px;height:15px;display:none}#recaptcha-ad-choices:hover .recaptcha-ad-choices-collapsed{display:none}#recaptcha-ad-choices:hover .recaptcha-ad-choices-expanded{display:block}
+
+.recaptcha_is_showing_audio .recaptcha_only_if_image,.recaptcha_isnot_showing_audio .recaptcha_only_if_audio,.recaptcha_had_incorrect_sol .recaptcha_only_if_no_incorrect_sol,.recaptcha_nothad_incorrect_sol .recaptcha_only_if_incorrect_sol{display:none !important}</style><script type="text/javascript" src="./Persistent Segment Tree - CodeChef Discuss_files/reload"></script><style type="text/css">.MJXp-script {font-size: .8em}
+.MJXp-right {-webkit-transform-origin: right; -moz-transform-origin: right; -ms-transform-origin: right; -o-transform-origin: right; transform-origin: right}
+.MJXp-bold {font-weight: bold}
+.MJXp-italic {font-style: italic}
+.MJXp-scr {font-family: MathJax_Script,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-frak {font-family: MathJax_Fraktur,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-sf {font-family: MathJax_SansSerif,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-cal {font-family: MathJax_Caligraphic,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-mono {font-family: MathJax_Typewriter,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-largeop {font-size: 150%}
+.MJXp-largeop.MJXp-int {vertical-align: -.2em}
+.MJXp-math {display: inline-block; line-height: 1.2; text-indent: 0; font-family: 'Times New Roman',Times,STIXGeneral,serif; white-space: nowrap; border-collapse: collapse}
+.MJXp-display {display: block; text-align: center; margin: 1em 0}
+.MJXp-math span {display: inline-block}
+.MJXp-box {display: block!important; text-align: center}
+.MJXp-box:after {content: " "}
+.MJXp-rule {display: block!important; margin-top: .1em}
+.MJXp-char {display: block!important}
+.MJXp-mo {margin: 0 .15em}
+.MJXp-mfrac {margin: 0 .125em; vertical-align: .25em}
+.MJXp-denom {display: inline-table!important; width: 100%}
+.MJXp-denom > * {display: table-row!important}
+.MJXp-surd {vertical-align: top}
+.MJXp-surd > * {display: block!important}
+.MJXp-script-box > *  {display: table!important; height: 50%}
+.MJXp-script-box > * > * {display: table-cell!important; vertical-align: top}
+.MJXp-script-box > *:last-child > * {vertical-align: bottom}
+.MJXp-script-box > * > * > * {display: block!important}
+.MJXp-mphantom {visibility: hidden}
+.MJXp-munderover {display: inline-table!important}
+.MJXp-over {display: inline-block!important; text-align: center}
+.MJXp-over > * {display: block!important}
+.MJXp-munderover > * {display: table-row!important}
+.MJXp-mtable {vertical-align: .25em; margin: 0 .125em}
+.MJXp-mtable > * {display: inline-table!important; vertical-align: middle}
+.MJXp-mtr {display: table-row!important}
+.MJXp-mtd {display: table-cell!important; text-align: center; padding: .5em 0 0 .5em}
+.MJXp-mtr > .MJXp-mtd:first-child {padding-left: 0}
+.MJXp-mtr:first-child > .MJXp-mtd {padding-top: 0}
+.MJXp-mlabeledtr {display: table-row!important}
+.MJXp-mlabeledtr > .MJXp-mtd:first-child {padding-left: 0}
+.MJXp-mlabeledtr:first-child > .MJXp-mtd {padding-top: 0}
+.MJXp-merror {background-color: #FFFF88; color: #CC0000; border: 1px solid #CC0000; padding: 1px 3px; font-style: normal; font-size: 90%}
+.MJXp-scale0 {-webkit-transform: scaleX(.0); -moz-transform: scaleX(.0); -ms-transform: scaleX(.0); -o-transform: scaleX(.0); transform: scaleX(.0)}
+.MJXp-scale1 {-webkit-transform: scaleX(.1); -moz-transform: scaleX(.1); -ms-transform: scaleX(.1); -o-transform: scaleX(.1); transform: scaleX(.1)}
+.MJXp-scale2 {-webkit-transform: scaleX(.2); -moz-transform: scaleX(.2); -ms-transform: scaleX(.2); -o-transform: scaleX(.2); transform: scaleX(.2)}
+.MJXp-scale3 {-webkit-transform: scaleX(.3); -moz-transform: scaleX(.3); -ms-transform: scaleX(.3); -o-transform: scaleX(.3); transform: scaleX(.3)}
+.MJXp-scale4 {-webkit-transform: scaleX(.4); -moz-transform: scaleX(.4); -ms-transform: scaleX(.4); -o-transform: scaleX(.4); transform: scaleX(.4)}
+.MJXp-scale5 {-webkit-transform: scaleX(.5); -moz-transform: scaleX(.5); -ms-transform: scaleX(.5); -o-transform: scaleX(.5); transform: scaleX(.5)}
+.MJXp-scale6 {-webkit-transform: scaleX(.6); -moz-transform: scaleX(.6); -ms-transform: scaleX(.6); -o-transform: scaleX(.6); transform: scaleX(.6)}
+.MJXp-scale7 {-webkit-transform: scaleX(.7); -moz-transform: scaleX(.7); -ms-transform: scaleX(.7); -o-transform: scaleX(.7); transform: scaleX(.7)}
+.MJXp-scale8 {-webkit-transform: scaleX(.8); -moz-transform: scaleX(.8); -ms-transform: scaleX(.8); -o-transform: scaleX(.8); transform: scaleX(.8)}
+.MJXp-scale9 {-webkit-transform: scaleX(.9); -moz-transform: scaleX(.9); -ms-transform: scaleX(.9); -o-transform: scaleX(.9); transform: scaleX(.9)}
+.MathJax_PHTML .noError {vertical-align: ; font-size: 90%; text-align: left; color: black; padding: 1px 3px; border: 1px solid}
+</style></head>
+    <body waid71fa0d88-5390-4b5b-a2f4-e45fa93d85e2="SA password protect entry checker"><div id="MathJax_Message" style="display: none;"></div>
+        <div class="wrapper">
+        
+        <!-- template header.html -->
+
+<script src="./Persistent Segment Tree - CodeChef Discuss_files/MathJax.js.download" type="text/javascript"></script>
+<style>
+.MathJax {
+    font-size: 2em;
+}
+</style>
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        initSearchBoxValue();
+    });
+
+    MathJax.Hub.Config({
+        "tex2jax": {
+            inlineMath: [['$', '$']],
+            multiLine: true
+        }
+    });
+
+    function initSearchBoxValue()
+    {
+        var searchKeyword= $("#keywords").val();
+            if (searchKeyword=="")
+            {
+                $("#keywords").val("Search Here...");
+            }
+   }
+
+    function searchBoxOnBlur(){
+        $("#keyword").className="searchInput";
+        if ($("#keywords").val()=="")
+                $("#keywords").val("Search Here...");
+    }
+
+    function searchBoxOnFocus(){
+        $("#keyword").className="searchInputFocused";
+        if ($("#keywords").val()=="Search Here...")
+            $("#keywords").val("");
+   }
+
+    function about(){
+        if (document.URL=="http://osqa.codechef.local/about/")
+        {
+            $("")
+        }
+    }
+
+</script>
+
+
+
+ 
+
+	<div id="roof">
+
+
+
+		<div id="top" style="position:absolute; text-align: left;">
+            <a href="https://www.codechef.com/">
+                &lt;&lt; Back to CodeChef
+            </a>
+		</div>
+
+		<div id="logo">
+			<a href="https://discuss.codechef.com/">
+				<img src="./Persistent Segment Tree - CodeChef Discuss_files/site-logo_21.png" title="back to home page" alt="CodeChef Discuss logo">
+			</a>
+		</div>
+
+		<div id="top">
+		     <a href="https://discuss.codechef.com/users/172699/free__bird">free__bird</a> <span class="score" title="1 karma">1</span> <a href="https://discuss.codechef.com/logout/">Log Out</a> 
+
+            <div id="nav">
+                <a id="nav_questions" class="on" href="https://discuss.codechef.com/questions/">questions</a><a id="nav_tags" href="https://discuss.codechef.com/tags/">tags</a><a id="nav_users" href="https://discuss.codechef.com/users/">users</a><a id="nav_badges" href="https://discuss.codechef.com/badges/">badges</a><a id="nav_unanswered" href="https://discuss.codechef.com/questions/unanswered/">unanswered</a>
+                <a id="horiSeparator">
+                </a><a id="nav_ask" href="https://discuss.codechef.com/questions/ask/" class="special">ask a question</a>
+                <a id="nav_about" href="https://discuss.codechef.com/about" class="off" onclick="about()">about</a>
+                <a id="nav_faq" href="https://discuss.codechef.com/faq">faq</a>
+
+            </div>
+		</div>
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+  <div class="clear"></div>
+	<div id="searchBar">
+
+
+
+
+        <table id="searchBarTable">
+            <tbody><tr>
+                <td class="left">
+                    CodeChef Discussion
+                </td>
+                <td class="right">
+                    <form action="https://discuss.codechef.com/search/" method="get">
+                    <div style="display:none"><input type="hidden" name="csrfmiddlewaretoken" value="b0420dd6c967326ab4dc0ec083477d2a"></div>
+                        <table>
+                            <tbody><tr>
+                                <td>
+                                    <input type="text" class="searchInput" value="" name="q" id="keywords" onfocus="searchBoxOnFocus()" onblur="searchBoxOnBlur()">
+                                </td>
+                                <td>
+                                    <div class="options">
+                                        <input id="type-question" type="radio" value="question" name="t" checked="checked"><label for="type-question">questions</label>
+                                        <input id="type-tag" type="radio" value="tag" name="t"><label for="type-tag">tags</label>
+                                        <input id="type-user" type="radio" value="user" name="t"><label for="type-user">users</label>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody></table>
+                    </form>
+                </td>
+            </tr>
+        </tbody></table>
+        <h1 id="separator">
+        </h1>
+	</div>
+
+
+	
+
+<!-- end template header.html -->
+
+        
+
+
+
+<div id="wrapper">
+    
+    
+    <div id="room">
+        <div id="CALeft">
+            
+<div class="headNormal">
+    <h1>Persistent Segment Tree</h1>
+</div>
+<div id="main-body" class="">
+    <div id="askform">
+            <table style="width:100%;" id="question-table">
+                <tbody><tr>
+                    <td style="width:30px;vertical-align:top">
+                        <div class="vote-buttons">
+                            
+
+<a id="post-37671-upvote" title="I like this post (click again to cancel)" class="ajax-command post-vote up " href="https://discuss.codechef.com/vote/37671/up/" rel="nofollow"> </a>
+<div id="post-37671-score" class="post-score" title="current number of votes">
+    4
+</div>
+<a id="post-37671-downvote" title="I dont like this post (click again to cancel)" class="ajax-command post-vote down" href="https://discuss.codechef.com/vote/37671/down/" rel="nofollow"> </a>
+                            
+
+<a id="favorite-mark" title="mark/unmark this question as favorite (click again to cancel)" class="ajax-command favorite-mark " href="https://discuss.codechef.com/mark_favorite/37671/" rel="nofollow"> </a>
+<div id="favorite-count" class="favorite-count">
+   1
+</div>
+
+                        </div>
+                    </td>
+                    <td>
+                        <div id="item-right">
+                            <div class="question-body">
+                                <p>It'd be really nice if someone can take up a problem as example and explain the approach of solving it using a persistent segment tree.There are 1-2 problems on codechef but editorials of those problems explain very little about the persistence part.
+e.g. for example to solve this problem(or any other problem) using persistent segment tree
+<a href="http://www.spoj.com/problems/MKTHNUM/">http://www.spoj.com/problems/MKTHNUM/</a></p>
+<p>what will be the approach i.e. if someone can explain how we are building n segment trees and after that how we are querying,it'll be very helpful.</p>
+                            </div>
+                            <div id="question-tags" class="tags-container tags">
+                            <span class="approved-tags">
+                                
+                                
+                                    <a href="https://discuss.codechef.com/tags/segment-tree/" class="post-tag tag-link-segment-tree " title="see questions tagged &#39;segment-tree&#39;" rel="tag">segment-tree</a>
+                                
+                                
+                                
+                                    <a href="https://discuss.codechef.com/tags/segment/" class="post-tag tag-link-segment " title="see questions tagged &#39;segment&#39;" rel="tag">segment</a>
+                                
+                                
+                                
+                                    <a href="https://discuss.codechef.com/tags/persistence/" class="post-tag tag-link-persistence " title="see questions tagged &#39;persistence&#39;" rel="tag">persistence</a>
+                                
+                                
+                            </span>
+                            <span class="unapproved-tags" title="Unapproved tags">
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                            </span>
+                            </div>
+                            <div id="question-controls" class="post-controls">
+                                
+
+                                
+
+                            </div>
+                            <div class="post-update-info-container">
+                                    
+<div class="post-update-info post-update-info-user">
+    <p style="line-height:12px;">
+        asked
+        <strong>27 Jan '14, 02:36</strong>
+    </p>
+    <img class="gravatar" width="32" height="32" src="./Persistent Segment Tree - CodeChef Discuss_files/267b4553e4b71d811243a0cd30e8aa4a.jpg" alt="orchidmajumder&#39;s gravatar image">
+    <p><span class="user-rating user-rating-3"><span>3★</span><a href="https://discuss.codechef.com/users/13974/orchidmajumder">orchidmajumder</a></span><br>
+    <span class="score" title="348 karma">348</span><span title="4 badges"><span class="badge1">●</span><span class="badgecount">4</span></span><span title="8 badges"><span class="silver">●</span><span class="badgecount">8</span></span><span title="15 badges"><span class="bronze">●</span><span class="badgecount">15</span></span><br>
+    
+    <span title="Rate of the user&#39;s accepted answers" class="accept_rate">accept rate:</span>
+    <span title="orchidmajumder has no accepted answers">0%</span>
+    </p>
+</div>
+
+
+                            </div>
+                            
+
+
+<div class="comments-container" id="comments-container-37671">
+    
+</div>
+<div id="comment-tools-37671" class="comment-tools">
+    
+    
+</div>
+<div id="comment-37671-form-container" class="comment-form-container">
+    
+</div>
+    
+
+                        </div>
+
+                    </td>
+                </tr>
+            </tbody></table>
+            
+            
+                <hr>
+                <div class="tabBar">
+                    <a name="sort-top"></a>
+                    <div class="headQuestions">
+                    3 Answers:
+                    </div>
+                    
+<div class="tabsA"><a href="https://discuss.codechef.com/questions/37671/persistent-segment-tree?sort=oldest" title="oldest answers will be shown first">oldest</a><a href="https://discuss.codechef.com/questions/37671/persistent-segment-tree?sort=newest" title="newest answers will be shown first">newest</a><a href="https://discuss.codechef.com/questions/37671/persistent-segment-tree?sort=votes" class="on" title="most voted answers will be shown first">most voted</a></div>
+
+                </div>
+                
+
+                
+                    <a name="91996"></a>
+                    <div id="answer-container-91996" class="answer ">
+                        <table style="width:100%;">
+                            <tbody><tr>
+                                <td style="width:30px;vertical-align:top">
+                                    <div class="vote-buttons">
+                                        
+
+<a id="post-91996-upvote" title="I like this post (click again to cancel)" class="ajax-command post-vote up " href="https://discuss.codechef.com/vote/91996/up/" rel="nofollow"> </a>
+<div id="post-91996-score" class="post-score" title="current number of votes">
+    2
+</div>
+<a id="post-91996-downvote" title="I dont like this post (click again to cancel)" class="ajax-command post-vote down" href="https://discuss.codechef.com/vote/91996/down/" rel="nofollow"> </a>
+                                        
+
+
+    
+
+
+
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="item-right">
+                                        <div class="answer-body">
+                                            <p>A persistent data structure is one where you can answer queries for different versions of the data structure. Meaning you can shift between the newly updated and old versions.</p>
+<p>For a persistent segment tree, each update costs you log(n) operations, because an update query of any range will effect at most log(n) nodes. This allows us to update the tree to a new version efficiently. </p>
+<p><a href="https://youtu.be/TH9n_HVkjQM">Here</a> is a video tutorial on the exact problem you are talking about.
+An MIT lecture talks about <a href="https://youtu.be/T0yzrZL1py0">persistent data structures</a> in general.</p>
+<p>Happy Coding!</p>
+                                        </div>
+                                        <div class="answer-controls post-controls">
+                                            
+<span class="action-link"><a rel="nofollow" title="answer permanent link" class="ajax-command withprompt  copy" href="https://discuss.codechef.com/answer_link/91996/">link</a></span><span class="action-link-separator">|</span><span class="action-link"><a rel="nofollow" title="award points to gkcs" class="ajax-command withprompt  " href="https://discuss.codechef.com/award_points/user/49606/answer/91996/">award points</a></span>
+                                            
+
+                                        </div>
+                                        <div class="post-update-info-container">
+                                            
+<div class="post-update-info post-update-info-user">
+    <p style="line-height:12px;">
+        answered
+        <strong>26 Feb, 11:12</strong>
+    </p>
+    <img class="gravatar" width="32" height="32" src="./Persistent Segment Tree - CodeChef Discuss_files/2b22e8bd4c2d8de594b54c5dd3437b4b.jpg" alt="gkcs&#39;s gravatar image">
+    <p><span class="user-rating user-rating-5"><span>5★</span><a href="https://discuss.codechef.com/users/49606/gkcs">gkcs</a></span><br>
+    <span class="score" title="1980 karma"><span class="">2.0k</span></span><span title="1 badges"><span class="badge1">●</span><span class="badgecount">1</span></span><span title="10 badges"><span class="silver">●</span><span class="badgecount">10</span></span><span title="23 badges"><span class="bronze">●</span><span class="badgecount">23</span></span><br>
+    
+    <span title="Rate of the user&#39;s accepted answers" class="accept_rate">accept rate:</span>
+    <span title="gkcs has 7 accepted answers">11%</span>
+    </p>
+</div>
+
+
+                                        </div>
+                                        
+
+
+<div class="comments-container" id="comments-container-91996">
+    
+        <a name="92013"></a>
+        <div class="comment" id="comment-92013">
+            <div id="post-92013-score" class="comment-score"></div>
+            <div class="comment-text"><p><a href="https://discuss.codechef.com/users/49606/gkcs">@gkcs</a> I really like your videos. You're doing a great job.</p>
+
+<p>Can you please do a video on Mo's Algorithm ( and if possible with updates on it ) ? </p>
+
+<p>I saw your video on sqrt-decomposition, it was crystal clear and intuitive ( Also the implementation part really helps ).</p>
+
+<p>Thanks.</p></div>
+            <div class="comment-info" id="comment-92013-info">
+                
+                
+                
+                
+                    
+
+                <span class="comment-age">(26 Feb, 12:32)</span>
+                <span class="user-rating user-rating-4"><a class="comment-user userinfo" href="https://discuss.codechef.com/users/140484/nikhil_chandak">nikhil_chandak</a><span>4★</span></span>
+                
+            </div>
+        </div>
+    
+        <a name="92019"></a>
+        <div class="comment" id="comment-92019">
+            <div id="post-92019-score" class="comment-score"></div>
+            <div class="comment-text"><p><a href="https://discuss.codechef.com/users/140484/nikhil_chandak">@nikhil_chandak</a> 
+Mo's algorithm sounds good. I should be able to make one soon.
+Thanks for the suggestion and feedback!</p></div>
+            <div class="comment-info" id="comment-92019-info">
+                
+                
+                
+                
+                    
+
+                <span class="comment-age">(26 Feb, 12:53)</span>
+                <span class="user-rating user-rating-5"><a class="comment-user userinfo" href="https://discuss.codechef.com/users/49606/gkcs">gkcs</a><span>5★</span></span>
+                
+            </div>
+        </div>
+    
+        <a name="92138"></a>
+        <div class="comment" id="comment-92138">
+            <div id="post-92138-score" class="comment-score">1</div>
+            <div class="comment-text"><p>If you will be making, then please add the update part too. Except this ( <a href="http://codeforces.com/blog/entry/44711?#comment-292040">http://codeforces.com/blog/entry/44711?#comment-292040</a> ) and this ( <a href="https://www.hackerearth.com/problem/algorithm/tree-and-coprime-queries/editorial/">https://www.hackerearth.com/problem/algorithm/tree-and-coprime-queries/editorial/</a> ) I didn't find any other resource on Mo's with Updates. 
+Will be looking forward to your video :)</p></div>
+            <div class="comment-info" id="comment-92138-info">
+                
+                
+                
+                
+                    
+
+                <span class="comment-age">(27 Feb, 01:42)</span>
+                <span class="user-rating user-rating-4"><a class="comment-user userinfo" href="https://discuss.codechef.com/users/140484/nikhil_chandak">nikhil_chandak</a><span>4★</span></span>
+                
+            </div>
+        </div>
+    
+</div>
+<div id="comment-tools-91996" class="comment-tools">
+    
+    
+</div>
+<div id="comment-91996-form-container" class="comment-form-container">
+    
+</div>
+    
+
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody></table>
+                    </div>
+                
+                    <a name="70206"></a>
+                    <div id="answer-container-70206" class="answer ">
+                        <table style="width:100%;">
+                            <tbody><tr>
+                                <td style="width:30px;vertical-align:top">
+                                    <div class="vote-buttons">
+                                        
+
+<a id="post-70206-upvote" title="I like this post (click again to cancel)" class="ajax-command post-vote up " href="https://discuss.codechef.com/vote/70206/up/" rel="nofollow"> </a>
+<div id="post-70206-score" class="post-score" title="current number of votes">
+    1
+</div>
+<a id="post-70206-downvote" title="I dont like this post (click again to cancel)" class="ajax-command post-vote down" href="https://discuss.codechef.com/vote/70206/down/" rel="nofollow"> </a>
+                                        
+
+
+    
+
+
+
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="item-right">
+                                        <div class="answer-body">
+                                            <p><a href="http://blog.anudeep2011.com/persistent-segment-trees-explained-with-spoj-problems/">http://blog.anudeep2011.com/persistent-segment-trees-explained-with-spoj-problems/</a></p>
+                                        </div>
+                                        <div class="answer-controls post-controls">
+                                            
+<span class="action-link"><a rel="nofollow" title="answer permanent link" class="ajax-command withprompt  copy" href="https://discuss.codechef.com/answer_link/70206/">link</a></span><span class="action-link-separator">|</span><span class="action-link"><a rel="nofollow" title="award points to saurabh_29" class="ajax-command withprompt  " href="https://discuss.codechef.com/award_points/user/81138/answer/70206/">award points</a></span>
+                                            
+
+                                        </div>
+                                        <div class="post-update-info-container">
+                                            
+<div class="post-update-info post-update-info-user">
+    <p style="line-height:12px;">
+        answered
+        <strong>21 May '15, 18:22</strong>
+    </p>
+    <img class="gravatar" width="32" height="32" src="./Persistent Segment Tree - CodeChef Discuss_files/default.jpg" alt="saurabh_29&#39;s gravatar image">
+    <p><span class="user-rating user-rating-4"><span>4★</span><a href="https://discuss.codechef.com/users/81138/saurabh_29">saurabh_29</a></span><br>
+    <span class="score" title="71 karma">71</span><span title="3 badges"><span class="bronze">●</span><span class="badgecount">3</span></span><br>
+    
+    <span title="Rate of the user&#39;s accepted answers" class="accept_rate">accept rate:</span>
+    <span title="saurabh_29 has no accepted answers">0%</span>
+    </p>
+</div>
+
+
+                                        </div>
+                                        
+
+
+<div class="comments-container" id="comments-container-70206">
+    
+</div>
+<div id="comment-tools-70206" class="comment-tools">
+    
+    
+</div>
+<div id="comment-70206-form-container" class="comment-form-container">
+    
+</div>
+    
+
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody></table>
+                    </div>
+                
+                    <a name="92016"></a>
+                    <div id="answer-container-92016" class="answer ">
+                        <table style="width:100%;">
+                            <tbody><tr>
+                                <td style="width:30px;vertical-align:top">
+                                    <div class="vote-buttons">
+                                        
+
+<a id="post-92016-upvote" title="I like this post (click again to cancel)" class="ajax-command post-vote up " href="https://discuss.codechef.com/vote/92016/up/" rel="nofollow"> </a>
+<div id="post-92016-score" class="post-score" title="current number of votes">
+    1
+</div>
+<a id="post-92016-downvote" title="I dont like this post (click again to cancel)" class="ajax-command post-vote down" href="https://discuss.codechef.com/vote/92016/down/" rel="nofollow"> </a>
+                                        
+
+
+    
+
+
+
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="item-right">
+                                        <div class="answer-body">
+                                            <p>You can follow this awesome link</p>
+<p><a href="http://www.geeksforgeeks.org/persistent-segment-tree-set-1-introduction/">http://www.geeksforgeeks.org/persistent-segment-tree-set-1-introduction/</a></p>
+                                        </div>
+                                        <div class="answer-controls post-controls">
+                                            
+<span class="action-link"><a rel="nofollow" title="answer permanent link" class="ajax-command withprompt  copy" href="https://discuss.codechef.com/answer_link/92016/">link</a></span><span class="action-link-separator">|</span><span class="action-link"><a rel="nofollow" title="award points to inovation123" class="ajax-command withprompt  " href="https://discuss.codechef.com/award_points/user/124577/answer/92016/">award points</a></span>
+                                            
+
+                                        </div>
+                                        <div class="post-update-info-container">
+                                            
+<div class="post-update-info post-update-info-user">
+    <p style="line-height:12px;">
+        answered
+        <strong>26 Feb, 12:37</strong>
+    </p>
+    <img class="gravatar" width="32" height="32" src="./Persistent Segment Tree - CodeChef Discuss_files/default.jpg" alt="inovation123&#39;s gravatar image">
+    <p><span class="user-rating user-rating-3"><span>3★</span><a href="https://discuss.codechef.com/users/124577/inovation123">inovation123</a></span><br>
+    <span class="score" title="413 karma">413</span><span title="6 badges"><span class="bronze">●</span><span class="badgecount">6</span></span><br>
+    
+    <span title="Rate of the user&#39;s accepted answers" class="accept_rate">accept rate:</span>
+    <span title="inovation123 has 6 accepted answers">11%</span>
+    </p>
+</div>
+
+    <div class="post-update-info post-update-info-edited">
+        <p style="line-height:12px;">
+            <a href="https://discuss.codechef.com/revisions/92016/">
+                edited
+                <strong>26 Feb, 12:38</strong>
+            </a>
+        </p>
+        
+    </div>
+
+
+                                        </div>
+                                        
+
+
+<div class="comments-container" id="comments-container-92016">
+    
+</div>
+<div id="comment-tools-92016" class="comment-tools">
+    
+    
+</div>
+<div id="comment-92016-form-container" class="comment-form-container">
+    
+</div>
+    
+
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody></table>
+                    </div>
+                
+                <div class="paginator-container-left">
+                    
+                </div>
+            
+        <form id="fmanswer" action="https://discuss.codechef.com/questions/37671/answer/" method="post"><div style="display:none;"><input type="hidden" id="csrfmiddlewaretoken" name="csrfmiddlewaretoken" value="b0420dd6c967326ab4dc0ec083477d2a"></div>
+            <div style="display:none"><input type="hidden" name="csrfmiddlewaretoken" value="b0420dd6c967326ab4dc0ec083477d2a"></div>
+            <div style="clear:both">
+            </div>
+
+            
+                <div style="padding:10px 0 0 0;">
+                    <div class="headNormal">
+                        
+                            Your answer
+                        
+                    </div>
+                </div>
+                
+
+                <div id="description" class="">
+                    <div id="wmd-button-bar" class="wmd-panel"><ul id="wmd-button-row"><li class="wmd-button" id="wmd-bold-button" title="Strong &lt;strong&gt; Ctrl+B" style="background-position: 0px 0px;"></li><li class="wmd-button" id="wmd-italic-button" title="Emphasis &lt;em&gt; Ctrl+I" style="background-position: -20px 0px;"></li><li class="wmd-spacer" id="wmd-spacer1"></li><li class="wmd-button" id="wmd-link-button" title="Hyperlink &lt;a&gt; Ctrl+L" style="background-position: -40px 0px;"></li><li class="wmd-button" id="wmd-quote-button" title="Blockquote &lt;blockquote&gt; Ctrl+Q" style="background-position: -60px 0px;"></li><li class="wmd-button" id="wmd-code-button" title="Code Sample &lt;pre&gt;&lt;code&gt; Ctrl+K" style="background-position: -80px 0px;"></li><li class="wmd-button" id="wmd-image-button" title="Image &lt;img&gt; Ctrl+G" style="background-position: -100px 0px;"></li><li class="wmd-spacer" id="wmd-spacer2"></li><li class="wmd-button" id="wmd-olist-button" title="Numbered List &lt;ol&gt; Ctrl+O" style="background-position: -120px 0px;"></li><li class="wmd-button" id="wmd-ulist-button" title="Bulleted List &lt;ul&gt; Ctrl+U" style="background-position: -140px 0px;"></li><li class="wmd-button" id="wmd-heading-button" title="Heading &lt;h1&gt;/&lt;h2&gt; Ctrl+H" style="background-position: -160px 0px;"></li><li class="wmd-button" id="wmd-hr-button" title="Horizontal Rule &lt;hr&gt; Ctrl+R" style="background-position: -180px 0px;"></li><li class="wmd-spacer" id="wmd-spacer3"></li><li class="wmd-button" id="wmd-undo-button" title="Undo - Ctrl+Z" style="background-position: -200px -20px;"></li><li class="wmd-button" id="wmd-redo-button" title="Redo - Ctrl+Y" style="background-position: -220px -20px;"></li><li class="wmd-button" id="wmd-hide-button" title="Hide something" style="background-position: -260px 0px;"></li><li class="wmd-button" id="wmd-help-button" style="background-position: -240px 0px;"><a href="http://wmd-editor.com/" target="_blank" title="WMD website"></a></li></ul></div>
+                    <div class="resizable-textarea"><span><textarea rows="10" cols="40" name="text" id="editor" class="processed"></textarea><div class="grippie" style="margin-right: -6px;"></div></span></div>
+                    <div class="preview-toggle">
+                        <table width="100%">
+                            <tbody><tr>
+                                <td>
+                                    <span id="pre-collapse" title="Toggle the real time Markdown editor preview">[hide preview]</span>
+                                </td>
+                                <td style="text-align: right;" id="editor-metrics"></td>
+                                
+                                <td style="text-align:right;">
+                                    <input type="checkbox" name="wiki" id="id_wiki">
+                                    <span style="font-weight:normal;cursor:help" title="if you choose community wiki option, the question and answer do not generate points and name of author will not be shown">
+                                            <label for="id_wiki">community wiki</label>
+                                    </span>
+                                </td>
+                                
+                            </tr>
+
+                        </tbody></table>
+                    </div>
+                    
+                    <div class="wmd-preview-text">Preview</div>
+                    <div id="previewer" class="wmd-preview"></div>
+                </div>
+
+	            
+	            <div class="question-captcha" style="float: left;">
+	            	
+	            	<script type="text/javascript" src="./Persistent Segment Tree - CodeChef Discuss_files/challenge"></script><script type="text/javascript" src="./Persistent Segment Tree - CodeChef Discuss_files/recaptcha.js.download"></script><div id="recaptcha_widget_div" class=" recaptcha_nothad_incorrect_sol recaptcha_isnot_showing_audio"><div id="recaptcha_area"><table id="recaptcha_table" class="recaptchatable recaptcha_theme_red"> <tbody><tr> <td colspan="6" class="recaptcha_r1_c1"></td> </tr> <tr> <td class="recaptcha_r2_c1"></td> <td colspan="4" class="recaptcha_image_cell"><center><div id="recaptcha_image" style="width: 300px; height: 57px;"><img id="recaptcha_challenge_image" alt="reCAPTCHA challenge image" height="57" width="300" src="./Persistent Segment Tree - CodeChef Discuss_files/image"></div></center></td> <td class="recaptcha_r2_c2"></td> </tr> <tr> <td rowspan="6" class="recaptcha_r3_c1"></td> <td colspan="4" class="recaptcha_r3_c2"></td> <td rowspan="6" class="recaptcha_r3_c3"></td> </tr> <tr> <td rowspan="3" class="recaptcha_r4_c1" height="49"> <div class="recaptcha_input_area"> <span id="recaptcha_challenge_field_holder" style="display: none;"><input type="hidden" name="recaptcha_challenge_field" id="recaptcha_challenge_field" value="03AOPBWq8qpzyItDBb9HgFI-cH_uh3VNsJBWrM2aYKxNCtI1rtiqZMU3hULOE9MwB5k-oQg0-si1BXRTI-y6WsKLDjazAlBm_41S9kWGWDYrJl-FboQoNnP2Qi2PndMakko5y9lFAIdhO5AIN4AevttE6riBnQRtaBhfQ2yLFr7Qkucpz5HeLlULdQUym0JvD1soMeE-kgVT1tT2Yc7NljkvjcQA3ATvS9uQ"></span><input name="recaptcha_response_field" id="recaptcha_response_field" type="text" autocorrect="off" autocapitalize="off" placeholder="Type the text" autocomplete="off"> <span id="recaptcha_privacy" class="recaptcha_only_if_privacy"><a href="http://www.google.com/intl/en/policies/" target="_blank">Privacy &amp; Terms</a></span> </div> </td> <td rowspan="4" class="recaptcha_r4_c2"></td> <td><a id="recaptcha_reload_btn" title="Get a new challenge"><img id="recaptcha_reload" width="25" height="17" src="./Persistent Segment Tree - CodeChef Discuss_files/refresh.gif" alt="Get a new challenge"></a></td> <td rowspan="4" class="recaptcha_r4_c4"></td> </tr> <tr> <td><a id="recaptcha_switch_audio_btn" class="recaptcha_only_if_image" title="Get an audio challenge"><img id="recaptcha_switch_audio" width="25" height="16" alt="Get an audio challenge" src="./Persistent Segment Tree - CodeChef Discuss_files/audio.gif"></a><a id="recaptcha_switch_img_btn" class="recaptcha_only_if_audio" title="Get a visual challenge"><img id="recaptcha_switch_img" width="25" height="16" alt="Get a visual challenge" src="./Persistent Segment Tree - CodeChef Discuss_files/text.gif"></a></td> </tr> <tr> <td><a id="recaptcha_whatsthis_btn" title="Help"><img id="recaptcha_whatsthis" width="25" height="16" src="./Persistent Segment Tree - CodeChef Discuss_files/help.gif" alt="Help"></a></td> </tr> <tr> <td class="recaptcha_r7_c1"></td> <td class="recaptcha_r8_c1"></td> </tr> </tbody></table> </div></div>
+
+<noscript>
+  &lt;iframe src="https://www.google.com/recaptcha/api/noscript?k=6Ld28wYTAAAAAIAqh2vqc4dsCE3bz-oDorke5j4E" height="300" width="500" frameborder="0"&gt;&lt;/iframe&gt;&lt;br /&gt;
+  &lt;textarea name="recaptcha_challenge_field" rows="3" cols="40"&gt;&lt;/textarea&gt;
+  &lt;input type='hidden' name='recaptcha_response_field' value='manual_challenge' /&gt;
+</noscript>
+
+	            </div>
+	            <div class="clear"></div>
+	            
+
+                <p><span class="form-error"></span></p>
+                
+                <input type="button" value="Post Your Answer" class="submit" style="float:left" onclick="submitClicked(event, this.form)">
+            
+        </form>
+    </div>
+</div>
+
+
+        </div>
+        <div id="CARight">
+            
+<div class="boxC" id="subscription_box">
+    <h3 class="subtitle">Follow this question</h3><strong>By Email:</strong><div class="subscription-status"><p>You are not subscribed to this question.</p></div><p><a class="ajax-command sidebar_button subscription_switch" href="https://discuss.codechef.com/subscribe/37671/">
+        
+            subscribe me
+        
+    </a></p><p>
+        
+            (you can adjust your notification settings on your <a href="https://discuss.codechef.com/users/172699/free__bird/subscriptions/">profile</a>)
+        
+    </p><strong>By RSS:</strong><p><a class="feed-icon" style="background-image:url(&#39;/m/default/media/images/feed-icon-small.png&#39;);" href="https://discuss.codechef.com/questions/37671/persistent-segment-tree?type=rss" title="subscribe to answers"></a>
+    Answers
+</p><p><a class="feed-icon" style="background-image:url(&#39;/m/default/media/images/feed-icon-small.png&#39;);" href="https://discuss.codechef.com/questions/37671/persistent-segment-tree?type=rss&amp;comments=yes" title="subscribe to comments and answers"></a>
+    Answers and Comments
+</p>
+
+</div>
+
+
+<div class="boxC" id="editor_side_bar" style="display: none;">
+    <p class="subtitle darkred">Markdown Basics</p>
+    <ul class="list-item">
+        <li>
+            *italic* or _italic_
+        </li>
+        <li>
+			**bold** or __bold__
+        </li>
+        <li>
+            <b>link</b>:[text](http://url.com/ "title")
+
+        </li>
+
+        <li>
+            <b>image</b>?![alt text](/path/img.jpg "title")
+
+        </li>
+        <li>
+			numbered list:
+            1.  Foo
+            2.  Bar
+        </li>
+        <li>
+			to add a line break simply add two spaces to where you would like the new line to be.
+        </li>
+        <li>
+			basic HTML tags are also supported
+        </li>
+        <li>
+			mathemetical formulas in Latex between $ symbol
+        </li>
+    </ul>
+    <p class="info-box-follow-up-links">
+        <a href="https://discuss.codechef.com/markdown_help/" target="_blank">learn more about Markdown </a>
+    </p>
+</div>
+
+
+
+
+
+
+
+
+<div class="boxC">
+    <p>
+		Tags:
+    </p>
+    <p class="tags">
+        
+        	<a href="https://discuss.codechef.com/tags/segment-tree/" class="tag-link-segment-tree" title="see questions tagged&#39;segment-tree&#39;using tags" rel="tag">segment-tree</a> <span class="tag-number">×1,019</span><br>
+        
+        	<a href="https://discuss.codechef.com/tags/segment/" class="tag-link-segment" title="see questions tagged&#39;segment&#39;using tags" rel="tag">segment</a> <span class="tag-number">×69</span><br>
+        
+        	<a href="https://discuss.codechef.com/tags/persistence/" class="tag-link-persistence" title="see questions tagged&#39;persistence&#39;using tags" rel="tag">persistence</a> <span class="tag-number">×29</span><br>
+        
+    </p>
+    <p>
+        Asked: <strong title="Jan. 27, 2014, 2:36 a.m.">27 Jan '14, 02:36</strong>
+    </p>
+    <p>
+     	Seen: <strong>9,033 times</strong>
+    </p>
+    <p>
+        Last updated: <strong title="Feb. 27, 2017, 1:42 a.m.">27 Feb, 01:42</strong>
+    </p>
+</div>
+
+
+
+
+
+<div class="boxC">
+    <h3 class="subtitle">Related questions</h3>
+    <div class="questions-related">
+
+        
+        <p>
+            <a href="https://discuss.codechef.com/questions/91978/efiicient-algorithm-for-rmq" title="What is the best for Range Minimum Query ...Segment Tree Or Mo Algorithm(Query square root decomposition)???????">[closed] Efiicient Algorithm for RMQ.</a>
+        </p>
+        
+        <p>
+            <a href="https://discuss.codechef.com/questions/99367/subinver-editorial" title="PROBLEM LINK:PracticeContestAuthor: Ildar Gainullin Tester: Oleksandr Kulkov Editorialist: Oleksandr KulkovDIFFICULTY:MEDIUM-HARDPREREQUISITES:persistent segment tree and hashes OR bitsetsPROBLEM:You are to proccess $q$ queries of inversing bits on subsegments in bit sequence and output">SUBINVER - editorial</a>
+        </p>
+        
+        <p>
+            <a href="https://discuss.codechef.com/questions/48507/binary-indexed-tree-segment-tree-probelm" title="Can any one help me how to solve CTRICK this problem using Binary Indexed Tree ,Segment Tree .">Binary Indexed Tree ,Segment Tree Probelm</a>
+        </p>
+        
+        <p>
+            <a href="https://discuss.codechef.com/questions/84002/persistent-segment-tree-help" title="Can anyone tell, how persistent segment tree formed with example( you can include images , if possible ) , for any type of problem involving persistent segment tree , like Kth element in a range from [L to R] after sorting the range in an Array . I don&#39;t want the code , as codes are available on t">Persistent segment tree help</a>
+        </p>
+        
+        <p>
+            <a href="https://discuss.codechef.com/questions/40409/frequent-spoj" title="hey was tried solving http://www.spoj.com/problems/FREQUENT/ but &quot;WA&quot; comes up..plz find the bug.or provide any test cases where my code fails..my solution http://ideone.com/9dNJtd">FREQUENT SPOJ....:(</a>
+        </p>
+        
+        <p>
+            <a href="https://discuss.codechef.com/questions/50952/fibtree-editorial" title="Problem link : contest practiceDifficulty : HardPre-requisites : heavy-light decomposition, segment trees, persistenceSolution : First, let&#39;s recall one of the properties of Fibonacci numbers: the n-th Fibbonacci number is axn+(1-a)yn, where:a equals to (3+sqrt(5))/(5+sqrt(5));x equals to (1+">FIBTREE - Editorial</a>
+        </p>
+        
+        <p>
+            <a href="https://discuss.codechef.com/questions/90201/mco16306-editorial" title="PROBLEM LINK:Practice ContestAuthor: Zi Song Yeoh DIFFICULTY:MEDIUMPREREQUISITES:DYNAMIC PROGRAMMING, SEGMENT TREESPROBLEM:Find the length of the longest alternating subsequence of a given sequence as well as the number of longest alternating subsequences.EXPLANATION:Subtask $1$ can be so">MCO16306 - Editorial</a>
+        </p>
+        
+        <p>
+            <a href="https://discuss.codechef.com/questions/66131/spoj-gss1-segment-tree" title="I am getting a SIGSEGV for Spoj GSS1my solution --&amp;gt; http://ideone.com/HPev59Please help !!">SPOJ GSS1 Segment tree</a>
+        </p>
+        
+        <p>
+            <a href="https://discuss.codechef.com/questions/82838/anyone-please-help-with-this-problem" title="hackerearth problemeditorials are not much helpful , so please help and explain from scratch">anyone please help with this problem ?</a>
+        </p>
+        
+        <p>
+            <a href="https://discuss.codechef.com/questions/38678/segment-tree" title="Was studying segment tree from http://www.geeksforgeeks.org/segment-tree-set-1-sum-of-given-range/but was uanble to figure out as why- &quot;&quot;int getMid(int s, int e) { return s + (e -s)/2; }&quot;&quot;.Here the getMid funct should be returning ((s+e)/2) and not the above one.Plz help unable to figure out.">Segment tree</a>
+        </p>
+        
+
+    </div>
+</div>
+
+
+
+        </div>
+        <div id="tail" style="clear:both;">
+            
+            
+        </div>
+    </div>
+    <div class="spacer3"></div>
+</div>
+
+        
+            
+            <div id="ground">
+                
+                    <p>
+
+<link rel="stylesheet" type="text/css" href="./Persistent Segment Tree - CodeChef Discuss_files/cc.css">
+</p>
+<div id="cc-footer" class="cc-wrapper">
+    <div class="cc-inner-wrapper">
+        <!-- SECOND NAV -->
+        <div class="cc-cols-2">
+            <div id="cc-secondary-nav">
+                <ul>
+                    <!-- <li><a href="http://blog.corp.pw/" target="_blank">.pw Corp Blog</a></li>
+                    <li><a href="http://start.pw/" target="_blank">Vision</li> -->
+                    <li><a href="http://www.codechef.com/aboutus/">About CodeChef</a></li>
+                    <li><a href="http://www.directi.com/" target="_blank">About Directi</a></li>
+                    <li><a href="http://www.codechef.com/ceoscorner/">CEO's Corner</a></li>
+                    <!-- <li><a href="http://wiki.directi.com/" target="_blank">Wiki</a></li>
+                    <li><a href="http://wiki.directi.com/display/corp/Home" target="_blank">About</a></li> -->
+                </ul>
+                <ul>
+                    <li><a href="http://www.codechef.com/campus/">CodeChef Campus Chapters</a></li>
+                    <li><a href="http://www.codechef.com/school/">CodeChef For Schools</a></li>
+                    <li><a href="http://www.codechef.com/contactus">Contact Us</a></li>
+                </ul>
+            </div>
+            <div id="cc-fineprint">
+                <p>© 2009, Directi Group. All Rights Reserved.</p>
+                <p><small>Powered by OSQA<br> </small></p>
+            </div>
+        </div>
+        <!-- /SECOND NAV -->
+        <!-- LEGAL & COPYRIGHT -->
+        <div>
+            <div id="cc-sponsor-strip">
+                <a href="http://www.directi.com/" target="_blank"><img src="./Persistent Segment Tree - CodeChef Discuss_files/footer-sponsor-strip.gif" alt="Sponsors" title="Sponsors"></a>
+            </div>
+        </div>
+        <!-- /LEGAL & COPYRIGHT -->
+    </div>
+</div>
+
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script><script src="./Persistent Segment Tree - CodeChef Discuss_files/ga.js.download" type="text/javascript"></script>
+
+<script type="text/javascript">
+try {
+var pageTracker = _gat._getTracker("UA-4090524-6");
+pageTracker._trackPageview();
+} catch(err) {}</script>
+
+<!-- Start Alexa Certify Javascript -->
+
+<script type="text/javascript">
+_atrk_opts = { atrk_acct:"q16Cj1a8gN00iz", domain:"codechef.com",dynamic: true};
+(function() { var as = document.createElement('script'); as.type = 'text/javascript'; as.async = true; as.src = "https://d31qbv1cthcecs.cloudfront.net/atrk.js"; var s = document.getElementsByTagName('script')[0];s.parentNode.insertBefore(as, s); })();
+</script>
+
+<noscript>&lt;img src="https://d5nxst8fruw4z.cloudfront.net/atrk.gif?account=q16Cj1a8gN00iz" style="display:none" height="1" width="1" alt="" /&gt;</noscript>
+
+<!-- End Alexa Certify Javascript -->
+                
+            </div>
+            
+        
+        
+
+        
+        </div><iframe src="./Persistent Segment Tree - CodeChef Discuss_files/saved_resource.html" style="height: 0px; width: 0px; visibility: hidden; border: none; display: none;">This frame prevents back/forward cache problems in Safari.</iframe>
+
+        <!-- Put all elements with fixed position here, IE6 fixed position fix: http://ryanfait.com/position-fixed-ie6/ -->
+        <div class="notify" style="display:none">
+            
+                
+            
+            <a id="close-notify" onclick="notify.close(true)">×</a>
+        </div>
+
+    
+
+<!-- end template base_content.html -->
+<div id="lo-engage-ext-container"><div data-reactroot=""></div></div><link rel="stylesheet" type="text/css" href="chrome-extension://liecbddmkiiihnedobmlmillhodjkdmb/css/content.css"><div id="previewer2" style="display: none;"></div></body></html>

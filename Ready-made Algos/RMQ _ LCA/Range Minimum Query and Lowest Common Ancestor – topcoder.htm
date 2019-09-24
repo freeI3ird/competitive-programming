@@ -1,0 +1,1398 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8"><style type="text/css">@charset "UTF-8";[ng\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide{display:none !important;}ng\:form{display:block;}.ng-animate-block-transitions{transition:0s all!important;-webkit-transition:0s all!important;}</style>
+  <meta charset="utf-8">
+  <meta name="fragment" content="!">
+  <title>Range Minimum Query and Lowest Common Ancestor  –  topcoder</title>
+  <meta name="description" content="">
+  <meta name="author" content="@topcoder">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"><script type="text/javascript" src="Range%20Minimum%20Query%20and%20Lowest%20Common%20Ancestor%20%E2%80%93%20topcoder_files/496af5ee90"></script><script src="Range%20Minimum%20Query%20and%20Lowest%20Common%20Ancestor%20%E2%80%93%20topcoder_files/nr-998.js"></script><script async="" src="Range%20Minimum%20Query%20and%20Lowest%20Common%20Ancestor%20%E2%80%93%20topcoder_files/analytics.js"></script><script type="text/javascript">(window.NREUM||(NREUM={})).loader_config={xpid:"UgEGVFNbGwYGXVZaBgQ="};window.NREUM||(NREUM={}),__nr_require=function(t,e,n){function r(n){if(!e[n]){var o=e[n]={exports:{}};t[n][0].call(o.exports,function(e){var o=t[n][1][e];return r(o||e)},o,o.exports)}return e[n].exports}if("function"==typeof __nr_require)return __nr_require;for(var o=0;o<n.length;o++)r(n[o]);return r}({1:[function(t,e,n){function r(t){try{c.console&&console.log(t)}catch(e){}}var o,i=t("ee"),a=t(15),c={};try{o=localStorage.getItem("__nr_flags").split(","),console&&"function"==typeof console.log&&(c.console=!0,o.indexOf("dev")!==-1&&(c.dev=!0),o.indexOf("nr_dev")!==-1&&(c.nrDev=!0))}catch(s){}c.nrDev&&i.on("internal-error",function(t){r(t.stack)}),c.dev&&i.on("fn-err",function(t,e,n){r(n.stack)}),c.dev&&(r("NR AGENT IN DEVELOPMENT MODE"),r("flags: "+a(c,function(t,e){return t}).join(", ")))},{}],2:[function(t,e,n){function r(t,e,n,r,o){try{d?d-=1:i("err",[o||new UncaughtException(t,e,n)])}catch(c){try{i("ierr",[c,(new Date).getTime(),!0])}catch(s){}}return"function"==typeof f&&f.apply(this,a(arguments))}function UncaughtException(t,e,n){this.message=t||"Uncaught error with no additional information",this.sourceURL=e,this.line=n}function o(t){i("err",[t,(new Date).getTime()])}var i=t("handle"),a=t(16),c=t("ee"),s=t("loader"),f=window.onerror,u=!1,d=0;s.features.err=!0,t(1),window.onerror=r;try{throw new Error}catch(l){"stack"in l&&(t(8),t(7),"addEventListener"in window&&t(5),s.xhrWrappable&&t(9),u=!0)}c.on("fn-start",function(t,e,n){u&&(d+=1)}),c.on("fn-err",function(t,e,n){u&&(this.thrown=!0,o(n))}),c.on("fn-end",function(){u&&!this.thrown&&d>0&&(d-=1)}),c.on("internal-error",function(t){i("ierr",[t,(new Date).getTime(),!0])})},{}],3:[function(t,e,n){t("loader").features.ins=!0},{}],4:[function(t,e,n){function r(t){}if(window.performance&&window.performance.timing&&window.performance.getEntriesByType){var o=t("ee"),i=t("handle"),a=t(8),c=t(7),s="learResourceTimings",f="addEventListener",u="resourcetimingbufferfull",d="bstResource",l="resource",p="-start",h="-end",m="fn"+p,w="fn"+h,v="bstTimer",y="pushState";t("loader").features.stn=!0,t(6);var g=NREUM.o.EV;o.on(m,function(t,e){var n=t[0];n instanceof g&&(this.bstStart=Date.now())}),o.on(w,function(t,e){var n=t[0];n instanceof g&&i("bst",[n,e,this.bstStart,Date.now()])}),a.on(m,function(t,e,n){this.bstStart=Date.now(),this.bstType=n}),a.on(w,function(t,e){i(v,[e,this.bstStart,Date.now(),this.bstType])}),c.on(m,function(){this.bstStart=Date.now()}),c.on(w,function(t,e){i(v,[e,this.bstStart,Date.now(),"requestAnimationFrame"])}),o.on(y+p,function(t){this.time=Date.now(),this.startPath=location.pathname+location.hash}),o.on(y+h,function(t){i("bstHist",[location.pathname+location.hash,this.startPath,this.time])}),f in window.performance&&(window.performance["c"+s]?window.performance[f](u,function(t){i(d,[window.performance.getEntriesByType(l)]),window.performance["c"+s]()},!1):window.performance[f]("webkit"+u,function(t){i(d,[window.performance.getEntriesByType(l)]),window.performance["webkitC"+s]()},!1)),document[f]("scroll",r,!1),document[f]("keypress",r,!1),document[f]("click",r,!1)}},{}],5:[function(t,e,n){function r(t){for(var e=t;e&&!e.hasOwnProperty(u);)e=Object.getPrototypeOf(e);e&&o(e)}function o(t){c.inPlace(t,[u,d],"-",i)}function i(t,e){return t[1]}var a=t("ee").get("events"),c=t(17)(a,!0),s=t("gos"),f=XMLHttpRequest,u="addEventListener",d="removeEventListener";e.exports=a,"getPrototypeOf"in Object?(r(document),r(window),r(f.prototype)):f.prototype.hasOwnProperty(u)&&(o(window),o(f.prototype)),a.on(u+"-start",function(t,e){var n=t[1],r=s(n,"nr@wrapped",function(){function t(){if("function"==typeof n.handleEvent)return n.handleEvent.apply(n,arguments)}var e={object:t,"function":n}[typeof n];return e?c(e,"fn-",null,e.name||"anonymous"):n});this.wrapped=t[1]=r}),a.on(d+"-start",function(t){t[1]=this.wrapped||t[1]})},{}],6:[function(t,e,n){var r=t("ee").get("history"),o=t(17)(r);e.exports=r,o.inPlace(window.history,["pushState","replaceState"],"-")},{}],7:[function(t,e,n){var r=t("ee").get("raf"),o=t(17)(r),i="equestAnimationFrame";e.exports=r,o.inPlace(window,["r"+i,"mozR"+i,"webkitR"+i,"msR"+i],"raf-"),r.on("raf-start",function(t){t[0]=o(t[0],"fn-")})},{}],8:[function(t,e,n){function r(t,e,n){t[0]=a(t[0],"fn-",null,n)}function o(t,e,n){this.method=n,this.timerDuration="number"==typeof t[1]?t[1]:0,t[0]=a(t[0],"fn-",this,n)}var i=t("ee").get("timer"),a=t(17)(i),c="setTimeout",s="setInterval",f="clearTimeout",u="-start",d="-";e.exports=i,a.inPlace(window,[c,"setImmediate"],c+d),a.inPlace(window,[s],s+d),a.inPlace(window,[f,"clearImmediate"],f+d),i.on(s+u,r),i.on(c+u,o)},{}],9:[function(t,e,n){function r(t,e){d.inPlace(e,["onreadystatechange"],"fn-",c)}function o(){var t=this,e=u.context(t);t.readyState>3&&!e.resolved&&(e.resolved=!0,u.emit("xhr-resolved",[],t)),d.inPlace(t,w,"fn-",c)}function i(t){v.push(t),h&&(g=-g,b.data=g)}function a(){for(var t=0;t<v.length;t++)r([],v[t]);v.length&&(v=[])}function c(t,e){return e}function s(t,e){for(var n in t)e[n]=t[n];return e}t(5);var f=t("ee"),u=f.get("xhr"),d=t(17)(u),l=NREUM.o,p=l.XHR,h=l.MO,m="readystatechange",w=["onload","onerror","onabort","onloadstart","onloadend","onprogress","ontimeout"],v=[];e.exports=u;var y=window.XMLHttpRequest=function(t){var e=new p(t);try{u.emit("new-xhr",[e],e),e.addEventListener(m,o,!1)}catch(n){try{u.emit("internal-error",[n])}catch(r){}}return e};if(s(p,y),y.prototype=p.prototype,d.inPlace(y.prototype,["open","send"],"-xhr-",c),u.on("send-xhr-start",function(t,e){r(t,e),i(e)}),u.on("open-xhr-start",r),h){var g=1,b=document.createTextNode(g);new h(a).observe(b,{characterData:!0})}else f.on("fn-end",function(t){t[0]&&t[0].type===m||a()})},{}],10:[function(t,e,n){function r(t){var e=this.params,n=this.metrics;if(!this.ended){this.ended=!0;for(var r=0;r<d;r++)t.removeEventListener(u[r],this.listener,!1);if(!e.aborted){if(n.duration=(new Date).getTime()-this.startTime,4===t.readyState){e.status=t.status;var i=o(t,this.lastSize);if(i&&(n.rxSize=i),this.sameOrigin){var a=t.getResponseHeader("X-NewRelic-App-Data");a&&(e.cat=a.split(", ").pop())}}else e.status=0;n.cbTime=this.cbTime,f.emit("xhr-done",[t],t),c("xhr",[e,n,this.startTime])}}}function o(t,e){var n=t.responseType;if("json"===n&&null!==e)return e;var r="arraybuffer"===n||"blob"===n||"json"===n?t.response:t.responseText;return h(r)}function i(t,e){var n=s(e),r=t.params;r.host=n.hostname+":"+n.port,r.pathname=n.pathname,t.sameOrigin=n.sameOrigin}var a=t("loader");if(a.xhrWrappable){var c=t("handle"),s=t(11),f=t("ee"),u=["load","error","abort","timeout"],d=u.length,l=t("id"),p=t(14),h=t(13),m=window.XMLHttpRequest;a.features.xhr=!0,t(9),f.on("new-xhr",function(t){var e=this;e.totalCbs=0,e.called=0,e.cbTime=0,e.end=r,e.ended=!1,e.xhrGuids={},e.lastSize=null,p&&(p>34||p<10)||window.opera||t.addEventListener("progress",function(t){e.lastSize=t.loaded},!1)}),f.on("open-xhr-start",function(t){this.params={method:t[0]},i(this,t[1]),this.metrics={}}),f.on("open-xhr-end",function(t,e){"loader_config"in NREUM&&"xpid"in NREUM.loader_config&&this.sameOrigin&&e.setRequestHeader("X-NewRelic-ID",NREUM.loader_config.xpid)}),f.on("send-xhr-start",function(t,e){var n=this.metrics,r=t[0],o=this;if(n&&r){var i=h(r);i&&(n.txSize=i)}this.startTime=(new Date).getTime(),this.listener=function(t){try{"abort"===t.type&&(o.params.aborted=!0),("load"!==t.type||o.called===o.totalCbs&&(o.onloadCalled||"function"!=typeof e.onload))&&o.end(e)}catch(n){try{f.emit("internal-error",[n])}catch(r){}}};for(var a=0;a<d;a++)e.addEventListener(u[a],this.listener,!1)}),f.on("xhr-cb-time",function(t,e,n){this.cbTime+=t,e?this.onloadCalled=!0:this.called+=1,this.called!==this.totalCbs||!this.onloadCalled&&"function"==typeof n.onload||this.end(n)}),f.on("xhr-load-added",function(t,e){var n=""+l(t)+!!e;this.xhrGuids&&!this.xhrGuids[n]&&(this.xhrGuids[n]=!0,this.totalCbs+=1)}),f.on("xhr-load-removed",function(t,e){var n=""+l(t)+!!e;this.xhrGuids&&this.xhrGuids[n]&&(delete this.xhrGuids[n],this.totalCbs-=1)}),f.on("addEventListener-end",function(t,e){e instanceof m&&"load"===t[0]&&f.emit("xhr-load-added",[t[1],t[2]],e)}),f.on("removeEventListener-end",function(t,e){e instanceof m&&"load"===t[0]&&f.emit("xhr-load-removed",[t[1],t[2]],e)}),f.on("fn-start",function(t,e,n){e instanceof m&&("onload"===n&&(this.onload=!0),("load"===(t[0]&&t[0].type)||this.onload)&&(this.xhrCbStart=(new Date).getTime()))}),f.on("fn-end",function(t,e){this.xhrCbStart&&f.emit("xhr-cb-time",[(new Date).getTime()-this.xhrCbStart,this.onload,e],e)})}},{}],11:[function(t,e,n){e.exports=function(t){var e=document.createElement("a"),n=window.location,r={};e.href=t,r.port=e.port;var o=e.href.split("://");!r.port&&o[1]&&(r.port=o[1].split("/")[0].split("@").pop().split(":")[1]),r.port&&"0"!==r.port||(r.port="https"===o[0]?"443":"80"),r.hostname=e.hostname||n.hostname,r.pathname=e.pathname,r.protocol=o[0],"/"!==r.pathname.charAt(0)&&(r.pathname="/"+r.pathname);var i=!e.protocol||":"===e.protocol||e.protocol===n.protocol,a=e.hostname===document.domain&&e.port===n.port;return r.sameOrigin=i&&(!e.hostname||a),r}},{}],12:[function(t,e,n){function r(){}function o(t,e,n){return function(){return i(t,[(new Date).getTime()].concat(c(arguments)),e?null:this,n),e?void 0:this}}var i=t("handle"),a=t(15),c=t(16),s=t("ee").get("tracer"),f=NREUM;"undefined"==typeof window.newrelic&&(newrelic=f);var u=["setPageViewName","setCustomAttribute","setErrorHandler","finished","addToTrace","inlineHit"],d="api-",l=d+"ixn-";a(u,function(t,e){f[e]=o(d+e,!0,"api")}),f.addPageAction=o(d+"addPageAction",!0),f.setCurrentRouteName=o(d+"routeName",!0),e.exports=newrelic,f.interaction=function(){return(new r).get()};var p=r.prototype={createTracer:function(t,e){var n={},r=this,o="function"==typeof e;return i(l+"tracer",[Date.now(),t,n],r),function(){if(s.emit((o?"":"no-")+"fn-start",[Date.now(),r,o],n),o)try{return e.apply(this,arguments)}finally{s.emit("fn-end",[Date.now()],n)}}}};a("setName,setAttribute,save,ignore,onEnd,getContext,end,get".split(","),function(t,e){p[e]=o(l+e)}),newrelic.noticeError=function(t){"string"==typeof t&&(t=new Error(t)),i("err",[t,(new Date).getTime()])}},{}],13:[function(t,e,n){e.exports=function(t){if("string"==typeof t&&t.length)return t.length;if("object"==typeof t){if("undefined"!=typeof ArrayBuffer&&t instanceof ArrayBuffer&&t.byteLength)return t.byteLength;if("undefined"!=typeof Blob&&t instanceof Blob&&t.size)return t.size;if(!("undefined"!=typeof FormData&&t instanceof FormData))try{return JSON.stringify(t).length}catch(e){return}}}},{}],14:[function(t,e,n){var r=0,o=navigator.userAgent.match(/Firefox[\/\s](\d+\.\d+)/);o&&(r=+o[1]),e.exports=r},{}],15:[function(t,e,n){function r(t,e){var n=[],r="",i=0;for(r in t)o.call(t,r)&&(n[i]=e(r,t[r]),i+=1);return n}var o=Object.prototype.hasOwnProperty;e.exports=r},{}],16:[function(t,e,n){function r(t,e,n){e||(e=0),"undefined"==typeof n&&(n=t?t.length:0);for(var r=-1,o=n-e||0,i=Array(o<0?0:o);++r<o;)i[r]=t[e+r];return i}e.exports=r},{}],17:[function(t,e,n){function r(t){return!(t&&t instanceof Function&&t.apply&&!t[a])}var o=t("ee"),i=t(16),a="nr@original",c=Object.prototype.hasOwnProperty,s=!1;e.exports=function(t,e){function n(t,e,n,o){function nrWrapper(){var r,a,c,s;try{a=this,r=i(arguments),c="function"==typeof n?n(r,a):n||{}}catch(f){l([f,"",[r,a,o],c])}u(e+"start",[r,a,o],c);try{return s=t.apply(a,r)}catch(d){throw u(e+"err",[r,a,d],c),d}finally{u(e+"end",[r,a,s],c)}}return r(t)?t:(e||(e=""),nrWrapper[a]=t,d(t,nrWrapper),nrWrapper)}function f(t,e,o,i){o||(o="");var a,c,s,f="-"===o.charAt(0);for(s=0;s<e.length;s++)c=e[s],a=t[c],r(a)||(t[c]=n(a,f?c+o:o,i,c))}function u(n,r,o){if(!s||e){var i=s;s=!0;try{t.emit(n,r,o)}catch(a){l([a,n,r,o])}s=i}}function d(t,e){if(Object.defineProperty&&Object.keys)try{var n=Object.keys(t);return n.forEach(function(n){Object.defineProperty(e,n,{get:function(){return t[n]},set:function(e){return t[n]=e,e}})}),e}catch(r){l([r])}for(var o in t)c.call(t,o)&&(e[o]=t[o]);return e}function l(e){try{t.emit("internal-error",e)}catch(n){}}return t||(t=o),n.inPlace=f,n.flag=a,n}},{}],ee:[function(t,e,n){function r(){}function o(t){function e(t){return t&&t instanceof r?t:t?s(t,c,i):i()}function n(n,r,o){if(!l.aborted){t&&t(n,r,o);for(var i=e(o),a=h(n),c=a.length,s=0;s<c;s++)a[s].apply(i,r);var f=u[y[n]];return f&&f.push([g,n,r,i]),i}}function p(t,e){v[t]=h(t).concat(e)}function h(t){return v[t]||[]}function m(t){return d[t]=d[t]||o(n)}function w(t,e){f(t,function(t,n){e=e||"feature",y[n]=e,e in u||(u[e]=[])})}var v={},y={},g={on:p,emit:n,get:m,listeners:h,context:e,buffer:w,abort:a,aborted:!1};return g}function i(){return new r}function a(){(u.api||u.feature)&&(l.aborted=!0,u=l.backlog={})}var c="nr@context",s=t("gos"),f=t(15),u={},d={},l=e.exports=o();l.backlog=u},{}],gos:[function(t,e,n){function r(t,e,n){if(o.call(t,e))return t[e];var r=n();if(Object.defineProperty&&Object.keys)try{return Object.defineProperty(t,e,{value:r,writable:!0,enumerable:!1}),r}catch(i){}return t[e]=r,r}var o=Object.prototype.hasOwnProperty;e.exports=r},{}],handle:[function(t,e,n){function r(t,e,n,r){o.buffer([t],r),o.emit(t,e,n)}var o=t("ee").get("handle");e.exports=r,r.ee=o},{}],id:[function(t,e,n){function r(t){var e=typeof t;return!t||"object"!==e&&"function"!==e?-1:t===window?0:a(t,i,function(){return o++})}var o=1,i="nr@id",a=t("gos");e.exports=r},{}],loader:[function(t,e,n){function r(){if(!b++){var t=g.info=NREUM.info,e=d.getElementsByTagName("script")[0];if(setTimeout(f.abort,3e4),!(t&&t.licenseKey&&t.applicationID&&e))return f.abort();s(v,function(e,n){t[e]||(t[e]=n)}),c("mark",["onload",a()],null,"api");var n=d.createElement("script");n.src="https://"+t.agent,e.parentNode.insertBefore(n,e)}}function o(){"complete"===d.readyState&&i()}function i(){c("mark",["domContent",a()],null,"api")}function a(){return(new Date).getTime()}var c=t("handle"),s=t(15),f=t("ee"),u=window,d=u.document,l="addEventListener",p="attachEvent",h=u.XMLHttpRequest,m=h&&h.prototype;NREUM.o={ST:setTimeout,CT:clearTimeout,XHR:h,REQ:u.Request,EV:u.Event,PR:u.Promise,MO:u.MutationObserver},t(12);var w=""+location,v={beacon:"bam.nr-data.net",errorBeacon:"bam.nr-data.net",agent:"js-agent.newrelic.com/nr-998.min.js"},y=h&&m&&m[l]&&!/CriOS/.test(navigator.userAgent),g=e.exports={offset:a(),origin:w,features:{},xhrWrappable:y};d[l]?(d[l]("DOMContentLoaded",i,!1),u[l]("load",r,!1)):(d[p]("onreadystatechange",o),u[p]("onload",r)),c("mark",["firstbyte",a()],null,"api");var b=0},{}]},{},["loader",2,10,4,3]);</script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+
+  <!-- Favicons -->
+  <link rel="shortcut icon" href="https://www.topcoder.com/wp-content/themes/tcs-responsive/favicon.ico">
+
+    <!-- External JS -->
+  <!--[if lt IE 9]>
+  <script src="/js/html5shiv.js" type="text/javascript"></script>
+  <script src="/js/respond.min.js" type="text/javascript"></script>
+  <script src="/js/modernizr.js" type="text/javascript"></script>
+  <link rel = "stylesheet" href = "/css/ie.css ? v = 201407282" / >
+  <![endif]-->
+  <script type="text/javascript">
+    var wpUrl = "https://www.topcoder.com";
+    var tcApiRUL = 'https://api.topcoder.com/v2';
+    var myFiltersURL = '//lc1-user-settings-service.herokuapp.com';
+    var siteURL = 'https://www.topcoder.com';
+    var communityURL = '//community.topcoder.com';
+    var base_url = 'https://www.topcoder.com/wp-content/themes/tcs-responsive';
+    var stylesheet_dir = 'https://www.topcoder.com/wp-content/themes/tcs-responsive/css';
+    var autoRegister = '';
+    var timezone_string = "America/New_York";
+    var challengeType;
+    var cbApiURL = 'https://coderbits.com';
+  </script>
+
+<link rel="stylesheet" id="layerslider-css" href="Range%20Minimum%20Query%20and%20Lowest%20Common%20Ancestor%20%E2%80%93%20topcoder_files/layerslider.css" type="text/css" media="all">
+<link rel="stylesheet" id="ls-google-fonts-css" href="Range%20Minimum%20Query%20and%20Lowest%20Common%20Ancestor%20%E2%80%93%20topcoder_files/css" type="text/css" media="all">
+<link rel="stylesheet" id="tchook-style-css" href="Range%20Minimum%20Query%20and%20Lowest%20Common%20Ancestor%20%E2%80%93%20topcoder_files/tcapi.css" type="text/css" media="all">
+<link rel="stylesheet" id="tchook-selectyze-style-css" href="Range%20Minimum%20Query%20and%20Lowest%20Common%20Ancestor%20%E2%80%93%20topcoder_files/Selectyze.css" type="text/css" media="all">
+<link rel="stylesheet" id="advanced-responsive-video-embedder-css" href="Range%20Minimum%20Query%20and%20Lowest%20Common%20Ancestor%20%E2%80%93%20topcoder_files/advanced-responsive-video-embedder-public.css" type="text/css" media="all">
+<link rel="stylesheet" id="responsive-lightbox-fancybox-css" href="Range%20Minimum%20Query%20and%20Lowest%20Common%20Ancestor%20%E2%80%93%20topcoder_files/jquery.css" type="text/css" media="all">
+<link rel="stylesheet" id="wp-syntax-css-css" href="Range%20Minimum%20Query%20and%20Lowest%20Common%20Ancestor%20%E2%80%93%20topcoder_files/wp-syntax.css" type="text/css" media="all">
+<link rel="stylesheet" id="default-css" href="Range%20Minimum%20Query%20and%20Lowest%20Common%20Ancestor%20%E2%80%93%20topcoder_files/default.css" type="text/css" media="all">
+<link rel="stylesheet" id="page-list-style-css" href="Range%20Minimum%20Query%20and%20Lowest%20Common%20Ancestor%20%E2%80%93%20topcoder_files/page-list.css" type="text/css" media="all">
+<!-- This site uses the Yoast Google Analytics plugin v5.2.7 - Universal enabled - https://yoast.com/wordpress/plugins/google-analytics/ -->
+<script type="text/javascript">
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','//www.google-analytics.com/analytics.js','__gaTracker');
+
+	__gaTracker('create', 'UA-6340959-1', 'auto');
+	__gaTracker('set', 'forceSSL', true);
+	__gaTracker('require', 'displayfeatures');
+	__gaTracker('send','pageview');
+
+</script>
+<!-- / Yoast Google Analytics --><script type="text/javascript" src="Range%20Minimum%20Query%20and%20Lowest%20Common%20Ancestor%20%E2%80%93%20topcoder_files/greensock.js"></script>
+<script type="text/javascript" src="Range%20Minimum%20Query%20and%20Lowest%20Common%20Ancestor%20%E2%80%93%20topcoder_files/jquery_002.js"></script>
+<script>window.jQuery || document.write('<script src="https://www.topcoder.com/wp-content/themes/tcs-responsive/js/vendor/jquery/jquery.js"><\/script>')</script>
+<script type="text/javascript" src="Range%20Minimum%20Query%20and%20Lowest%20Common%20Ancestor%20%E2%80%93%20topcoder_files/layerslider.js"></script>
+<script type="text/javascript" src="Range%20Minimum%20Query%20and%20Lowest%20Common%20Ancestor%20%E2%80%93%20topcoder_files/layerslider_002.js"></script>
+<script type="text/javascript" src="Range%20Minimum%20Query%20and%20Lowest%20Common%20Ancestor%20%E2%80%93%20topcoder_files/jquery.js"></script>
+<script type="text/javascript">
+/* <![CDATA[ */
+var rlArgs = {"script":"fancybox","selector":"lightbox","customEvents":"","activeGalleries":"0","modal":"0","showOverlay":"1","showCloseButton":"1","enableEscapeButton":"1","hideOnOverlayClick":"1","hideOnContentClick":"0","cyclic":"0","showNavArrows":"1","autoScale":"1","scrolling":"yes","centerOnScroll":"1","opacity":"1","overlayOpacity":"70","overlayColor":"#666","titleShow":"1","titlePosition":"outside","transitions":"fade","easings":"swing","speeds":"300","changeSpeed":"300","changeFade":"100","padding":"5","margin":"5","videoWidth":"1080","videoHeight":"720"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="Range%20Minimum%20Query%20and%20Lowest%20Common%20Ancestor%20%E2%80%93%20topcoder_files/front.js"></script>
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://www.topcoder.com/xmlrpc.php?rsd">
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="https://www.topcoder.com/wp-includes/wlwmanifest.xml"> 
+<link rel="prev" title="A Bit of Fun: Fun with Bits" href="https://www.topcoder.com/community/data-science/data-science-tutorials/a-bit-of-fun-fun-with-bits/">
+<link rel="next" title="Power up C++ with the Standard Template Library: Part 1" href="https://www.topcoder.com/community/data-science/data-science-tutorials/power-up-c-with-the-standard-template-library-part-1/">
+<meta name="generator" content="WordPress 3.9.1">
+<link rel="shortlink" href="https://www.topcoder.com/?p=15640">
+<meta name="google-site-verification" content="UA-6340959-1">
+<meta name="google-publisher-plugin-pagetype" content="page"><meta name="google-site-verification" content="13nbPcn6VRWD2zdq-CEG0LbT00aOwSyhofA3OAEmbEI"><meta name="google-site-verification" content="13nbPcn6VRWD2zdq-CEG0LbT00aOwSyhofA3OAEmbEI"><meta name="google-site-verification" content="13nbPcn6VRWD2zdq-CEG0LbT00aOwSyhofA3OAEmbEI"><meta name="google-site-verification" content="p0OVxcrMQ2HYDsGgaRLRS9bsXuXmjKVcTGZnXNphIUI">	<style type="text/css">.recentcomments a{display:inline !important;padding:0 !important;margin:0 !important;}</style>
+  <style>
+    .btn, a.btn, .blogCategoryMenu a, .searchBox input, .subscribeBox input {
+      behavior: url("https://www.topcoder.com/wp-content/themes/tcs-responsive/css/PIE.htc");
+    }
+  </style>
+
+</head>
+
+<body>
+
+
+<div id="wrapper" class="tcssoUsingJS">
+<div class="ng-header-bootstrap ng-scope"><div class="header-wrapper" ng-class="{'menu-visible': main.menuVisible}">
+  <header class="top-header">
+    <a href="https://www.topcoder.com/" class="logo-link"></a>
+    <div class="show-small mobile-heading"><!-- ngIf: main.menuVisible -->
+      <!-- ngIf: !main.menuVisible --><button type="button" ng-if="!main.menuVisible" ng-click="main.menuVisible = true" class="btn-open-menu ng-scope">Menu</button><!-- end ngIf: !main.menuVisible -->
+      <!-- ngIf: main.menuVisible -->
+      <!-- ngIf: !main.menuVisible --><div data-ng-if="!main.menuVisible" class="user-link ng-scope">
+        <!-- ngIf: vm.isAuth -->
+        <!-- ngIf: !vm.isAuth --><a ng-if="!vm.isAuth" ng-click="vm.join()" class="tc-btn tc-btn-s btn-link ng-scope">JOIN</a><!-- end ngIf: !vm.isAuth -->
+        <!-- ngIf: !vm.isAuth --><a ng-if="!vm.isAuth" ng-click="vm.login()" class="tc-btn tc-btn-s tc-btn-ghost btn-link tc-header-login ng-scope">LOG IN</a><!-- end ngIf: !vm.isAuth -->
+      </div><!-- end ngIf: !main.menuVisible -->
+    </div>
+   <ul class="main-menu">
+      <li class="menu-item search-wrapper">
+        <div class="menu-item-header show-large">
+          <button type="button" class="btn-expand-search search-icon"></button>
+        </div>
+        <div class="submenu">
+          <input class="member-search-old-nav ng-pristine ng-valid" placeholder="find members by username or skill" ng-model="vm.searchTerm" ng-keyup="vm.checkSubmit($event)" type="text">
+        </div>
+      </li>
+      <li ng-switch="vm.isAuth" ng-class="{'anonymous-menu': !vm.isAuth}" class="menu-item link-group user-menu anonymous-menu">
+        <!-- ngSwitchWhen: true -->
+        <!-- ngSwitchWhen: false --><div ng-switch-when="false" class="menu-item-header ng-scope">
+          <a ng-click="vm.join()" class="tc-btn tc-btn-s btn-link">JOIN</a>
+          <a ng-click="vm.login()" class="tc-btn tc-btn-s tc-btn-ghost btn-link tc-header-login">LOG IN</a>
+        </div>
+      </li>
+      <!-- ngRepeat: header in vm.menuHeaders --><li ng-repeat="header in vm.menuHeaders" class="menu-item link-group ng-scope">
+        <div class="menu-item-header ng-binding">compete</div>
+        <ul class="submenu">
+          <!-- ngRepeat: item in vm.menuLinks[header] --><li class="submenu-item ng-scope" ng-repeat="item in vm.menuLinks[header]">
+            <a ng-click="$event.stopPropagation();" ng-href="/challenges/design/active/?pageIndex=1" ng-class="{ 'active': vm.isActive(item.href) }" class="menu-link" target="_self" href="https://www.topcoder.com/challenges/design/active/?pageIndex=1">
+              <img ng-src="/mf/i/nav/track-design.svg" class="menu-icon" src="Range%20Minimum%20Query%20and%20Lowest%20Common%20Ancestor%20%E2%80%93%20topcoder_files/track-design.svg">
+              <div class="menu-text ng-binding">DESIGN CHALLENGES</div>
+            </a>
+          </li><!-- end ngRepeat: item in vm.menuLinks[header] --><li class="submenu-item ng-scope" ng-repeat="item in vm.menuLinks[header]">
+            <a ng-click="$event.stopPropagation();" ng-href="/challenges/develop/active/?pageIndex=1" ng-class="{ 'active': vm.isActive(item.href) }" class="menu-link" target="_self" href="https://www.topcoder.com/challenges/develop/active/?pageIndex=1">
+              <img ng-src="/mf/i/nav/track-develop.svg" class="menu-icon" src="Range%20Minimum%20Query%20and%20Lowest%20Common%20Ancestor%20%E2%80%93%20topcoder_files/track-develop.svg">
+              <div class="menu-text ng-binding">DEVELOPMENT CHALLENGES</div>
+            </a>
+          </li><!-- end ngRepeat: item in vm.menuLinks[header] --><li class="submenu-item ng-scope" ng-repeat="item in vm.menuLinks[header]">
+            <a ng-click="$event.stopPropagation();" ng-href="/challenges/data/active/?pageIndex=1" ng-class="{ 'active': vm.isActive(item.href) }" class="menu-link" target="_self" href="https://www.topcoder.com/challenges/data/active/?pageIndex=1">
+              <img ng-src="/mf/i/nav/track-data.svg" class="menu-icon" src="Range%20Minimum%20Query%20and%20Lowest%20Common%20Ancestor%20%E2%80%93%20topcoder_files/track-data.svg">
+              <div class="menu-text ng-binding">DATA SCIENCE CHALLENGES</div>
+            </a>
+          </li><!-- end ngRepeat: item in vm.menuLinks[header] --><li class="submenu-item ng-scope" ng-repeat="item in vm.menuLinks[header]">
+            <a ng-click="$event.stopPropagation();" ng-href="https://arena.topcoder.com" ng-class="{ 'active': vm.isActive(item.href) }" class="menu-link" target="_blank" href="https://arena.topcoder.com/">
+              <img ng-src="/mf/i/nav/track-cp.svg" class="menu-icon" src="Range%20Minimum%20Query%20and%20Lowest%20Common%20Ancestor%20%E2%80%93%20topcoder_files/track-cp.svg">
+              <div class="menu-text ng-binding">COMPETITIVE PROGRAMMING</div>
+            </a>
+          </li><!-- end ngRepeat: item in vm.menuLinks[header] -->
+        </ul>
+      </li><!-- end ngRepeat: header in vm.menuHeaders --><li ng-repeat="header in vm.menuHeaders" class="menu-item link-group ng-scope">
+        <div class="menu-item-header ng-binding">learn</div>
+        <ul class="submenu">
+          <!-- ngRepeat: item in vm.menuLinks[header] --><li class="submenu-item ng-scope" ng-repeat="item in vm.menuLinks[header]">
+            <a ng-click="$event.stopPropagation();" ng-href="/getting-started/" ng-class="{ 'active': vm.isActive(item.href) }" class="menu-link" target="_self" href="https://www.topcoder.com/getting-started/">
+              <img ng-src="/mf/i/nav/rocket.svg" class="menu-icon" src="Range%20Minimum%20Query%20and%20Lowest%20Common%20Ancestor%20%E2%80%93%20topcoder_files/rocket.svg">
+              <div class="menu-text ng-binding">GETTING STARTED</div>
+            </a>
+          </li><!-- end ngRepeat: item in vm.menuLinks[header] --><li class="submenu-item ng-scope" ng-repeat="item in vm.menuLinks[header]">
+            <a ng-click="$event.stopPropagation();" ng-href="/community/design/" ng-class="{ 'active': vm.isActive(item.href) }" class="menu-link" target="_self" href="https://www.topcoder.com/community/design/">
+              <img ng-src="/mf/i/nav/book-design.svg" class="menu-icon" src="Range%20Minimum%20Query%20and%20Lowest%20Common%20Ancestor%20%E2%80%93%20topcoder_files/book-design.svg">
+              <div class="menu-text ng-binding">DESIGN</div>
+            </a>
+          </li><!-- end ngRepeat: item in vm.menuLinks[header] --><li class="submenu-item ng-scope" ng-repeat="item in vm.menuLinks[header]">
+            <a ng-click="$event.stopPropagation();" ng-href="/community/development/" ng-class="{ 'active': vm.isActive(item.href) }" class="menu-link" target="_self" href="https://www.topcoder.com/community/development/">
+              <img ng-src="/mf/i/nav/book-develop.svg" class="menu-icon" src="Range%20Minimum%20Query%20and%20Lowest%20Common%20Ancestor%20%E2%80%93%20topcoder_files/book-develop.svg">
+              <div class="menu-text ng-binding">DEVELOPMENT</div>
+            </a>
+          </li><!-- end ngRepeat: item in vm.menuLinks[header] --><li class="submenu-item ng-scope" ng-repeat="item in vm.menuLinks[header]">
+            <a ng-click="$event.stopPropagation();" ng-href="/community/data-science/" ng-class="{ 'active': vm.isActive(item.href) }" class="menu-link" target="_self" href="https://www.topcoder.com/community/data-science/">
+              <img ng-src="/mf/i/nav/book-data.svg" class="menu-icon" src="Range%20Minimum%20Query%20and%20Lowest%20Common%20Ancestor%20%E2%80%93%20topcoder_files/book-data.svg">
+              <div class="menu-text ng-binding">DATA SCIENCE</div>
+            </a>
+          </li><!-- end ngRepeat: item in vm.menuLinks[header] --><li class="submenu-item ng-scope" ng-repeat="item in vm.menuLinks[header]">
+            <a ng-click="$event.stopPropagation();" ng-href="/community/competitive-programming/" ng-class="{ 'active': vm.isActive(item.href) }" class="menu-link" target="_self" href="https://www.topcoder.com/community/competitive-programming/">
+              <img ng-src="/mf/i/nav/book-cp.svg" class="menu-icon" src="Range%20Minimum%20Query%20and%20Lowest%20Common%20Ancestor%20%E2%80%93%20topcoder_files/book-cp.svg">
+              <div class="menu-text ng-binding">COMPETITIVE PROGRAMMING</div>
+            </a>
+          </li><!-- end ngRepeat: item in vm.menuLinks[header] -->
+        </ul>
+      </li><!-- end ngRepeat: header in vm.menuHeaders --><li ng-repeat="header in vm.menuHeaders" class="menu-item link-group ng-scope">
+        <div class="menu-item-header ng-binding">community</div>
+        <ul class="submenu">
+          <!-- ngRepeat: item in vm.menuLinks[header] --><li class="submenu-item ng-scope" ng-repeat="item in vm.menuLinks[header]">
+            <a ng-click="$event.stopPropagation();" ng-href="/community/members/" ng-class="{ 'active': vm.isActive(item.href) }" class="menu-link" target="_self" href="https://www.topcoder.com/community/members/">
+              <img ng-src="/mf/i/nav/members.svg" class="menu-icon" src="Range%20Minimum%20Query%20and%20Lowest%20Common%20Ancestor%20%E2%80%93%20topcoder_files/members.svg">
+              <div class="menu-text ng-binding">OVERVIEW</div>
+            </a>
+          </li><!-- end ngRepeat: item in vm.menuLinks[header] --><li class="submenu-item ng-scope" ng-repeat="item in vm.menuLinks[header]">
+            <a ng-click="$event.stopPropagation();" ng-href="/tco" ng-class="{ 'active': vm.isActive(item.href) }" class="menu-link" target="_self" href="https://www.topcoder.com/tco">
+              <img ng-src="/mf/i/nav/tco-generic.svg" class="menu-icon" src="Range%20Minimum%20Query%20and%20Lowest%20Common%20Ancestor%20%E2%80%93%20topcoder_files/tco-generic.svg">
+              <div class="menu-text ng-binding">TCO</div>
+            </a>
+          </li><!-- end ngRepeat: item in vm.menuLinks[header] --><li class="submenu-item ng-scope" ng-repeat="item in vm.menuLinks[header]">
+            <a ng-click="$event.stopPropagation();" ng-href="/community/member-programs/" ng-class="{ 'active': vm.isActive(item.href) }" class="menu-link" target="_self" href="https://www.topcoder.com/community/member-programs/">
+              <img ng-src="/mf/i/nav/programs.svg" class="menu-icon" src="Range%20Minimum%20Query%20and%20Lowest%20Common%20Ancestor%20%E2%80%93%20topcoder_files/programs.svg">
+              <div class="menu-text ng-binding">PROGRAMS</div>
+            </a>
+          </li><!-- end ngRepeat: item in vm.menuLinks[header] --><li class="submenu-item ng-scope" ng-repeat="item in vm.menuLinks[header]">
+            <a ng-click="$event.stopPropagation();" ng-href="https://apps.topcoder.com/forums/" ng-class="{ 'active': vm.isActive(item.href) }" class="menu-link" target="_self" href="https://apps.topcoder.com/forums/">
+              <img ng-src="/mf/i/nav/forums.svg" class="menu-icon" src="Range%20Minimum%20Query%20and%20Lowest%20Common%20Ancestor%20%E2%80%93%20topcoder_files/forums.svg">
+              <div class="menu-text ng-binding">FORUMS</div>
+            </a>
+          </li><!-- end ngRepeat: item in vm.menuLinks[header] --><li class="submenu-item ng-scope" ng-repeat="item in vm.menuLinks[header]">
+            <a ng-click="$event.stopPropagation();" ng-href="/community/statistics/" ng-class="{ 'active': vm.isActive(item.href) }" class="menu-link" target="_self" href="https://www.topcoder.com/community/statistics/">
+              <img ng-src="/mf/i/nav/statistics.svg" class="menu-icon" src="Range%20Minimum%20Query%20and%20Lowest%20Common%20Ancestor%20%E2%80%93%20topcoder_files/statistics.svg">
+              <div class="menu-text ng-binding">STATISTICS</div>
+            </a>
+          </li><!-- end ngRepeat: item in vm.menuLinks[header] --><li class="submenu-item ng-scope" ng-repeat="item in vm.menuLinks[header]">
+            <a ng-click="$event.stopPropagation();" ng-href="/community/events/" ng-class="{ 'active': vm.isActive(item.href) }" class="menu-link" target="_self" href="https://www.topcoder.com/community/events/">
+              <img ng-src="/mf/i/nav/events.svg" class="menu-icon" src="Range%20Minimum%20Query%20and%20Lowest%20Common%20Ancestor%20%E2%80%93%20topcoder_files/events.svg">
+              <div class="menu-text ng-binding">EVENTS</div>
+            </a>
+          </li><!-- end ngRepeat: item in vm.menuLinks[header] --><li class="submenu-item ng-scope" ng-repeat="item in vm.menuLinks[header]">
+            <a ng-click="$event.stopPropagation();" ng-href="/blog/" ng-class="{ 'active': vm.isActive(item.href) }" class="menu-link" target="_self" href="https://www.topcoder.com/blog/">
+              <img ng-src="/mf/i/nav/blog.svg" class="menu-icon" src="Range%20Minimum%20Query%20and%20Lowest%20Common%20Ancestor%20%E2%80%93%20topcoder_files/blog.svg">
+              <div class="menu-text ng-binding">BLOG</div>
+            </a>
+          </li><!-- end ngRepeat: item in vm.menuLinks[header] -->
+        </ul>
+      </li><!-- end ngRepeat: header in vm.menuHeaders -->
+    </ul>
+  </header>
+</div>
+</div>
+<!-- Bugfix: I-108496 hidden element needed for non-firefox browsers to detect cache-persist status of page, used for above code to display member details -->
+<input id="cache-persist" type="hidden">
+  <!-- /#header -->
+
+<script type="text/javascript">
+	var siteurl = "https://www.topcoder.com";
+</script>
+<div class="content">
+	<div id="main">
+
+		<!-- Start Overview Page-->
+		<div class="pageTitleWrapper">
+			<div class="pageTitle container">
+				<h2 class="overviewPageTitle RangeMinimumQueryandLowestCommonAncestorPageTitle">Range Minimum Query and Lowest Common Ancestor</h2>
+			</div>
+		</div>
+
+
+
+
+		<article id="mainContent" class="splitLayout overviewPage">
+			<div class="container">
+				<div class="rightSplit  grid-3-3">
+					<div class="mainStream postContent pageContent grid-2-3">
+
+						<p>
+By&nbsp;<strong><a class="tc_coder coder" href="https://www.topcoder.com/member-profile/danielp" style="color: #DDCC00">danielp</a></strong>– <em>TopCoder Member</em>
+<br><a href="http://apps.topcoder.com/forums/?module=ThreadList&amp;forumID=506217">Discuss this article in the forums</a></p>
+&nbsp;<a href="#Introduction">Introduction</a><br>
+&nbsp;<a href="#Notations">Notations</a><br>
+&nbsp;<a href="#Range_Minimum_Query_%28RMQ%29">Range Minimum Query (RMQ)</a><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#Trivial_algorithms_for_RMQ">Trivial
+algorithms for RMQ</a><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#A%20O%28N%29,%20O%28sqrt%28N%29%29%20solution">A
+&lt;O(N), O(sqrt(N))&gt; solution</a><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#Sparse_Table_%28ST%29_algorithm">Sparse
+Table (ST) algorithm</a><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#Segment_Trees">Segment Trees</a><br>
+&nbsp;<a href="#Lowest%20Common%20Ancestor%20%28LCA%29">Lowest Common Ancestor
+(LCA)</a><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#A%20O%28N%29,%20O%28sqrt%28N%29%29%20solution">A
+&lt;O(N), O(sqrt(N))&gt; solution</a><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#Another%20easy%20solution%20in%20O%28N%20logN,%20O%28logN%29">Another easy solution
+in &lt;O(N logN, O(logN)&gt;</a><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#Reduction%20from%20LCA%20to%20RMQ">Reduction from LCA to RMQ</a><br>
+&nbsp;<a href="#From%20RMQ%20to%20LCA">From RMQ to LCA</a><br>
+&nbsp;<a href="#A%20O%28N%29,%20O%281%29%20algorithm%20for%20the%20restricted%20RMQ">An
+&lt;O(N), O(1)&gt; algorithm for the restricted RMQ</a><br>
+&nbsp;<a href="#Conclusion">Conclusion</a>
+<p>
+
+</p><p><span class="bodySubtitle"><a id="Introduction" name="Introduction"></a>Introduction</span><br>
+The problem of finding the Lowest Common Ancestor (LCA) of a pair of nodes in a
+rooted tree has been studied more carefully in the second part of the 20th
+century and now is fairly basic in algorithmic graph theory. This problem is
+interesting not only for the tricky algorithms that can be used to solve it,
+but for its&nbsp;numerous applications in string processing and computational
+biology, for example, where LCA is used with suffix trees or other tree-like
+structures. <a href="http://www.topcoder.com/tc?module=LinkTracking&amp;link=http://siamdl.aip.org/getabs/servlet/GetabsServlet?prog=normal%26id=SMJCAT000013000002000338000001%26idtype=cvips%26gifs=Yes&amp;refer=" target="_blank">Harel and Tarjan</a> were the first to study this problem more
+attentively and they showed that after linear preprocessing of the input tree
+LCA, queries can be answered in constant time. Their work has since been
+extended, and this tutorial will present many interesting approaches that can
+be used in other kinds of problems as well.</p>
+
+<p>Let’s consider a less abstract example of LCA: the tree of life. It’s a
+well-known fact that the current habitants of Earth evolved from other species.
+This evolving structure can be represented as a tree, in which nodes represent
+species, and the sons of some node represent the directly evolved species. Now
+species with similar characteristics are divided into groups. By finding the
+LCA of some nodes in this tree we can actually find the common parent of two
+species, and we can determine that the similar characteristics they share are
+inherited from that parent.</p>
+
+<p>Range Minimum Query (RMQ) is used on arrays to find the position of an
+element with the minimum value between two specified indices. We will see later
+that the LCA problem can be reduced to a restricted version of an RMQ problem,
+in which consecutive array elements differ by exactly 1.</p>
+
+<p>However, RMQs are not only used with LCA. They have an important role in
+string preprocessing, where they are used with suffix arrays (a new data
+structure that supports string searches almost as fast as suffix trees, but
+uses less memory and less coding effort).</p>
+
+<p>In this tutorial we will first talk about RMQ. We will present many
+approaches that solve the problem — some slower but easier to code, and others
+faster. In the second part we will talk about the strong relation between LCA
+and RMQ. First we will review two easy approaches for LCA that don’t use RMQ;
+then show that the RMQ and LCA problems are equivalent; and, at the end, we’ll
+look at how the RMQ problem can be reduced to its restricted version, as well
+as show a fast algorithm for this particular case.</p>
+
+<p><a id="Notations" name="Notations"></a><span class="bodySubtitle">Notations</span><br>
+Suppose that an algorithm has preprocessing time <b>f(n)</b> and query time
+<b>g(n)</b>. The notation for the overall complexity for the algorithm is
+<b>&lt;f(n), g(n)&gt;</b>.</p>
+
+<p>We will note the position of the element with the minimum value in some
+array <b>A</b> between indices <b>i</b> and <b>j</b> with <b>RMQ<sub>A</sub>(i,
+j)</b>.</p>
+
+<p>The furthest node from the root that is an ancestor of both <b>u</b> and
+<b>v</b> in some rooted&nbsp; tree <b>T</b> is <b>LCA<sub>T</sub>(u,
+v)</b>.</p>
+
+<p><a id="Range_Minimum_Query_(RMQ)" name="Range_Minimum_Query_(RMQ)"></a><span class="bodySubtitle">Range Minimum
+Query(RMQ)</span><br>
+Given an array <b>A[0, N-1]</b> find the position of&nbsp; the element with the
+minimum value between two given indices.</p>
+
+
+
+<div style="text-align: center"><img src="Range%20Minimum%20Query%20and%20Lowest%20Common%20Ancestor%20%E2%80%93%20topcoder_files/RMQ_001.gif" width="421" height="120"></div>
+<p>
+
+</p><p><a id="Trivial_algorithms_for_RMQ" name="Trivial_algorithms_for_RMQ"></a><span class="bodySubtitle">Trivial algorithms
+for RMQ</span><br>
+For every pair of indices <b>(i, j)</b> store the value of
+<b>RMQ<sub>A</sub>(i, j)</b> in a table <b>M[0, N-1][0, N-1]</b>. Trivial
+computation will lead us to an <b>&lt;O(N<sup>3</sup>), O(1)&gt;</b>
+complexity. However, by using an easy dynamic programming approach we can
+reduce the complexity to <b>&lt;O(N<sup>2</sup>), O(1)&gt;</b>. The
+preprocessing function will look something like this:</p>
+<pre class="code">  <b>void</b> process1(<b>int</b> M[MAXN][MAXN], <b>int</b> A[MAXN], <b>int</b> N)
+  {
+&nbsp;&nbsp;    <b>int</b> i, j;
+  &nbsp;&nbsp;&nbsp; <b>for</b> (i =0; i &lt; N; i++)
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; M[i][i] = i;
+  &nbsp;&nbsp;&nbsp; <b>for</b> (i = 0; i &lt; N; i++)
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>for </b>(j = i + 1; j &lt; N; j++)
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>if</b> (A[M[i][j - 1]] &lt; A[j])
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   M[i][j] = M[i][j - 1];
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>else</b>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; M[i][j] = j;
+  }
+</pre>This trivial algorithm is quite slow and uses <b>O(N<sup>2</sup>)</b>
+memory, so it won’t work for large cases.
+<p>
+
+</p><p><a name="A O(N), O(sqrt(N)) solution"></a><span class="bodySubtitle">An
+&lt;O(N), O(sqrt(N))&gt; solution</span><br>
+An interesting idea is to split the vector in <b>sqrt(N)</b> pieces. We will
+keep in a vector <b>M[0, sqrt(N)-1]</b> the position for the minimum value for
+each section. <b>M</b> can be easily preprocessed in <b>O(N)</b>. Here is an
+example:</p>
+
+
+
+<div style="text-align: center"><img src="Range%20Minimum%20Query%20and%20Lowest%20Common%20Ancestor%20%E2%80%93%20topcoder_files/RMQ_002.gif" width="442" height="176"></div>Now let’s see how can we compute <b>RMQ<sub>A</sub>(i, j)</b>. The
+idea is to get the overall minimum from the <b>sqrt(N)</b> sections that lie
+inside the interval, and from the end and the beginning of the first and the
+last sections that intersect the bounds of the interval. To get
+<b>RMQ<sub>A</sub>(2,7)</b> in the above example we should compare <b>A[2]</b>,
+<b>A[M[1]]</b>, <b>A[6]</b> and <b>A[7]</b> and get the position of the minimum
+value. It’s easy to see that this algorithm doesn’t make more than <b>3 *
+sqrt(N)</b> operations per query.
+<p>
+
+</p><p>The main advantages of this approach are that is to quick to code (a plus
+for TopCoder-style competitions) and that you can adapt it to the dynamic
+version of the problem (where you can change the elements of the array between
+queries).</p>
+
+<p><a id="Sparse_Table_(ST)_algorithm" name="Sparse_Table_(ST)_algorithm"></a><span class="bodySubtitle">Sparse Table (ST)
+algorithm</span><br>
+A better approach is to preprocess <b>RMQ</b> for sub arrays of length
+<b>2<sup>k</sup></b> using dynamic programming. We will keep an array <b>M[0,
+N-1][0, logN]</b> where <b>M[i][j]</b> is the index of the minimum value in the
+sub array starting at <b>i</b> having length <b>2<sup>j</sup></b>. Here is an
+example:</p>
+
+
+
+<div style="text-align: center"><img src="Range%20Minimum%20Query%20and%20Lowest%20Common%20Ancestor%20%E2%80%93%20topcoder_files/RMQ_003.gif" width="421" height="209"></div>
+<p>
+
+</p><p>For computing <b>M[i][j]</b> we must search for the minimum value in the
+first and second half of the interval. It’s obvious that the small pieces have
+<b>2<sup>j – 1</sup></b> length, so the recurrence is:</p>
+
+
+
+<div style="text-align: center"><img src="Range%20Minimum%20Query%20and%20Lowest%20Common%20Ancestor%20%E2%80%93%20topcoder_files/RMQ_007.gif" width="510" height="55" border="0"></div>
+<p>
+
+</p><p>The preprocessing function will look something like this:</p>
+<pre class="code">  <b>void</b> process2(<b>int</b> M[MAXN][LOGMAXN], <b>int</b> A[MAXN], <b>int</b> N)
+  {
+      <b>int</b> i, j;
+  &nbsp;
+  //initialize <b>M</b> for the intervals with length <b>1</b>
+      <b>for</b> (i = 0; i &lt; N; i++)
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; M[i][0] = i;
+  //compute values from smaller to bigger intervals
+  &nbsp;&nbsp;&nbsp; <b>for </b>(j = 1; 1 &lt;&lt; j &lt;= N; j++)
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>for </b>(i = 0; i + (1 &lt;&lt; j) - 1 &lt; N; i++)
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;     <b>if</b> (A[M[i][j - 1]] &lt; A[M[i + (1 &lt;&lt; (j - 1))][j - 1]])
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;         M[i][j] = M[i][j - 1];
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>else</b>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   M[i][j] = M[i + (1 &lt;&lt; (j - 1))][j - 1];
+  }  
+</pre>Once we have these values preprocessed, let’s show how we can use them to
+calculate <b>RMQ<sub>A</sub>(i, j)</b>. The idea is to select two blocks that
+entirely cover the interval <b>[i..j]</b> and&nbsp; find the minimum between
+them. Let <b>k = [log(j - i + 1)]</b>. For computing <b>RMQ<sub>A</sub>(i,
+j)</b> we can use the following formula:
+<p>
+
+
+
+</p><div style="text-align: center"><img src="Range%20Minimum%20Query%20and%20Lowest%20Common%20Ancestor%20%E2%80%93%20topcoder_files/RMQ_005.gif" width="488" height="59" border="0"></div>
+<p>
+
+</p><p>So, the overall complexity of the algorithm is <b>&lt;O(N logN),
+O(1)&gt;</b>.</p>
+
+<p><a id="Segment_Trees" name="Segment_Trees"></a><span class="bodySubtitle">Segment trees</span><br>
+For solving the RMQ problem we can also use segment trees. A segment tree is a
+heap-like data structure that can be used for making update/query operations
+upon array intervals in logarithmical time. We define the segment tree for the
+interval <b>[i, j]</b> in the following recursive manner:</p>
+
+<ul>
+    <li>the first node will hold the information for the interval <b>[i,
+    j]</b></li>
+
+    <li>if i&lt;j the left and right son will hold the information for the
+    intervals <b>[i, (i+j)/2]</b> and <b>[(i+j)/2+1, j]</b></li>
+</ul>Notice that the height of a segment tree for an interval with <b>N</b>
+elements is <b>[logN] + 1</b>. Here is how a segment tree for the interval
+<b>[0, 9]</b> would look like:
+<p>
+
+
+
+</p><div style="text-align: center"><img src="Range%20Minimum%20Query%20and%20Lowest%20Common%20Ancestor%20%E2%80%93%20topcoder_files/RMQ_004.gif" width="506" height="296"></div>
+<p>
+
+</p><p>The segment tree has the same structure as a heap, so if we have a node
+numbered <b>x</b> that is not a leaf the left son of <b>x</b> is <b>2*x</b> and
+the right son <b>2*x+1</b>.</p>
+
+<p>For solving the RMQ problem using segment trees we should use an array
+<b>M[1, 2 * 2<sup>[logN] + 1</sup>]</b> where <b>M[i]</b> holds the minimum
+value position in the interval assigned to node <b>i</b>. At the beginning all
+elements in <b>M</b> should be <b>-1</b>. The tree should be initialized with
+the following function (<b>b</b> and <b>e</b> are the bounds of the current
+interval):</p>
+
+
+<pre class="code">  <b>void</b> initialize(<b>int</b>node, <b>int </b>b, <b>int </b>e, <b>int </b>M[MAXIND], <b>int</b> A[MAXN], <b>int </b>N)
+  {
+      <b>if </b>(b == e)
+          M[node] = b;
+  &nbsp;&nbsp;  <strong>else</strong>
+  &nbsp;&nbsp;&nbsp;&nbsp; {
+  //compute the values in the left and right subtrees
+  &nbsp;&nbsp;&nbsp;     initialize(2 * node, b, (b + e) / 2, M, A, N);
+  &nbsp;&nbsp;&nbsp;     initialize(2 * node + 1, (b + e) / 2 + 1, e, M, A, N);
+  //search for the minimum value in the first and 
+  //second half of the interval
+  &nbsp;&nbsp;&nbsp;     <b>if </b>(A[M[2 * node]] &lt;= A[M[2 * node + 1]])
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;     M[node] = M[2 * node];
+  &nbsp;&nbsp;&nbsp;&nbsp;<strong>    else</strong>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;     M[node] = M[2 * node + 1]; 
+  &nbsp;&nbsp;&nbsp; }
+  } 
+</pre>The function above reflects the way the tree is constructed. When
+calculating the minimum position for some interval we should look at the values
+of the sons. You should call the function with <b>node = 1</b>, <b>b = 0</b>
+and <b>e&nbsp; = N-1</b>.
+<p>
+
+</p><p>We can now start making queries. If we want to find the position of the
+minimum value in some interval <b>[i, j]</b> we should use the next easy
+function:</p>
+<pre class="code">  <b>int</b> query(<b>int</b> node, <b>int </b>b, <b>int </b>e, <b>int</b> M[MAXIND], <b>int</b> A[MAXN], <b>int</b> i, <b>int </b>j)
+  {<b>
+      int </b>p1, p2;
+  &nbsp;
+  //if the current interval doesn't intersect 
+  //the query interval return <b>-1</b>
+  &nbsp;&nbsp;&nbsp; <b>if </b>(i &gt; e || j &lt; b)
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>return </b>-1;
+  &nbsp;
+  //if the current interval is included in 
+  //the query interval return <b>M[node]</b>
+  &nbsp;&nbsp;&nbsp; <b>if</b> (b &gt;= i &amp;&amp; e &lt;= j)
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>return </b>M[node];
+  &nbsp;
+  //compute the minimum position in the 
+  //left and right part of the interval
+  &nbsp;&nbsp;&nbsp; p1 = query(2 * node, b, (b + e) / 2, M, A, i, j);
+  &nbsp;&nbsp;&nbsp; p2 = query(2 * node + 1, (b + e) / 2 + 1, e, M, A, i, j);
+  &nbsp;
+  //return the position where the overall 
+  //minimum is
+  &nbsp;&nbsp;&nbsp; <b>if </b>(p1 == -1)
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>return </b>M[node] = p2;
+  &nbsp;&nbsp;  <b>if </b>(p2 == -1)
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>return </b>M[node] = p1;
+  &nbsp;&nbsp;&nbsp; <b>if</b> (A[p1] &lt;= A[p2])
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>return </b>M[node] = p1;
+  &nbsp;&nbsp;&nbsp; <b>return</b> M[node] = p2;
+  }
+</pre>You should call this function with <b>node = 1</b>, <b>b = 0</b> and <b>e
+= N – 1</b>, because the interval assigned to the first node is <b>[0,
+N-1]</b>.
+<p>
+
+</p><p>It’s easy to see that any query is done in <b>O(log N)</b>. Notice that we
+stop when we reach completely in/out intervals, so our path in the tree should
+split only one time.</p>
+
+<p>Using segment trees we get an <b>&lt;O(N), O(logN)&gt;</b> algorithm.
+Segment trees are very powerful, not only because they can be used for RMQ.
+They are a very flexible data structure, can solve even the dynamic version of
+RMQ problem, and have numerous applications in range searching problems.</p>
+
+<p><a name="Lowest Common Ancestor (LCA)"></a><span class="bodySubtitle">Lowest
+Common Ancestor (LCA)</span><br>
+Given a rooted tree <b>T</b> and two nodes <b>u</b> and <b>v,</b> find the
+furthest node from the root that is an ancestor for both <b>u</b> and <b>v</b>.
+Here is an example (the root of the tree will be node 1 for all examples in
+this editorial):</p>
+
+
+
+<div style="text-align: center"><img src="Range%20Minimum%20Query%20and%20Lowest%20Common%20Ancestor%20%E2%80%93%20topcoder_files/LCA_001.gif" width="227" height="480"></div>
+<p>
+
+</p><p><a name="A O(N), O(sqrt(N)) solution"></a><span class="bodySubtitle">An
+&lt;O(N), O(sqrt(N))&gt; solution</span><br>
+Dividing our input into equal-sized parts proves to be an interesting way to
+solve the RMQ problem. This method can be adapted for the LCA problem as well.
+The idea is to split the tree in <b>sqrt(H)</b> parts, were <b>H</b> is the
+height of the tree. Thus, the first section will contain the levels numbered
+from <b>0 to sqrt(H) – 1</b>, the second will contain the levels numbered from
+<b>sqrt(H) to 2 * sqrt(H) – 1</b>, and so on. Here is how the tree in the
+example should be divided:</p>
+
+
+
+<div style="text-align: center"><img src="Range%20Minimum%20Query%20and%20Lowest%20Common%20Ancestor%20%E2%80%93%20topcoder_files/LCA_002.gif" width="392" height="466"></div>
+<p>
+
+</p><p>Now, for each node, we should know the ancestor that is situated on the last
+level of the upper next section. We will preprocess this values in an array
+<b>P[1, MAXN]</b>. Here is how <b>P</b> should look like for the tree in the
+example (for simplity, for every node <b>i</b> in the first section let <b>P[i]
+= 1</b>):</p>
+
+
+
+<div style="text-align: center"><img src="Range%20Minimum%20Query%20and%20Lowest%20Common%20Ancestor%20%E2%80%93%20topcoder_files/LCA_003.gif" width="510" height="59"></div>
+<p>
+
+</p><p>Notice that for the nodes situated on the levels that are the first ones in
+some sections, <b>P[i] = T[i]</b>. We can preprocess <b>P</b> using a depth
+first search (<b>T[i]</b> is the father of node <b>i</b> in the tree, <b>nr</b>
+is <b>[sqrt(H)]</b> and <b>L[i]</b> is the level of the node <b>i</b>):</p>
+<pre class="code">  <b>void</b> dfs(<b>int</b> node, <b>int</b> T[MAXN], <b>int</b> N, <b>int</b> P[MAXN], <b>int</b> L[MAXN], <b>int</b> nr)  {
+      <b>int</b> k;
+  &nbsp;
+  //if node is situated in the first 
+  //section then <b>P[node] = 1</b>
+  //if node is situated at the beginning
+  //of some section then <b>P[node] = T[node]</b>
+  //if none of those two cases occurs, then 
+  //<b>P[node] = P[T[node]]</b>
+      <b>if</b> (L[node] &lt; nr)
+          P[node] = 1;
+      <b>else</b>
+  <b>        if</b>(!(L[node] % nr))
+              P[node] = T[node];
+  <b>        else</b>
+              P[node] = P[T[node]];
+  &nbsp;
+     <b>for</b> each son k of node
+         dfs(k, T, N, P, L, nr);
+  }
+</pre>Now, we can easily make queries. For finding <b>LCA(x, y)</b> we we will
+first find in what section it lays, and then trivially compute it. Here is the
+code:
+<pre class="code">  int LCA(<b>int</b> T[MAXN], <b>int</b> P[MAXN], <b>int </b>L[MAXN], <strong>int</strong> x, <strong>int</strong> y)
+  {
+  //as long as the node in the next section of 
+  //x and y is not one common ancestor
+  //we get the node situated on the smaller 
+  //lever closer
+  &nbsp;&nbsp;&nbsp;<strong> while</strong> (P[x] != P[y])
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   <strong>if</strong> (L[x] &gt; L[y])
+             x = P[x];
+<strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   else</strong>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;         y = P[y];
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+  //now they are in the same section, so we trivially compute the LCA
+      <strong>while </strong>(x != y)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>  if </b>(L[x] &gt; L[y])
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   x = T[x];
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong>  else</strong>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   y = T[y];
+&nbsp;&nbsp;&nbsp;   <strong>return </strong>x;
+  }
+</pre>This function makes at most <b>2 * sqrt(H)</b> operations. Using this
+approach we get an <b>&lt;O(N), O(sqrt(H))&gt;</b> algorithm, where <b>H</b> is
+the height of the tree. In the worst case <b>H = N</b>, so the overall
+complexity is <b>&lt;O(N), O(sqrt(N))&gt;</b>. The main advantage of this
+algorithm is quick coding (an average Division 1 coder shouldn’t need more than
+15 minutes to code it).
+<p>
+
+</p><p><a name="Another easy solution in O(N logN, O(logN)"></a><span class="bodySubtitle">Another easy solution in &lt;O(N logN, O(logN)&gt;</span><br>
+If we need a faster solution for this problem we could use dynamic programming.
+First, let’s compute a table P[1,N][1,logN] where P[i][j] is the
+2<sup>j</sup>-th ancestor of i. For computing this value we may use the
+following recursion:</p>
+
+
+
+<div style="text-align: center"><img src="Range%20Minimum%20Query%20and%20Lowest%20Common%20Ancestor%20%E2%80%93%20topcoder_files/LCA_005.gif" width="273" height="48" border="0"></div>
+<p>
+
+</p><p>The preprocessing function should look like this:</p>
+<pre class="code">  <b>void</b> process3(<b>int</b> N, <b>int</b> T[MAXN], <b>int</b> P[MAXN][LOGMAXN])
+  {
+  &nbsp;&nbsp;&nbsp; <b>int</b> i, j;
+  &nbsp;
+  //we initialize every element in P with -1
+  &nbsp;&nbsp;&nbsp; <b>for</b> (i = 0; i &lt; N; i++)
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>for</b> (j = 0; 1 &lt;&lt; j &lt; N; j++)
+  &nbsp;&nbsp;&nbsp;&nbsp;        P[i][j] = -1;
+  &nbsp;
+  //the first ancestor of every node i is T[i]
+  &nbsp;&nbsp;&nbsp; <b>for</b> (i = 0; i &lt; N; i++)
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; P[i][0] = T[i];
+  &nbsp;
+  //bottom up dynamic programing
+      <b>for</b> (j = 1; 1 &lt;&lt; j &lt; N; j++)
+  &nbsp;&nbsp;&nbsp;    <b>for </b>(i = 0; i &lt; N; i++)
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>if </b>(P[i][j - 1] != -1)
+                 P[i][j] = P[P[i][j - 1]][j - 1];
+  }
+  
+</pre>This takes <b>O(N logN)</b> time and space. Now let’s see how we can make
+queries. Let <b>L[i]</b> be the level of node <b>i</b> in the tree. We must
+observe that if <b>p</b> and <b>q</b> are on the same level in the tree we can
+compute <b>LCA(p, q)</b> using a meta-binary search. So, for every power
+<b>j</b> of <b>2 (</b>between <b>log(L[p])</b> and <b>0,</b> in descending
+order), if <b>P[p][j] != P[q][j]</b> then we know that <b>LCA(p, q)</b> is on a
+higher level and we will continue searching for <b>LCA(p = P[p][j], q =
+P[q][j])</b>. At the end, both <b>p</b> and <b>q</b> will have the same father,
+so return <b>T[p]</b>. Let’s see what happens if <b>L[p] != L[q]</b>. Assume,
+without loss of generality, that <b>L[p] &lt; L[q]</b>. We can use the same
+meta-binary search&nbsp; for finding the ancestor of <b>p</b> situated on the
+same level with <b>q</b>, and then we can compute the <b>LCA</b> &nbsp;as
+described below. Here is how the query function should look:
+<pre class="code">  <b>int</b> query(<b>int</b> N, <b>int</b> P[MAXN][LOGMAXN], <b>int</b> T[MAXN], 
+  <b>int</b> L[MAXN], <b>int</b> p, <b>int</b> q)
+  {
+  &nbsp;&nbsp;&nbsp; <b>int</b> tmp, log, i;
+  &nbsp;
+  //if p is situated on a higher level than q then we swap them
+      <b>if</b> (L[p] &lt; L[q])
+          tmp = p, p = q, q = tmp;
+  
+  //we compute the value of [log(L[p)]
+  &nbsp;&nbsp;&nbsp;&nbsp;<b>for</b> (log = 1; 1 &lt;&lt; log &lt;= L[p]; log++);
+  &nbsp;&nbsp;&nbsp; log--;
+  &nbsp;
+  //we find the ancestor of node p situated on the same level
+  //with q using the values in P
+  &nbsp;&nbsp;&nbsp; <b>for</b> (i = log; i &gt;= 0; i--)
+  &nbsp;&nbsp;&nbsp;&nbsp;    <b>if</b> (L[p] - (1 &lt;&lt; i) &gt;= L[q])
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    <b>p</b> = P[p][i];
+  &nbsp;
+  &nbsp;&nbsp;&nbsp; <b>if</b> (p == q)
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return p;
+  &nbsp;
+  //we compute LCA(p, q) using the values in P
+      <b>for</b> (i = log; i &gt;= 0; i--)
+  &nbsp;&nbsp;&nbsp;&nbsp;    <b>if</b> (P[p][i] != -1 &amp;&amp; P[p][i] != P[q][i])
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;     p = P[p][i], q = P[q][i];
+  &nbsp;
+  &nbsp;&nbsp;&nbsp; <b>return</b> T[p];
+  }
+</pre>Now, we can see that this function makes at most <b>2 * log(H)</b>
+operations, where <b>H</b> is the height of the tree. In the worst case <b>H =
+N</b>, so the overall complexity of this algorithm is <b>&lt;O(N logN),
+O(logN)&gt;</b>. This solution is easy to code too, and it’s faster than the
+previous one.
+<p>
+
+</p><p><a name="Reduction from LCA to RMQ"></a><span class="bodySubtitle">Reduction
+from LCA to RMQ</span><br>
+Now, let’s show how we can use RMQ for computing LCA queries. Actually, we will
+reduce the LCA problem to RMQ in linear time, so every algorithm that solves
+the RMQ problem will solve the LCA problem too. Let’s show how this reduction
+can be done using an example:</p>
+
+
+
+<div style="text-align: center"><img src="Range%20Minimum%20Query%20and%20Lowest%20Common%20Ancestor%20%E2%80%93%20topcoder_files/LCA_006.gif" width="322" height="501"></div>
+<p>
+
+
+
+</p><div style="text-align: center">
+    <a href="https://www.topcoder.com/community/data-science/data-science-tutorials/range-minimum-query-and-lowest-common-ancestor/i/education/lca/LCA_007.gif" target="_blank"><img src="Range%20Minimum%20Query%20and%20Lowest%20Common%20Ancestor%20%E2%80%93%20topcoder_files/LCA_007.gif" width="510" height="93"></a><br>
+    click to enlarge image
+</div>
+<p>
+
+</p><p>Notice that <b>LCA<sub>T</sub>(u, v)</b> is the closest node from the root
+encountered between the visits of <b>u</b> and <b>v</b> during a depth first
+search of <b>T</b>. So, we can consider all nodes between any two indices of
+<b>u</b> and <b>v</b> in the Euler Tour of the tree and then find the node
+situated on the smallest level between them. For this, we must build three
+arrays:</p>
+
+<ul>
+    <li><b>E[1, 2*N-1]</b> – the nodes visited in an Euler Tour of <b>T</b>;
+    <b>E[i]</b> is the label of <b>i-th</b> visited node in the tour</li>
+
+    <li><b>L[1, 2*N-1]</b> – the levels of the nodes visited in the Euler Tour;
+    <b>L[i]</b> is the level of node <b>E[i]</b></li>
+
+    <li><b>H[1, N] – H[i]</b> is the index of the first occurrence of node
+    <b>i</b> in <b>E</b> (any occurrence would be good, so it’s not bad if we
+    consider the first one)</li>
+</ul>Assume that <b>H[u] &lt; H[v]</b> (otherwise you must swap <b>u</b> and
+<b>v</b>). It’s easy to see that the nodes between the first occurrence of
+<b>u</b> and the first occurrence of <b>v</b> are <b>E[H[u]…H[v]]</b>. Now,
+we must find the node situated on the smallest level. For this, we can use
+<b>RMQ</b>. So, <b>LCA<sub>T</sub>(u, v) = E[RMQ<sub>L</sub>(H[u], H[v])]</b>
+(remember that RMQ returns the index). Here is how <b>E</b>, <b>L</b> and
+<b>H</b> should look for the example:
+<p>
+
+
+
+</p><div style="text-align: center">
+    <a href="https://www.topcoder.com/community/data-science/data-science-tutorials/range-minimum-query-and-lowest-common-ancestor/i/education/lca/LCA_008.gif" target="_blank"><img src="Range%20Minimum%20Query%20and%20Lowest%20Common%20Ancestor%20%E2%80%93%20topcoder_files/LCA_008.gif" width="510" height="246"></a><br>
+    click to enlarge image
+</div>
+<p>
+
+</p><p>Notice that consecutive elements in L differ by exactly 1.</p>
+
+<p><a name="From RMQ to LCA"></a><span class="bodySubtitle">From RMQ to
+LCA</span><br>
+We have shown that the LCA problem can be reduced to RMQ in linear time. Here
+we will show how we can reduce the RMQ problem to LCA. This means that we
+actually can reduce the general RMQ to the restricted version of the problem
+(where consecutive elements in the array differ by exactly 1). For this we
+should use cartesian trees.</p>
+
+<p>A Cartesian Tree of an array <b>A[0, N - 1]</b> is a binary tree
+<b>C(A)&nbsp;</b> whose root is a minimum element of <b>A</b>, labeled with the
+position <b>i</b> of this minimum. The left child of the root is the Cartesian
+Tree of <b>A[0, i - 1]</b> if <b>i &gt; 0</b>, otherwise there’s no child. The
+right child is defined similary for <b>A[i + 1, N - 1]</b>. Note that the
+Cartesian Tree is not necessarily unique if <b>A</b> contains equal elements.
+In this tutorial the first appearance of the minimum value will be used, thus
+the Cartesian Tree will be unique.&nbsp; It’s easy to see now that
+<b>RMQ<sub>A</sub>(i, j) = LCA<sub>C</sub>(i, j)</b>.</p>
+
+<p>Here is an example:</p>
+
+
+
+<div style="text-align: center"><img src="Range%20Minimum%20Query%20and%20Lowest%20Common%20Ancestor%20%E2%80%93%20topcoder_files/LCA_009.gif" width="421" height="134"></div>
+<p>
+
+
+
+</p><div style="text-align: center"><img src="Range%20Minimum%20Query%20and%20Lowest%20Common%20Ancestor%20%E2%80%93%20topcoder_files/LCA_010.gif" width="298" height="562"></div>
+<p>
+
+</p><p>Now we only have to compute <b>C(A)</b> in linear time. This can be done
+using a stack. At the beginning the stack is empty. We will then insert the
+elements of <b>A</b> in the stack. At the <b>i-th</b> step <b>A[i]</b> will be
+added next to the last element in the stack that has a smaller or equal value
+to <b>A[i]</b>, and all the greater elements will be removed. The element that
+was in the stack on the position of <b>A[i]</b> before the insertion was done
+will become the left son of <b>i</b>, and <b>A[i]</b> will become the right son
+of the smaller element behind him. At every step the first element in the stack
+is the root of the cartesian tree. It’s easier to build the tree if the stack
+will hold the indexes of the elements, and not their value.</p>
+
+<p>Here is how the stack will look at each step for the example above:</p>
+
+
+
+<div style="text-align: center">
+    <table style="visibility: visible;" width="400" cellspacing="0" cellpadding="0" border="1">
+        <tbody>
+            <tr>
+                <td style="border: 1.0pt solid #999999; padding-left: 11.25pt; padding-right: 11.25pt; padding-top: 7.5pt; padding-bottom: 7.5pt; background: #CCCCCC" width="25" valign="top" height="35" nowrap="nowrap">Step</td>
+
+                <td style="border: 1.0pt solid #999999; padding-left: 11.25pt; padding-right: 11.25pt; padding-top: 7.5pt; padding-bottom: 7.5pt; background: #CCCCCC" width="49" valign="top" height="35" nowrap="nowrap">Stack</td>
+
+                <td style="border: 1.0pt solid #999999; padding-left: 11.25pt; padding-right: 11.25pt; padding-top: 7.5pt; padding-bottom: 7.5pt; background: #CCCCCC" width="228" valign="top" height="35" nowrap="nowrap">Modifications made in the tree</td>
+            </tr>
+
+            <tr>
+                <td style="border: 1.0pt solid #999999; padding-left: 11.25pt; padding-right: 11.25pt; padding-top: 7.5pt; padding-bottom: 7.5pt; background: #EEEEEE" width="25" valign="top" height="35">0</td>
+
+                <td style="border: 1.0pt solid #999999; padding-left: 11.25pt; padding-right: 11.25pt; padding-top: 7.5pt; padding-bottom: 7.5pt; background: #EEEEEE" width="49" valign="top" height="35">0</td>
+
+                <td style="border: 1.0pt solid #999999; padding-left: 11.25pt; padding-right: 11.25pt; padding-top: 7.5pt; padding-bottom: 7.5pt; background: #EEEEEE" width="228" valign="top" height="35">0 is the only node in the tree.</td>
+            </tr>
+
+            <tr>
+                <td style="border: 1.0pt solid #999999; padding-left: 11.25pt; padding-right: 11.25pt; padding-top: 7.5pt; padding-bottom: 7.5pt; background: #EEEEEE" width="25" valign="top" height="28">1</td>
+
+                <td style="border: 1.0pt solid #999999; padding-left: 11.25pt; padding-right: 11.25pt; padding-top: 7.5pt; padding-bottom: 7.5pt; background: #EEEEEE" width="49" valign="top" height="28">0 1</td>
+
+                <td style="border: 1.0pt solid #999999; padding-left: 11.25pt; padding-right: 11.25pt; padding-top: 7.5pt; padding-bottom: 7.5pt; background: #EEEEEE" width="228" valign="top" height="28">1 is added at the end of the stack.
+                Now, 1 is the right son of 0.</td>
+            </tr>
+
+            <tr style="height: 1.0pt">
+                <td style="height: 65; border: 1.0pt solid #999999; padding-left: 11.25pt; padding-right: 11.25pt; padding-top: 7.5pt; padding-bottom: 7.5pt; background: #EEEEEE" width="25" valign="top">2</td>
+
+                <td style="height: 65; border: 1.0pt solid #999999; padding-left: 11.25pt; padding-right: 11.25pt; padding-top: 7.5pt; padding-bottom: 7.5pt; background: #EEEEEE" width="49" valign="top">0 2</td>
+
+                <td style="height: 65; border: 1.0pt solid #999999; padding-left: 11.25pt; padding-right: 11.25pt; padding-top: 7.5pt; padding-bottom: 7.5pt; background: #EEEEEE" width="228" valign="top">2 is added next to 0, and 1 is removed
+                (A[2] &lt; A[1]). Now, 2 is the right son of 0 and the left son
+                of 2 is 1.</td>
+            </tr>
+
+            <tr>
+                <td style="border: 1.0pt solid #999999; padding-left: 11.25pt; padding-right: 11.25pt; padding-top: 7.5pt; padding-bottom: 7.5pt; background: #EEEEEE" width="25" valign="top" height="80">3</td>
+
+                <td style="border: 1.0pt solid #999999; padding-left: 11.25pt; padding-right: 11.25pt; padding-top: 7.5pt; padding-bottom: 7.5pt; background: #EEEEEE" width="49" valign="top" height="80">3</td>
+
+                <td style="border: 1.0pt solid #999999; padding-left: 11.25pt; padding-right: 11.25pt; padding-top: 7.5pt; padding-bottom: 7.5pt; background: #EEEEEE" width="228" valign="top" height="80">A[3] is the smallest element in the
+                vector so far, so all elements in the stack will be removed and
+                3 will become the root of the tree. The left child of 3 is
+                0.</td>
+            </tr>
+
+            <tr>
+                <td style="border: 1.0pt solid #999999; padding-left: 11.25pt; padding-right: 11.25pt; padding-top: 7.5pt; padding-bottom: 7.5pt; background: #EEEEEE" width="25" valign="top" height="50">4</td>
+
+                <td style="border: 1.0pt solid #999999; padding-left: 11.25pt; padding-right: 11.25pt; padding-top: 7.5pt; padding-bottom: 7.5pt; background: #EEEEEE" width="49" valign="top" height="50">3 4</td>
+
+                <td style="border: 1.0pt solid #999999; padding-left: 11.25pt; padding-right: 11.25pt; padding-top: 7.5pt; padding-bottom: 7.5pt; background: #EEEEEE" width="228" valign="top" height="50">4 is added next to 3, and the right
+                son of 3 is 4.</td>
+            </tr>
+
+            <tr>
+                <td style="border: 1.0pt solid #999999; padding-left: 11.25pt; padding-right: 11.25pt; padding-top: 7.5pt; padding-bottom: 7.5pt; background: #EEEEEE" width="25" valign="top" height="50">5</td>
+
+                <td style="border: 1.0pt solid #999999; padding-left: 11.25pt; padding-right: 11.25pt; padding-top: 7.5pt; padding-bottom: 7.5pt; background: #EEEEEE" width="49" valign="top" height="50">3 4 5</td>
+
+                <td style="border: 1.0pt solid #999999; padding-left: 11.25pt; padding-right: 11.25pt; padding-top: 7.5pt; padding-bottom: 7.5pt; background: #EEEEEE" width="228" valign="top" height="50">5 is added next to 4, and the right
+                son of 4 is 5.</td>
+            </tr>
+
+            <tr>
+                <td style="border: 1.0pt solid #999999; padding-left: 11.25pt; padding-right: 11.25pt; padding-top: 7.5pt; padding-bottom: 7.5pt; background: #EEEEEE" width="25" valign="top" height="50">6</td>
+
+                <td style="border: 1.0pt solid #999999; padding-left: 11.25pt; padding-right: 11.25pt; padding-top: 7.5pt; padding-bottom: 7.5pt; background: #EEEEEE" width="49" valign="top" height="50">3 4 5 6</td>
+
+                <td style="border: 1.0pt solid #999999; padding-left: 11.25pt; padding-right: 11.25pt; padding-top: 7.5pt; padding-bottom: 7.5pt; background: #EEEEEE" width="228" valign="top" height="50">6 is added next to 5, and the right
+                son of 5 is 6.</td>
+            </tr>
+
+            <tr>
+                <td style="border: 1.0pt solid #999999; padding-left: 11.25pt; padding-right: 11.25pt; padding-top: 7.5pt; padding-bottom: 7.5pt; background: #EEEEEE" width="25" valign="top" height="50">7</td>
+
+                <td style="border: 1.0pt solid #999999; padding-left: 11.25pt; padding-right: 11.25pt; padding-top: 7.5pt; padding-bottom: 7.5pt; background: #EEEEEE" width="49" valign="top" height="50">3 4 5 6 7</td>
+
+                <td style="border: 1.0pt solid #999999; padding-left: 11.25pt; padding-right: 11.25pt; padding-top: 7.5pt; padding-bottom: 7.5pt; background: #EEEEEE" width="228" valign="top" height="50">7 is added next to 6, and the right
+                son of 6 is 7.</td>
+            </tr>
+
+            <tr>
+                <td style="border: 1.0pt solid #999999; padding-left: 11.25pt; padding-right: 11.25pt; padding-top: 7.5pt; padding-bottom: 7.5pt; background: #EEEEEE" width="25" valign="top" height="65">8</td>
+
+                <td style="border: 1.0pt solid #999999; padding-left: 11.25pt; padding-right: 11.25pt; padding-top: 7.5pt; padding-bottom: 7.5pt; background: #EEEEEE" width="49" valign="top" height="65">3 8</td>
+
+                <td style="border: 1.0pt solid #999999; padding-left: 11.25pt; padding-right: 11.25pt; padding-top: 7.5pt; padding-bottom: 7.5pt; background: #EEEEEE" width="228" valign="top" height="65">8 is added next to 3, and all greater
+                elements are removed. 8 is now the right child of 3 and the
+                left child of 8 is 4.</td>
+            </tr>
+
+            <tr>
+                <td style="border: 1.0pt solid #999999; padding-left: 11.25pt; padding-right: 11.25pt; padding-top: 7.5pt; padding-bottom: 7.5pt; background: #EEEEEE" width="25" valign="top" height="50">9</td>
+
+                <td style="border: 1.0pt solid #999999; padding-left: 11.25pt; padding-right: 11.25pt; padding-top: 7.5pt; padding-bottom: 7.5pt; background: #EEEEEE" width="49" valign="top" height="50">3 8 9</td>
+
+                <td style="border: 1.0pt solid #999999; padding-left: 11.25pt; padding-right: 11.25pt; padding-top: 7.5pt; padding-bottom: 7.5pt; background: #EEEEEE" width="228" valign="top" height="50">9 is added next to 8, and the right
+                son of 8 is 9.</td>
+            </tr>
+        </tbody>
+    </table>
+</div><br>
+Note that every element in <b>A</b> is only added once and removed at most
+once, so the complexity of this algorithm is <b>O(N)</b>. Here is how the
+tree-processing function will look:
+<pre class="code">  <b>void </b>computeTree(<b>int</b> A[MAXN], <b>int</b> N, <b>int</b> T[MAXN])  {
+  &nbsp;&nbsp;&nbsp; <b>int</b> st[MAXN], i, k, top = -1;
+  &nbsp;
+  //we start with an empty stack
+  //at step <b>i</b> we insert <b>A[i]</b> in the stack
+  &nbsp;&nbsp;&nbsp; <b>for</b> (i = 0; i &lt; N; i++)
+  &nbsp;&nbsp;&nbsp; {
+  //compute the position of the first element that is 
+  //equal or smaller than <b>A[i]</b>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; k = top;
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>while</b> (k &gt;= 0 &amp;&amp; A[st[k]] &gt; A[i])
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; k--;
+  //we modify the tree as explained above
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>if</b> (k != -1)
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; T[i] = st[k];
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>if</b> (k &lt; top)
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; T[st[k + 1]] = i;
+  //we insert <b>A[i]</b> in the stack and remove 
+  //any bigger elements
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; st[++k] = i;
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; top = k;
+  &nbsp;&nbsp;&nbsp; }
+  //the first element in the stack is the root of 
+  //the tree, so it has no father
+  &nbsp;&nbsp;&nbsp; T[st[0]] = -1;
+  }
+  &nbsp;
+</pre><a name="A O(N), O(1) algorithm for the restricted RMQ"></a><span class="bodySubtitle">An&lt;O(N), O(1)&gt; algorithm for the restricted RMQ</span><br>
+Now we know that the general RMQ problem can be reduced to the restricted
+version using LCA. Here, consecutive elements in the array differ by exactly 1.
+We can use this and give a fast <b>&lt;O(N), O(1)&gt;</b> algorithm. From now
+we will solve the RMQ problem for an array <b>A[0, N - 1]</b> where&nbsp;
+<b>|A[i] – A[i + 1]| = 1</b>, <b>i = [1, N - 1]</b>. We transform <b>A</b> in a
+binary array with <b>N-1</b> elements, where <b>A[i] = A[i] – A[i + 1]</b>.
+It’s obvious that elements in <b>A</b> can be just <b>+1</b> or <b>-1</b>.
+Notice that the old value of <b>A[i]</b> is now the sum of <b>A[1]</b>,
+<b>A[2]</b> .. <b>A[i]</b> plus the old <b>A[0]</b>. However, we won’t need the
+old values from now on.
+<p>
+
+</p><p>To solve this restricted version of the problem we need to partition
+<b>A</b> into blocks of size <b>l = [(log N) / 2]</b>. Let <b>A’[i]</b> be the
+minimum value for the <b>i-th</b> block in <b>A</b> and <b>B[i]</b> be the
+position of this minimum value in <b>A</b>. Both <b>A</b> and <b>B</b> are
+<b>N/l</b> long. Now, we preprocess <b>A’</b> using the ST algorithm described
+in Section1. This will take <b>O(N/l * log(N/l)) = O(N)</b> time and space.
+After this preprocessing we can make queries that span over several blocks in
+<b>O(1)</b>. It remains now to show how the in-block queries can be made. Note
+that the length of a block is <b>l = [(log N) / 2]</b>, which is quite small.
+Also, note that <b>A</b> is a binary array. The total number of binary arrays
+of size <b>l</b> is <b>2<sup>l</sup>=sqrt(N)</b>. So, for each binary block of
+size <b>l</b> we need to lock up in a table <b>P</b> the value for RMQ between
+every pair of indices. This can be trivially computed in
+<b>O(sqrt(N)*l<sup>2</sup>)=O(N</b>) time and space. To index table <b>P</b>,
+preprocess the type of each block in <b>A</b> and store it in array <b>T[1,
+N/l]</b>. The block type is a binary number obtained by replacing -1 with 0 and
++1 with 1.</p>
+
+<p>Now, to answer <b>RMQ<sub>A</sub>(i, j)</b> we have two cases:</p>
+
+<ul>
+    <li><b>i</b> and <b>j</b> are in the same block, so we use the value
+    computed in <b>P</b> and <b>T</b></li>
+
+    <li><b>i</b> and <b>j</b> are in different blocks,&nbsp; so we compute
+    three values: the minimum from <b>i</b> to the end of <b>i’s</b> block
+    using <b>P</b> and <b>T</b>, the minimum of all blocks between <b>i’s</b>
+    and j<b>‘s</b> block using precomputed queries&nbsp; on <b>A’</b> and the
+    minimum from the begining of <b>j’s</b> block to <b>j</b>, again using
+    <b>T</b> and <b>P</b>; finally return the position where the overall
+    minimum is using the three values you just computed.</li>
+</ul><a id="Conclusion" name="Conclusion"></a><span class="bodySubtitle">Conclusion</span><br>
+RMQ and LCA are strongly related problems that can be reduced one to another.
+Many algorithms can be used to solve them, and they can be adapted to other
+kind of problems as well.
+<p>
+
+</p><p>Here are some training problems for segment trees, LCA and RMQ:</p>
+
+<p>SRM 310 -&gt; <a href="http://www.topcoder.com/stat?c=problem_statement&amp;pm=6551&amp;rd=9990">Floating
+Median</a><br>
+<a href="http://www.topcoder.com/tc?module=LinkTracking&amp;link=http://acm.pku.edu.cn/JudgeOnline/problem?id=1986&amp;refer=">
+
+http://acm.pku.edu.cn/JudgeOnline/problem?id=1986</a><br>
+
+<a href="http://www.topcoder.com/tc?module=LinkTracking&amp;link=http://acm.pku.edu.cn/JudgeOnline/problem?id=2374&amp;refer=">
+
+http://acm.pku.edu.cn/JudgeOnline/problem?id=2374</a><br>
+
+<a href="http://www.topcoder.com/tc?module=LinkTracking&amp;link=http://acmicpc-live-archive.uva.es/nuevoportal/data/problem.php?p=2045&amp;refer=">
+
+http://acmicpc-live-archive.uva.es/nuevoportal/data/problem.php?p=2045</a><br>
+
+<a href="http://www.topcoder.com/tc?module=LinkTracking&amp;link=http://acm.pku.edu.cn/JudgeOnline/problem?id=2763&amp;refer=">
+
+http://acm.pku.edu.cn/JudgeOnline/problem?id=2763</a><br>
+
+<a href="http://www.topcoder.com/tc?module=LinkTracking&amp;link=http://www.spoj.pl/problems/QTREE2/&amp;refer=">
+
+http://www.spoj.pl/problems/QTREE2/</a><br>
+
+<a href="http://www.topcoder.com/tc?module=LinkTracking&amp;link=http://acm.uva.es/p/v109/10938.html&amp;refer=">
+
+http://acm.uva.es/p/v109/10938.html</a><br>
+
+<a href="http://www.topcoder.com/tc?module=LinkTracking&amp;link=http://acm.sgu.ru/problem.php?contest=0%26problem=155&amp;refer=">
+
+http://acm.sgu.ru/problem.php?contest=0&amp;problem=155</a></p>
+
+<p><br>
+<span class="bodySubtitle">References</span><br>
+- “<a href="http://www.topcoder.com/tc?module=LinkTracking&amp;link=http://www.bio.ifi.lmu.de/%7Efischer/fischer06theoretical.pdf&amp;refer=">Theoretical
+and Practical Improvements on the RMQ-Problem, with Applications to LCA and
+LCE</a>” [PDF] by Johannes Fischer and Volker Heunn<br>
+- “<a href="http://www.topcoder.com/tc?module=LinkTracking&amp;link=http://www.math.tau.ac.il/%7Ehaimk/seminar04/LCA-seminar-modified.ppt&amp;refer=">The
+LCA Problem Revisited</a>” [PPT] by Michael A.Bender and Martin Farach-Colton -
+a very good presentation, ideal for quick learning of some LCA and RMQ
+aproaches<br>
+- “<a href="http://www.topcoder.com/tc?module=LinkTracking&amp;link=http://www.cis.njit.edu/%7Eczumaj/PUBLICATIONS/Czumaj-Kowaluk-Lingas-TCS-Summer-2005-r1-Aug-21-2006.pdf&amp;refer=">Faster
+algorithms for finding lowest common ancestors in directed acyclic graphs</a>”
+[PDF] by Artur Czumaj, Miroslav Kowaluk and Andrzej Lingas</p>
+
+<style>
+
+.formFrame { background: #f5f5f5; margin: auto; }.formFrame td { border: 1px solid #ccc; padding: 5px; }.sideNote {background: #f5f5f5; margin: 15px; padding: 15px; border: 1px solid #eee;}pre {background: #f5f5f5; margin: 15px; padding: 15px; border: 1px solid #eee; overflow: scroll;}p{padding-bottom:0 !important;}
+
+</style>					
+
+						<!-- /.pageContent -->
+
+					</div>
+					<!-- /.mainStream -->
+
+					<aside class="sideStream  grid-1-3">
+								<div class="textwidget"><div style="display: inline-block; width: 320px; height: 44px; overflow: hidden; background-color: #f1f1f1; padding:5px;">
+           <p style="padding-top: 12px; padding-left: 7px; font-size: 22px">
+    More Resources</p>
+       </div>
+
+
+	  <br>
+<p style="padding-top: 12px; padding-left: 10px; line-height: 150%"><a href="http://www.topcoder.com/community/data-science/data-science-tutorials/">Member Tutorials </a><br>
+Read more than 40 data science tutorials written by topcoder members. </p>
+<p style="padding-top: 12px; padding-left: 10px; line-height: 150%"><a href="http://www.topcoder.com/community/data-science/data-science-editorials/">Problem Set Analysis </a><br>
+Read editorials explaining the problem and solution for each Single Round Match (SRM). </p>
+<p style="padding-top: 12px; padding-left: 10px; line-height: 150%"><a href="http://www.topcoder.com/community/data-science/getting-started-in-data-science/">
+Data Science Guide</a><br>
+New to topcoder's data science track? Read this guide for an overview on
+ how to get started in the arena and how competitions work.</p>
+<p style="padding-top: 12px; padding-left: 10px; line-height: 150%"><a href="http://help.topcoder.com/">Help Center </a><br>
+Need specifics about the process or the rules? Everything you need to 
+know about competing at topcoder can be found in the Help Center.</p>
+<p style="padding-top: 12px; padding-left: 10px; line-height: 150%"><a href="http://apps.topcoder.com/forums/">Member Forums</a> <br>
+Join your peers in our member forums and ask questions from the real experts - topcoder members!</p>
+</div>
+							</aside>
+
+					<!-- /.sideStream -->
+					<div class="clear"></div>
+				</div>
+				<!-- /.rightSplit -->
+			</div>
+		</article>
+		<!-- /#mainContent -->
+<footer class="bottom-footer">
+  <!-- Footer links -->
+  <nav class="menu-item">
+    <ul class="submenu">
+      <li class="submenu-item"><a ng-click="$event.stopPropagation();" href="https://www.topcoder.com/sitemap" class="menu-link">SITEMAP</a></li>
+      <li class="submenu-item"><a ng-click="$event.stopPropagation();" href="https://www.topcoder.com/about" class="menu-link">ABOUT US</a></li>
+      <li class="submenu-item"><a ng-click="$event.stopPropagation();" href="https://help.topcoder.com/hc/en-us/articles/219069687-Contact-Support" class="menu-link">CONTACT US</a></li>
+      <li class="submenu-item"><a ng-click="$event.stopPropagation();" href="http://help.topcoder.com/" target="_blank" class="menu-link">HELP CENTER</a></li>
+      <li class="submenu-item"><a ng-click="$event.stopPropagation();" href="http://topcoder.com/community/how-it-works/privacy-policy/" class="menu-link">PRIVACY POLICY</a></li>
+      <li class="submenu-item"><a ng-click="$event.stopPropagation();" href="http://topcoder.com/community/how-it-works/terms/" class="menu-link">TERMS</a></li>
+    </ul>
+    <!-- Social links -->
+  </nav>
+  <div class="social-links">
+    <p>Topcoder is also on</p><a href="https://www.facebook.com/topcoder" target="fbwindow" class="fb-link"></a><a href="http://www.twitter.com/topcoder" target="twwindow" class="twitter-link"></a><a href="https://www.linkedin.com/company/topcoder" target="liwindow" class="linkedin-link"></a><a href="https://plus.google.com/u/0/b/104268008777050019973/104268008777050019973/posts" target="gpwindow" class="google-link"></a>
+  </div>
+  <p class="copyright-notice">© 2016 Topcoder. All Rights Reserved</p>
+</footer>
+</div>
+<!-- /.content -->
+</div>
+<!-- /#wrapper -->
+
+
+<div id="bgModal"></div><!-- background modal -->
+<div id="bgOverlapModal"></div><!-- background modal -->
+<div id="bgLoadingModal"><span></span></div><!-- background loading -->
+<div id="thanks" class="modal">
+  <a href="javascript:;" class="closeBtn closeModal"></a>
+
+  <div class="content">
+    <h2>Thanks for joining!</h2>
+
+    <p>We have sent you an email with activation instructions.<br>If you do not receive that email within 1 hour,
+      please email <a href="mailto:support@topcoder.com">support@topcoder.com</a>.</p>
+
+    <div>
+      <a href="javascript:;" class="btn closeModal redirectOnConfirm">Close</a>
+    </div>
+  </div>
+</div><!-- END #thanks -->
+<div id="registerSuccess" class="modal">
+  <a href="javascript:;" class="btnClose closeModal"></a>
+  <div class="content">
+    <h2>Registered!</h2>
+    <p class="success">Thank you for registering. You may now download the challenge files and participate in the challenge forums.</p>
+    <p class="submitBtn">
+      <a class="btn closeModalReg" href="javascript:;">OK</a>
+    </p>
+  </div>
+</div><!-- END #registerSuccess -->
+<div id="registerFailed" class="modal">
+  <a href="javascript:;" class="btnClose closeModal"></a>
+  <div class="content">
+    <h2>Info</h2>
+    <p class="failedMessage"></p>
+    <p class="submitBtn">
+      <a class="btn closeModal" href="javascript:;">OK</a>
+    </p>
+  </div>
+</div><!-- END #registerFailed -->
+
+<div id="showSubmission" class="modal">
+    <a href="javascript:;" class="btnClose closePopupModal"></a>
+    <div class="content">
+       <img alt="" style="width:910px; height:850px">
+    </div>
+</div><!-- END #show submission -->
+
+<div id="filterSavedSuccess" class="modal">
+  <a href="javascript:;" class="btnClose closeModal"></a>
+  <div class="content">
+    <h2>Success</h2>
+    <p class="success">Your filters have been saved and stored in the "My Filters" dropdown list.</p>
+    <p class="submitBtn">
+      <a class="btn closeModal" href="javascript:;">OK</a>
+    </p>
+  </div>
+</div><!-- END #filterSavedSuccess -->
+
+<div id="filterSavedFailed" class="modal">
+  <a href="javascript:;" class="btnClose closeModal"></a>
+  <div class="content">
+    <h2>Info</h2>
+    <p class="failedMessage"></p>
+    <p class="submitBtn">
+      <a class="btn closeModal" href="javascript:;">OK</a>
+    </p>
+  </div>
+</div><!-- END #filterSavedFailed -->
+
+<div id="designSubmissionCommentExample" class="modal">
+  <a href="javascript:;" class="btnClose closeModal"></a>
+  <div class="content">
+    <h2>Comment Examples</h2>
+
+    <strong>Example 1:</strong><br>
+    The logo represents movement and "taking action" rather than being stagnant.
+    The colors I chose signify power and give the brand a strong feel.<br><br>
+
+    <strong>Example 2:</strong><br>
+    This is a revised version of my previous submission. Changes include a new
+    header graphic, new font choices for the pop-up box and new icons for the
+    widget on the fourth page.<br><br>
+
+    <strong>Example 3:</strong><br>
+    This is my Round 2 submission. I have implemented all of the feedback you
+    gave me after Round 1 and I hope you like the changes.<br><br>
+  </div>
+</div><!-- END #show submission -->
+
+<div id="typeTooltip" class="tooltip hide">
+  <div class="inner">
+    <header></header>
+    <div class="data">
+      <p class="contestTy"></p>
+    </div>
+    <div class="arrow"></div>
+  </div>
+</div><!-- /.tooltip -->
+<div id="winnerTooltip" class="tooltip hide">
+  <div class="inner">
+    <header></header>
+    <div class="data">
+      <div class="winnerInfo"></div>
+    </div>
+    <div class="arrow alt"></div>
+  </div>
+</div><!-- /.tooltip -->
+<div id="badgeTooltip" class="tooltip hide">
+  <div class="inner">
+    <header></header>
+    <div class="data">
+      <p class="earnedOn"></p>
+    </div>
+    <div class="data">
+      <p class="currentlyEarned"><span></span></p>
+    </div>
+    <div class="arrow"></div>
+  </div>
+</div><!-- /.tooltip -->
+<link rel="stylesheet" id="ng-grid-css" href="Range%20Minimum%20Query%20and%20Lowest%20Common%20Ancestor%20%E2%80%93%20topcoder_files/ng-grid.css" type="text/css" media="all">
+<script type="text/javascript" src="Range%20Minimum%20Query%20and%20Lowest%20Common%20Ancestor%20%E2%80%93%20topcoder_files/Selectyze.js"></script>
+<script type="text/javascript" src="Range%20Minimum%20Query%20and%20Lowest%20Common%20Ancestor%20%E2%80%93%20topcoder_files/tcapi.js"></script>
+<script type="text/javascript" src="Range%20Minimum%20Query%20and%20Lowest%20Common%20Ancestor%20%E2%80%93%20topcoder_files/jquery-ui.js"></script>
+<script type="text/javascript" src="Range%20Minimum%20Query%20and%20Lowest%20Common%20Ancestor%20%E2%80%93%20topcoder_files/auth0-1.js"></script>
+<script type="text/javascript" src="Range%20Minimum%20Query%20and%20Lowest%20Common%20Ancestor%20%E2%80%93%20topcoder_files/default.js"></script>
+<script type="text/javascript" src="Range%20Minimum%20Query%20and%20Lowest%20Common%20Ancestor%20%E2%80%93%20topcoder_files/angular.js"></script>
+<script type="text/javascript" src="Range%20Minimum%20Query%20and%20Lowest%20Common%20Ancestor%20%E2%80%93%20topcoder_files/angular-animate.js"></script>
+<script type="text/javascript" src="Range%20Minimum%20Query%20and%20Lowest%20Common%20Ancestor%20%E2%80%93%20topcoder_files/angular-route.js"></script>
+<script type="text/javascript" src="Range%20Minimum%20Query%20and%20Lowest%20Common%20Ancestor%20%E2%80%93%20topcoder_files/underscore.js"></script>
+<script type="text/javascript" src="Range%20Minimum%20Query%20and%20Lowest%20Common%20Ancestor%20%E2%80%93%20topcoder_files/restangular.js"></script>
+<script type="text/javascript" src="Range%20Minimum%20Query%20and%20Lowest%20Common%20Ancestor%20%E2%80%93%20topcoder_files/ng-grid.js"></script>
+<script type="text/javascript" src="Range%20Minimum%20Query%20and%20Lowest%20Common%20Ancestor%20%E2%80%93%20topcoder_files/ng-grid-flexible-height.js"></script>
+<script type="text/javascript" src="Range%20Minimum%20Query%20and%20Lowest%20Common%20Ancestor%20%E2%80%93%20topcoder_files/angular-cookies.js"></script>
+<script type="text/javascript" src="Range%20Minimum%20Query%20and%20Lowest%20Common%20Ancestor%20%E2%80%93%20topcoder_files/angular-ui-router.js"></script>
+<script>
+  window.prerenderReady = false;
+  function getParameterByName(name, source) {
+    name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+    var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+    results = regex.exec(source || location.search);
+    return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+  }
+  function getHashParameterByName(name, source) {
+    name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+    var regex = new RegExp("[\\#&]" + name + "=([^&#]*)"),
+    results = regex.exec(source || location.hash);
+    return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+  }
+</script>
+
+<!-- Start of topcoder Zendesk Widget script -->
+<iframe src="javascript:false" title="" style="width: 0; height: 0; border: 0; position: absolute; top: -9999px"></iframe><script>/*<![CDATA[*/window.zEmbed||function(e,t){var n,o,d,i,s,a=[],r=document.createElement("iframe");window.zEmbed=function(){a.push(arguments)},window.zE=window.zE||window.zEmbed,r.src="javascript:false",r.title="",r.role="presentation",(r.frameElement||r).style.cssText="display: none",d=document.getElementsByTagName("script"),d=d[d.length-1],d.parentNode.insertBefore(r,d),i=r.contentWindow,s=i.document;try{o=s}catch(c){n=document.domain,r.src='javascript:var d=document.open();d.domain="'+n+'";void(0);',o=s}o.open()._l=function(){var o=this.createElement("script");n&&(this.domain=n),o.id="js-iframe-async",o.src=e,this.t=+new Date,this.zendeskHost=t,this.zEQueue=a,this.body.appendChild(o)},o.write('<body onload="document._l();">'),o.close()}("https://assets.zendesk.com/embeddable_framework/main.js","topcoder.zendesk.com");
+/*]]>*/</script>
+<!-- End of topcoder Zendesk Widget script -->
+
+<script>
+(function() {
+  var headerApp = angular.module('tc.header', [])
+  headerApp.config(function($sceDelegateProvider) {
+    $sceDelegateProvider.resourceUrlWhitelist([
+      // Allow same origin resource loads.
+      'self',
+      // Allow loading from subdomains.  Notice the difference between * and **.
+      'http://*.topcoder.com/**',
+      'https://*.topcoder.com/**',
+      'http://*.topcoder-qa.com/**',
+      'https://*.topcoder-qa.com/**',
+      'http://*.topcoder-dev.com/**',
+      'https://*.topcoder-dev.com/**'
+    ]);
+  });
+  headerApp.directive('ngHeaderBootstrap', function(){
+    return {
+      restrict: 'C',
+      templateUrl: '/mf/js/app/header/partials/header-nav.html',
+      controller: function($scope, $timeout){
+        $scope.vm = vm = {};
+        $scope.main = {};
+        $scope.main.menuVisible = false;
+        vm.isAuth = false;
+
+        if (app.isLoggedIn()) {
+          vm.isAuth = true;
+          app.getHandle(function(handle) {
+            $.get(tcconfig.apiURL + '/users/' + handle, function(data) {
+              var photoLink = data['photoLink'];
+              if (photoLink) {
+                if (photoLink.indexOf('//') == -1) {
+                  photoLink = tcconfig.communityURL + data['photoLink']
+                }
+              } else {
+                photoLink = tcconfig.communityURL + '/i/m/nophoto_login.gif';
+              }
+              
+              var color = '';
+              var ratings = data['ratingSummary'];
+              if (ratings) {
+                var maxRating = 0;
+                for (var i = 0; i < ratings.length; i++) {
+                  if (maxRating < ratings[i]['rating']) {
+                    maxRating = ratings[i]['rating'];
+                    color = ratings[i]['colorStyle'].split(": ")[1];
+                  }
+                }
+              } else if (data['isPM'] == true) {
+                color = '#FF9900';
+              }
+              
+              $timeout(function() {
+                vm.handleStyle = { color: color };
+                vm.photoURL = photoLink;
+              });
+            });
+
+            $timeout(function() {
+              vm.userHandle = handle;
+              vm.userMenu = [
+                { 'href': '/my-dashboard', 'text': 'DASHBOARD', 'icon': '/mf/i/nav/dashboard.svg' },
+                { 'href': '/members/' + handle, 'text': 'MY PROFILE', 'icon': '/mf/i/nav/profile.svg' },
+                { 'href': 'https:' + tcconfig.communityURL + '/PactsMemberServlet?module=PaymentHistory&full_list=false', 'text': 'PAYMENTS', 'icon': '/mf/i/nav/wallet.svg' },
+                { 'href': '/settings/profile', 'text': 'SETTINGS', 'icon': '/mf/i/nav/settings.svg' },
+              ];
+            });
+          });
+        }
+
+        vm.menuHeaders = [ 'compete', 'learn', 'community' ];
+        vm.menuLinks =
+        {
+          'compete': [
+              { 'href':  "/challenges/design/active/?pageIndex=1", 'text': 'DESIGN CHALLENGES', 'icon': '/mf/i/nav/track-design.svg' },
+              { 'href':  "/challenges/develop/active/?pageIndex=1", 'text': 'DEVELOPMENT CHALLENGES', 'icon': '/mf/i/nav/track-develop.svg' },
+              { 'href':  "/challenges/data/active/?pageIndex=1", 'text': 'DATA SCIENCE CHALLENGES', 'icon': '/mf/i/nav/track-data.svg' },
+              { 'href':  'https:' + tcconfig.arenaURL, 'text': 'COMPETITIVE PROGRAMMING', 'icon': '/mf/i/nav/track-cp.svg', 'target': '_blank' },
+          ],
+          'learn': [
+              { 'href': '/getting-started/', 'text': 'GETTING STARTED', 'icon': '/mf/i/nav/rocket.svg' },
+              { 'href': '/community/design/', 'text': 'DESIGN', 'icon': '/mf/i/nav/book-design.svg' },
+              { 'href': '/community/development/', 'text': 'DEVELOPMENT', 'icon': '/mf/i/nav/book-develop.svg' },
+              { 'href': '/community/data-science/', 'text': 'DATA SCIENCE', 'icon': '/mf/i/nav/book-data.svg' },
+              { 'href': '/community/competitive-programming/', 'text': 'COMPETITIVE PROGRAMMING', 'icon': '/mf/i/nav/book-cp.svg' },
+          ],
+          'community': [
+              { 'href': '/community/members/', 'text': 'OVERVIEW', 'icon': '/mf/i/nav/members.svg' },
+              { 'href': '/tco', 'text': 'TCO', 'icon': '/mf/i/nav/tco-generic.svg' },
+              { 'href': '/community/member-programs/', 'text': 'PROGRAMS', 'icon': '/mf/i/nav/programs.svg' },
+              { 'href': 'https://' + tcconfig.forumsAppURL, 'text': 'FORUMS', 'icon': '/mf/i/nav/forums.svg' },
+              { 'href': '/community/statistics/', 'text': 'STATISTICS', 'icon': '/mf/i/nav/statistics.svg' },
+              { 'href': '/community/events/', 'text': 'EVENTS', 'icon': '/mf/i/nav/events.svg' },
+              { 'href': '/blog/', 'text': 'BLOG', 'icon': '/mf/i/nav/blog.svg' }
+          ]
+        };
+
+        vm.checkSubmit = function(ev) {
+          if (ev.keyCode === 13)
+            window.location.replace(tcconfig.mainURL + '/search/members/?q=' + window.encodeURIComponent(vm.searchTerm));
+        }
+
+        vm.isActive = function(href) {
+          if (window.location.pathname == href)
+            return true;
+          return false;
+        }
+
+        vm.login = function() {
+          window.location.href = tcconfig.accountAppURL + "?next=" + encodeURIComponent(window.location.href);
+        }
+
+        vm.join = function() {
+          window.location.href = tcconfig.accountAppURL + '/registration?next=' + encodeURIComponent(window.location.href);
+        }
+
+        vm.logout = function() {
+          document.cookie = 'tcsso=; path=/; domain=.' + tcconfig.domain + '; expires=' + new Date(0).toUTCString();
+          document.cookie = 'tcjwt=; path=/; domain=.' + tcconfig.domain + '; expires=' + new Date(0).toUTCString();
+          main.menuVisible = vm.isAuth = false;
+          window.location.href = '/logout';
+        }
+      }
+    };
+  });
+
+  angular.bootstrap($('.ng-header-bootstrap'), ['tc.header']);
+})();
+</script>
+
+</div>
+
+<script type="text/javascript">window.NREUM||(NREUM={});NREUM.info={"beacon":"bam.nr-data.net","licenseKey":"496af5ee90","applicationID":"5697815","transactionName":"ZlcBbBQAChBSARIKXV8dIlsSCAsNHBYDDkJdUxddSw4SBkEUDwZFHEUKXAEEEApJBwI=","queueTime":0,"applicationTime":134,"atts":"ShACGlwaGR4=","errorBeacon":"bam.nr-data.net","agent":""}</script>
+
+
+<div id="fancybox-tmp"></div><div id="fancybox-loading"><div></div></div><div id="fancybox-overlay"></div><div id="fancybox-wrap"><div id="fancybox-outer"><div class="fancybox-bg" id="fancybox-bg-n"></div><div class="fancybox-bg" id="fancybox-bg-ne"></div><div class="fancybox-bg" id="fancybox-bg-e"></div><div class="fancybox-bg" id="fancybox-bg-se"></div><div class="fancybox-bg" id="fancybox-bg-s"></div><div class="fancybox-bg" id="fancybox-bg-sw"></div><div class="fancybox-bg" id="fancybox-bg-w"></div><div class="fancybox-bg" id="fancybox-bg-nw"></div><div id="fancybox-content"></div><a id="fancybox-close"></a><div id="fancybox-title"></div><a href="javascript:;" id="fancybox-left"><span class="fancy-ico" id="fancybox-left-ico"></span></a><a href="javascript:;" id="fancybox-right"><span class="fancy-ico" id="fancybox-right-ico"></span></a></div></div><div><iframe data-reactroot="" id="ticketSubmissionForm" class="zEWidget-ticketSubmissionForm" style="border: medium none; background: transparent none repeat scroll 0% 0%; z-index: 999999; transform: translateZ(0px); position: fixed; opacity: 0; right: 0px; bottom: 0px; width: 357px; margin-left: 15px; margin-right: 15px; margin-top: 0px; height: 476px; transition-property: none; transition-timing-function: unset; top: -9999px;"></iframe></div><div><iframe data-reactroot="" id="launcher" class="zEWidget-launcher zEWidget-launcher--active" style="border: medium none; background: transparent none repeat scroll 0% 0%; z-index: 999998; transform: translateZ(0px); position: fixed; opacity: 1; right: 0px; bottom: 0px; width: 139px; height: 47px; margin: 10px 20px;"></iframe></div><div><iframe data-reactroot="" id="nps" class="zEWidget-nps" style="border: medium none; background: transparent none repeat scroll 0% 0%; z-index: 2147483647; transform: translateZ(0px); position: fixed; opacity: 0; right: 0px; bottom: 0px; left: 50%; margin-left: -310px; margin-bottom: 15px; width: 640px; margin-top: 0px; height: 178px; transition-property: none; transition-timing-function: unset; top: -9999px;"></iframe></div><div><iframe data-reactroot="" id="ipm" class="zEWidget-ipm" style="border: medium none; background: transparent none repeat scroll 0% 0%; z-index: 2147483647; transform: translateZ(0px); position: fixed; opacity: 0; right: 0px; top: -230px; margin-right: 15px; margin-top: 0px; height: 180px; width: 395px; transition-property: none; transition-timing-function: unset;"></iframe></div></body></html>
