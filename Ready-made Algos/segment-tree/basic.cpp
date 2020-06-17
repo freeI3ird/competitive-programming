@@ -99,7 +99,7 @@ int main()
     // Since the array is full binary tree i.e every node has 0 or 2 childs, therefore "if n = #leaf nodes, internal nodes = n-1"
     // So, total nodes = 2*n -1  = 2*leaf -1,
     // Now take the tree array : size = 2*leaf-1 for 1 indexing take 2*leaf
-    // Now leaf != n , it is pow(2,x)>=n ,  x =  (int)(ceil(log2(n))) ; here pow(2,x) = smallest pow of 2 which is greater than n.
+    // Now leaf != n , it is pow(2,h)>=n ,  h =  (int)(ceil(log2(n))) ; here pow(2,h) = smallest pow of 2 which is greater than n.
     // see https://www.geeksforgeeks.org/segment-tree-set-1-sum-of-given-range/ 
     int x = (int)(ceil(log2(n)));
     int max_size = 2*pow(2,x)-1;

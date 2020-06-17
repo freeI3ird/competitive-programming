@@ -1,0 +1,57 @@
+[1, 2, 3, 10, 2, 5, 6, 7]
+
+n -> is the length of the stream. This will be a high number.
+p -> out of these n numbers, such that all p are unique, p numbers are randomly chosen from n numbers and probablistically evenly distributed. 
+You can fit p numbers in your memory. 
+
+p = 4
+
+[1, 2, 5, 7]
+
+[1, 2
+
+rand_no=1
+m = random_no(0,k-1)
+rand_no= 2
+
+if(k==1)
+    rand_no= cur_no
+else 
+    {
+        m= rand% k
+        if(m==k-1)
+            rand_no= cur_no
+    }
+    
+    
+    
+vector <int, <int, int> >;
+
+
+int  kruskal(viii &edge,int n)
+{
+    vi parent(n+1,-1);//
+    sort(edge.begin(),edge,end())
+    vvii graph(n+1);// final map
+    int sum=0;// min cost
+    int idx=0;
+    for(int i=1;i<=n-1;i++)// Tree has 'n-1' edges.
+    {
+        int u,v,wt;
+        do
+        {
+            iii p = edge[idx];
+            u= p.second.first;// first city
+            v= p.second.second;// second city
+            wt= p.first; // cost of the road
+            idx++;
+        }while(find_set(parent,u)==find_set(parent,v));
+    }
+    sum+=wt;
+    union_set(parent,u,v);
+    graph[u].pb(mp(v,wt);
+    graph[v].pb(mp,u,wt);
+    return sum;
+}
+
+
