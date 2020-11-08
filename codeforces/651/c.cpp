@@ -32,48 +32,60 @@ int main()
     read(t);
     for(h=1;h<=t;h++)
     {
-    	int n,x;
-        cin>>n>>x;
-        vector< ll > arr(n);
-        ll sum = 0;
-        ll flag = 0;        
-        for(int i = 0; i < n; i++)
+    	int n;
+        cin>>n;
+        if(n == 1)
         {
-            cin>>arr[i];
-            sum += arr[i];
-            if(arr[i]%x != 0)
-                flag = 1;
-        }
-        if(flag == 0)
-        {
-            cout<<-1<<endl;
+            cout<<"FastestFinger"<<endl;
             continue;
         }
-        if(sum%x != 0)
+        int cnt2=0, odd=0;
+        while(n%2 == 0)
         {
-            cout<<n<<endl;
-            continue;
+            cnt2++;
+            n = n/2;
         }
-        int l=0,r = n-1;
-        for(int i = 0; i < n; i++)
+        if(n > 1)
+            odd = 1;
+        int cnto =0,i;
+        for(i =3; i*i < n; i+=2)
         {
-            if(arr[i]%x != 0)
+            if(n%i == 0)
             {
-                l = i;
-                break;
+                cnto += 2;
             }
         }
-        for(int i = n-1; i >=0; i--)
-        {
-            if(arr[i]%x != 0)
-            {
-                r = i;
-                break;
-            }
-        }
-        int ans = max(n-l-1, r);
-        cout<<ans<<endl;
+        if( i*i == n )
+            cnto += 1;
         
+        // cout<<cnt2<<" "<<odd<<endl;
+        if(odd==1)
+        {
+            if(cnt2 == 0)
+            {
+                cout<<"Ashishgup";
+            }
+            else
+            {
+                if(cnt2 == 1)
+                {
+                    if(cnto >=1)
+                        cout<<"Ashishgup";
+                    else
+                        cout<<"FastestFinger";
+                }
+                else
+                    cout<<"Ashishgup";
+            }
+        }
+        else
+        {
+            if(cnt2 == 1)
+                cout<<"Ashishgup";
+            else 
+                cout<<"FastestFinger";
+        }
+        cout<<endl;
     }
     return 0;
 }

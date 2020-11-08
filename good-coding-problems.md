@@ -26,7 +26,7 @@ DP :
 	- #ways to partition n elements in a set to 'k' subsets (geeks)
 	   Stirlings number of 'second kind' :S(n,k) = #ways to partition n elements into 'k' subsets
 	   Bell no. : #ways to partition 'n' elements of a set, Bell no = {S(n,k) | 0<=k<=n }; S(n,0)=0
-
+	   
 	- Given a squarefree number x, find the number of different multiplicative partitions of x?
 	- Egg Droping
 	- Box Stacking Problem(MUST)

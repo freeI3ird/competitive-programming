@@ -16,7 +16,7 @@
 
 4. **Errors in Binary Search**
 	- Calculation of mid
-  	- mid = lo + (hi-lo)/2 : rounds down in case of even numbers
+  	- mid = lo + (hi-lo)/2 : rounds down (in case of even numbers, )
   	- mid = lo + (hi-lo +1)/2: rounds up
   	- mid = (lo+hi)/2
     	- Cause Integer Overflow if (lo+hi) > INT_MAX
@@ -30,10 +30,11 @@
   	- As time increases logarithmically, try to keep lower and upper bounds relaxed, so that no test case is left by mistake.
   	- Predicate Evaluation must not fail on any value of Search Space.
 	- Real Numbers
-  	- Run BS for over hundred iterations.
+  	- Run BS for over hundred iterations(best option).
   	- Or Terminate the search when Search space is very small, try to use `Relative comparison of bounds instead of Absolute comparison`.
-  	-  The reason for this is that doubles can never give you more than 15 decimal digits of precision so if the search space contains large numbers (say on the order of billions), you can never get an absolute difference of less than 10-7.
-	- If the search space consists only of integers, `test your algorithm on a two-element set` to be sure it doesn’t lock up
+  	- The reason for this is that doubles can never give you more than 15 decimal digits of precision so if the search space contains large numbers (say on the order of billions), you can never get an absolute difference of less than 10e-7.
+	- If the search space consists only of integers, `test your algorithm on a two-element set` to be sure it doesn’t lock up, (two elements must be: (no,yes))
+    - Remember to always test your code on a two-element set where the predicate is false for the first element and true for the second.
 5. Using distance array instead of parent and visited array in BFS.
 6. Use functions: loga(b) = log(b)/log(a), log2(x), log10(x), pow(a,b), exp(x), sqrt(x)
 7. getline in c++: http://www.cplusplus.com/reference/string/string/getline/
@@ -81,17 +82,10 @@
    }
 
 ### Concepts
-/*
-*******************************
-Don't Stop when you are tired  *
-Stop When you are Done         *
-*******************************
-*/
+1. In 1s around 10^7- 10^8 operations are performed.
+2. Complexity of recursive dp : arguements in memorization,complexity of rec fun. taking recursive calls as constant
+   - e.g  dp[idx][tk] , and idx - (0-n), tk- (0-k) and rec fun has complexity=O(n) then Time = O( n*k*n)
 
-  ****  In 1s around 10^7- 10^8 operations are performed ****
- *** Complexity of recursive dp : arguements in memorization,complexity of rec fun. taking recursive calls as constant ****
-    e.g  dp[idx][tk] , and idx - (0-n), tk- (0-k) and rec fun has complexity=O(n) then Time = O( n*k*n)
-Concepts learned :
 1. Longest path in a tree :using bfs
 	-> apply bfs for each node , max level is longest path
 	or
@@ -155,7 +149,6 @@ Concepts learned :
 	Ans: Reduce max(a,b,c)
 	3*5 = 3+3+3+3+3 || 5+5+5  => if (3-1) then one 5 reduced else if(5-1) one 3 reduced
 	Reference : ChefDiv (april17)
-
 18. cin.ignore(n,del) :This extracts characters from the input sequence and discards them, until either n characters have been 	
 	extracted, or one compares equal to 'delim'.
 	e.g cin>>n ; cin.getline(s) : Here s.length()=0 because '\n' was present at starting in buffer when control of flow reaches cin.getlin(s) and this function stops reading after it encounters '\n'
@@ -189,4 +182,37 @@ the help of your i used in the loop (hint : compare with the limit of loop)
 2. When you have to find min. or max then you don't need to first enter the no.s in array and then check for max.
   Do it in one loop only ,simultaneously input and check in one loop only.
 
-3. To find power of '2' Use (1<<i) instead of pow(2,i), former one is faster.
+3. To find power of '2' Use `(1<<i)` instead of pow(2,i), former one is faster.
+
+### Code Tactics
+
+1. Compare if 3 numbers are in order i.e `3 2 1 or 1 2 3`
+   - `if((a < b) != (b < c)) 'inorder' else 'not inorder'`
+2. memset
+   - `memset(void*ptr, int val, size_t n)`
+   - It performs following steps
+     - Converts `int val` to `unsigned char` by data conversion.
+       - So if `val` is out of this range `(0, 255)` then there will data loss.
+     - `unsigned char` takes 1 Byte, so it copies this `unsigned char val` at first `n` Bytes of the memory pointed by `ptr`.
+   - USE CASES
+     - `memset(str, '-', 6)`
+       - Replace First 6 Bytes/chars with char '-'.
+       - No data loss
+     - `memset(arr, 0, sizeof(arr))`
+       - All the elements of array will be set to 0.
+       - Here 0 is integer, upon its conversion to char its 3 bytes out of 4 Bytes will be discarded. But 0 has all its bits as 0, so there is not effect of truncation.
+       - Replace all the bytes of arr with Byte/Char = `00000000`
+     - `memset(arr, -1, sizeof(arr))`
+       - All the elements of array will be set to -1.
+       - Here -1 is integer, it is represented by all 1s in binary, upon its truncation there will be no affect.
+     - `memset(arr, x, sizeof(arr))`
+       - NOT set all elements to x if x != 0 and x != -1.
+       - When interger x is converted to unsigned char, data will be lost.
+       - memset works for 0 or -1 only.
+3. sizeof operator
+   - `sizeof(int), sizeof(5), sizeof(arr), sizeof(str)`
+   - Returns memory size in Bytes of data type, structure, class, literal.
+   - It returns a value of type `size_t` i.e unsigned int.
+   - USE CASES
+     - No of elements in arr
+       - `sizeof(arr)/sizeof(arr[0])`

@@ -24,15 +24,6 @@ ll power(ll x,ll y){ ll res = 1;
 ll count_bits(ll n){ ll cnt = 0;
 	while(n > 0) { n = n/2 ; cnt = (cnt + 1) ;}  return cnt ; }
 
-int isOrder(int l, int r, vi &arr)
-{
-    if(arr[l] > arr[r-1] && arr[r-1] > arr[r])
-        return 1;
-    if(arr[l] < arr[r-1] && arr[r-1] < arr[r])
-        return 1;
-    return 0;
-}
-
 int main()
 {
 	//freopen("A-large.in", "r", stdin);
@@ -41,28 +32,45 @@ int main()
     read(t);
     for(h=1;h<=t;h++)
     {
-    	int n;
+        int n;
         cin>>n;
-        vi arr(n);
-        for(int i =0; i < n; i++)
-            cin>>arr[i];
-        vi ans;
-        int l =0, mid=2;
-        for(mid = 2; mid < n; mid++)
+        vector< ii > even, odd;
+        for(int i = 1; i <= 2*n; i++)
         {
-            if(isOrder(l,mid, arr) == 0)
+            int num;
+            cin>>num;
+            if(num&1)
             {
-                ans.pb(arr[l]);
-                l = mid-1; 
+                odd.pb(mp(num,i));
+            }
+            else
+            {
+                even.pb(mp(num, i));
+            }
+            
+        }
+        int cnt = n-1;
+        while(cnt > 0)
+        {
+            int s1 = odd.size();
+            int s2 = even.size();
+            if(s1 >= 2)
+            {
+                ii p1 = odd[s1-1];
+                ii p2 = odd[s1-2];
+                odd.pop_back(); odd.pop_back();
+                cout<<p1.second<<" "<<p2.second<<endl;
+                cnt--;
+            }
+            else
+            {
+                ii p1 = even[s2-1];
+                ii p2 = even[s2-2];
+                even.pop_back(); even.pop_back();
+                cout<<p1.second<<" "<<p2.second<<endl;
+                cnt--;
             }
         }
-        ans.pb(arr[l]);
-        ans.pb(arr[mid-1]);
-        int ssize = ans.size();
-        cout<<ssize<<endl;
-        for(int i = 0; i < ssize; i++)
-            cout<<ans[i]<<" ";
-        cout<<endl;
     }
     return 0;
 }

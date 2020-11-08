@@ -29,46 +29,63 @@ int main()
 	//freopen("A-large.in", "r", stdin);
 	//freopen("outout1b.txt", "w", stdout);
     int t,h;
-    t=1;
+    read(t);
     for(h=1;h<=t;h++)
     {
     	int n;
         cin>>n;
-        vi arr(n);
-        for(int i = 0; i < n; i++)
-            cin>>arr[i];
-        vi b(n,-1);
-        set<int> myset;
-        int last = arr[n-1];
-        for(int i= 0; i < last ; i++)
-            myset.insert(i);
-        for(int i = n-1; i >=1; i--)
+        int a = 0,b=0;
+        if(n%2 == 0) // even
         {
-            if(arr[i-1] < arr[i])
+            a = b = n/2;
+            cout<<a<<" "<<b<<endl;
+            continue;
+        }
+        vi divisor;
+        int i =0;
+        for(i = 2; i*i < n; i++)
+        {
+            if(n%i==0)
             {
-                b[i] = arr[i-1];
-                myset.erase(arr[i-1]);
+                divisor.push_back(i);
+                divisor.push_back(n/i);
             }
         }
-        int high = last+1;
-        for(int i =0; i < n; i++)
+        if(i*i == n)
         {
-            if(b[i] == -1)
+            divisor.push_back(i);
+        }
+        sort(divisor.begin(), divisor.end());
+        int len = divisor.size();
+        if(len == 0)
+        {
+            a = 1; b = n-1;
+        }
+        else 
+        {
+            a = 1;
+            vi arr;
+            int num = n;
+            int k = 0;
+            while(num && k < len)
             {
-                if(myset.empty())
-                    b[i] = high;
+                if(num%divisor[k] == 0)
+                {
+                    arr.push_back(divisor[k]);
+                    num = num/divisor[k];
+                }
                 else
                 {
-                    b[i] = *(myset.begin());
-                    myset.erase(b[i]);
+                    k++;
                 }
             }
+            int len2 = arr.size();
+            a=1;
+            for(int k = 1; k < len2; k++)
+                a = a*arr[k];
+            b = n - a;
         }
-        for(int i = 0; i < n; i++)
-        {
-            cout<<b[i]<<" ";
-        }
-        cout<<endl;
+        cout<<a<<" "<<b<<endl;
     }
     return 0;
 }

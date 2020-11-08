@@ -28,11 +28,12 @@ int main()
 {
 	//freopen("A-large.in", "r", stdin);
 	//freopen("outout1b.txt", "w", stdout);
+    cout<<"Hello world";
     int t,h;
     read(t);
     for(h=1;h<=t;h++)
     {
-    	
+    	cout<<"Hello World";
     }
     return 0;
 }

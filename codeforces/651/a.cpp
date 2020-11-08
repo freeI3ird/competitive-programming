@@ -24,15 +24,6 @@ ll power(ll x,ll y){ ll res = 1;
 ll count_bits(ll n){ ll cnt = 0;
 	while(n > 0) { n = n/2 ; cnt = (cnt + 1) ;}  return cnt ; }
 
-int isOrder(int l, int r, vi &arr)
-{
-    if(arr[l] > arr[r-1] && arr[r-1] > arr[r])
-        return 1;
-    if(arr[l] < arr[r-1] && arr[r-1] < arr[r])
-        return 1;
-    return 0;
-}
-
 int main()
 {
 	//freopen("A-large.in", "r", stdin);
@@ -41,28 +32,9 @@ int main()
     read(t);
     for(h=1;h<=t;h++)
     {
-    	int n;
+        int n;
         cin>>n;
-        vi arr(n);
-        for(int i =0; i < n; i++)
-            cin>>arr[i];
-        vi ans;
-        int l =0, mid=2;
-        for(mid = 2; mid < n; mid++)
-        {
-            if(isOrder(l,mid, arr) == 0)
-            {
-                ans.pb(arr[l]);
-                l = mid-1; 
-            }
-        }
-        ans.pb(arr[l]);
-        ans.pb(arr[mid-1]);
-        int ssize = ans.size();
-        cout<<ssize<<endl;
-        for(int i = 0; i < ssize; i++)
-            cout<<ans[i]<<" ";
-        cout<<endl;
+        cout<<n/2<<endl;
     }
     return 0;
 }
