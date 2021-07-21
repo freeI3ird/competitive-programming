@@ -1,19 +1,23 @@
-Topic Wise :
+# Topic Wise :
 
-Binary Search:
-	// Sometimes we are given a key and we Search it to find the answer
-	// Sometimes, we do Binary search on the Answer or range of answer and try to fit the approximation to desired conditions
-	-SnakeEAT :https://www.codechef.com/problems/SNAKEEAT
-	-Smallest missing no. (geeks)
-	-Search an element in a sorted and rotated array(Good).
-Greedy :
-	-Job Sequencing Problem(deadline and profit),using 'Disjoint set' also.
-	-Huffman Coding for Sorted Input :O(n)
-	-Min. Time Required to Finish all the Jobs
-	-Paper cut into Minimum no. of squares( here greedy choice is not safe proof??)
-	-Rearrange a string so that all same characters become d distance away
-	-***Minimum edges to reverse to make path from a source to a destination***
-DP :
+## Binary Search:
+1. Suggestion
+	- Sometimes we are given a key and we Search it to find the answer
+	- Sometimes, we do Binary search on the Answer or range of answer and
+	 try to fit the approximation to desired conditions
+2. Problems
+	- SnakeEAT :https://www.codechef.com/problems/SNAKEEAT
+	- Smallest missing no. (geeks)
+	- Search an element in a sorted and rotated array(Good).
+## Greedy :
+	- Job Sequencing Problem(deadline and profit),using 'Disjoint set' also.
+	- Huffman Coding for Sorted Input :O(n)
+	- Min. Time Required to Finish all the Jobs
+	- Paper cut into Minimum no. of squares( here greedy choice is not safe proof??)
+	- Rearrange a string so that all same characters become d distance away
+	- ***Minimum edges to reverse to make path from a source to a destination***
+## DP :
+```
 // Interval dp : R(i,j) = R(i+1,j)+R(i,j-1) or R(i+1,j-1)
 // E.g MCM, Longest palindrome subsequence, LCS and other Interval problems,
 // BUILD DP SOL. FROM SMALLER LENGTH TO GREATER LENGTH
@@ -22,34 +26,36 @@ DP :
  		for(i=1,j=len;j<=n;i++,j++)
  	}
 */
+```
+
 	- Ugly Numbers (geeks)
 	- #ways to partition n elements in a set to 'k' subsets (geeks)
-	   Stirlings number of 'second kind' :S(n,k) = #ways to partition n elements into 'k' subsets
-	   Bell no. : #ways to partition 'n' elements of a set, Bell no = {S(n,k) | 0<=k<=n }; S(n,0)=0
+	  	- Stirlings number of 'second kind' :S(n,k) = #ways to partition n elements into 'k' subsets
+	   	- Bell no. : #ways to partition 'n' elements of a set, Bell no = {S(n,k) | 0<=k<=n }; S(n,0)=0
 	   
 	- Given a squarefree number x, find the number of different multiplicative partitions of x?
 	- Egg Droping
 	- Box Stacking Problem(MUST)
 	- Longest Length Arithmetic Progression(Must)
 	- Buy And Sell Stock Problem
-			=> Kadane algo on the profit (difference array)
-			=>*** start from last and maintain the highest price till now and find the maximum difference***
+		- Kadane algo on the profit (difference array)
+		- *start from last and maintain the highest price till now and find the maximum difference*
 	- Palindrome Partitioning :O(n^2);
 	- Boolean parantherzian problem.(geeks).
 	- If String is interleaving of two strings(Must)
 	- Optimal Game Stratergy(Geek)***.
 	- Count # of AP subsequence in an array.
 
-Segment Tree and BIT :
+## Segment Tree and BIT :
 	- Persistan Segment tree and BIT ("TO DO")
 	- KQUERY (Spoj)
 	- Chef and Prime Queries (june long17)
 	- Merge Sort Tree:https://discuss.codechef.com/questions/94448/merge-sort-tree-tutorial
 
-MO's' :
+## MO's' :
 	-
 
-Array implementation:
+## Array implementation:
 	- Find the two repeating elements in a given array(say X,Y are two elements that are repeating),range(1-n)
 	-Sort an array of 0s, 1s and 2s
 	- Cycle Sort
@@ -61,11 +67,11 @@ Array implementation:
 		- Use Sum and Product Equation ***Use Sum and Square Sum equation.***
 	- Rotate the Matrix by 90 degree(MUST).
 	- Set Matrix Zeroes /Boolean Matrix.
-Graph:
+## Graph:
 	- Biconnected Graph (Graph which is connected and Do not have any Articulation point)
 	- All Stepping No. from 'n' to 'm' range.(Stepping no. = difference of adjacent digits =1)***
 
-Tree: Preorder,Inorder,Postorder= DFS of Graph, and Level Order= Bfs of Graph
+## Tree: Preorder,Inorder,Postorder= DFS of Graph, and Level Order= Bfs of Graph
 	  //***Think Tree as a Special case of Graph, you are good in graph so you are good in Tree also.***
 	-Inorder Traversal without stack without recursion (Morris)
 	-Connect nodes at same level using constant extra space(MUST)***
@@ -83,7 +89,9 @@ Tree: Preorder,Inorder,Postorder= DFS of Graph, and Level Order= Bfs of Graph
 	-find vertical sum (Space optimized using DLL).
 	-Boundary Traversal.
 
-HEAP :- ALWAYS CHECK THE BOUNDARY CONDITIONS, i>=0 and i<=h->count-1
+## HEAP : 
+1. ALWAYS CHECK THE BOUNDARY CONDITIONS, i>=0 and i<=h->count-1
+2. Problems
 	- k largest/smallest elements in unsorted array. (USE HEAP : O((n-k)*logk))
 	- kth smallest/largest in HEAP. (USe HAUX heap, O(klogk))
 	- Print all elements in sorted order from row and column wise sorted matrix
@@ -92,7 +100,9 @@ HEAP :- ALWAYS CHECK THE BOUNDARY CONDITIONS, i>=0 and i<=h->count-1
 	- Rearrange Characters in a string such that no. two same char are adjacent.(MUST).
 			(Use greedy,insert the most frequent first)
 
-BST : ALWAYS TRY TO APPLY BST PROPERTY - (ELEMENTS IN LEFT SUBTREE <ROOT<ELEMENTS IN RIGHT SUBTREE).
+## BST : 
+1. ALWAYS TRY TO APPLY BST PROPERTY - (ELEMENTS IN LEFT SUBTREE <ROOT<ELEMENTS IN RIGHT SUBTREE).
+2. Problems
 	-Check Bst or Not (USE BST PROPERTY)
 	-LCA of n1 and n2 .(USE BSt property)
 	- Inorder Successor and Predecessor.(FIND THE FIRST RIGHT ANCESTOR , FIRST LEFT ANCESTOR)
@@ -100,8 +110,13 @@ BST : ALWAYS TRY TO APPLY BST PROPERTY - (ELEMENTS IN LEFT SUBTREE <ROOT<ELEMENT
 	- Check for Identical BSTs without building the trees.
 	-Conversion of DLL and Linked list to BST.
 
-Linked List:TAKE CARE OF FOLLOWING CASES: 1. 'WHEN Linked list is empty' 2.'Only One Node'
- 										  3.'When TARGET NODE IS head'   4. 'WHEN TARGET NODE IS last'.
+## Linked List:
+1. TAKE CARE OF FOLLOWING CASES: 
+  - 'WHEN Linked list is empty' 
+  - 'Only One Node'
+  - 'When TARGET NODE IS head'   
+  - 'WHEN TARGET NODE IS last'.
+2. Problems
   - ***SWAP two nodes without swapping the data (IMPORTANT)(1.handle the prev pointers 2.handle cur ptrs.)***
   - Find the middle element
   		* Rabbit and turtle method
@@ -123,7 +138,7 @@ Linked List:TAKE CARE OF FOLLOWING CASES: 1. 'WHEN Linked list is empty' 2.'Only
   			 so if we start one pointer at Head and other from point of intersection then they will meet at point of intersection
     -Find the first non-repeating character from a stream of characters.(MUST)
 
-#### Back-Tracking
+## Back-Tracking
 1. Rat in a maze.
 	- Maze is (N,N) matrix, rat have to reach from 	         source(0,0) to destination(N-1,N-1), some cells are     blocked. **Rat can move in all 4 directions.**
 	- Our Thought: keep marking the cells that we visit 	in the path and if encounter some visited cells than 	 backtrack.
@@ -132,18 +147,18 @@ Linked List:TAKE CARE OF FOLLOWING CASES: 1. 'WHEN Linked list is empty' 2.'Only
 
 2. Next question
 
-#### Binary search
+## Binary search
 1. Median of arrays
    - https://www.interviewbit.com/problems/median-of-array/
 2.
 
-#### Segment tree
+## Segment tree
 1. https://cp-algorithms.com/data_structures/segment_tree.html
 2.
 
-#### General
+## General
 1. Lexographically next permutation of sequence
 	- https://www.geeksforgeeks.org/find-the-next-lexicographically-greater-word-than-a-given-word/
 
-#### Game Theory
+## Game Theory
 1.
